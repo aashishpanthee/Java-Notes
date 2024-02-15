@@ -1,0 +1,61 @@
+Identifiers: Identifiers are names given to various programming elements such as variables, methods, classes, packages, etc. 
+Identifiers are user-defined names.
+They must adhere to specific rules:
+1.Composed of letters, digits, underscores (_), and dollar signs ($).
+2.Must start with a letter, underscore, or dollar sign.
+3.Cannot begin with a digit.
+So, examples of valid identifiers are: total_number, total123, ca$h, _$_$_$_$, aasish1Panthee, Integer, Int
+ examples of invalid-identifiers are : total#, aashish@panthee, int
+
+Java reserved words:   are predefined identifiers/words that have special meanings and are reserved by the Java language for specific purposes.
+There are 53 reserved words in Java.
+Keywords(50) and Reserved Literals(3)
+Used Keywords(48) and Ununsed Keywords(2)
+Used Keywords: if else,switch, etc    Unused keywords: goto, const
+Reserved Liters = true,false,null
+
+If the reserved words only represent the functionality. i.e Keywords
+If the reserved words only represent the value. i.e Reserved Literals
+
+let's get all the 53 reserved words:
+Firstly Reserved Keywords(49)
+Used Keywords (47):
+Firstly Data types: byte, short, int, long, float, double, boolean, char
+Secondly Flow Control: if, else, switch, case, default, while, do, for, break, continue, return
+Thirdly keywords for modifies: public, private, protected, static, final, abstract, synchronized, native, strictfp, transient, volatile
+Fourthly Exception Handling: try, catch, throw, finally, throws, assert
+Fifthly Class related keywords: class, interface, extends, implements, package, import
+Sixly Object related keywords: new, instanceof, super, this
+Seventhly Return type keyword: void
+
+Unused Keywords (2):
+goto => the use of goto is highly discouraged in modern programming because it often leads to unmaintainable and hard-to-understand code, known as "spaghetti code." ava deliberately omits this keyword.
+const => In Java, the const keyword is reserved but not used. Constants in Java are typically declared using the final modifier along with static for class-level constants. 
+-> If we try to use goto and const in Java, we will get compile time error.
+
+Secondly, Reserved Literals (3):
+true,false,null
+true,false => values for boolean data type
+null => default value for object reference
+
+Thirdly, Enum keyword (1) i.e enum
+--Enum is a group of named constants. We can use enum to define group of named constants.
+
+NOTE/Conclusion: In Java, we do not have delete keyword because destruction of useless objects is the responsibility of garbage collector.
+strictfb,assert,enum are new keywords in java.
+
+Now, let’s analyze  code snippet: int String = 000;.
+The keyword int is used to declare an integer variable.
+The identifier String is allowed, even though String is a predefined class in Java.
+Why does this compile?
+In this case, String is treated as an identifier, not as the predefined class.
+However, it’s essential to note the following:
+While it’s technically allowed, it’s best practice to avoid using predefined class names (like String) as identifiers.
+Doing so can lead to confusion and hinder code readability.
+
+
+ 
+ 
+ 
+ 
+ 
