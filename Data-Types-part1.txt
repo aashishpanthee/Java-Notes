@@ -73,4 +73,7 @@ NOTE:
    Range: -2^63 to 2^63-1
    Minimum value of int is -9,223,372,036,854,775,808 and maximum value of int is 9,223,372,036,854,775,807
 
+*** All the above data types (byte,short,int,long) are meant for representing integral values. 
+If we want to represent floating point values, then we should go for floating point data types.***
+
 
