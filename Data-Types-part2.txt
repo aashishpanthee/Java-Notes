@@ -1,0 +1,65 @@
+b. Floating point data types
+-Float
+-Double
+
+a. Float data type
+-5 to 6 decimal places of precision accuracy 
+-Single precision
+-Size: 4 byte
+-Range: -3.4e38 to 3.4e38
+-Wrapper class: Float
+-Default value: 0.0
+
+b. Double data type
+-14 to 15  decimal places of precision accuracy
+-Double precision
+-Size: 8 byte
+-Range: -1.7e308 to 1.7e308
+-Wrapper class: Double
+-Default value: 0.0
+
+
+B. Non-Numeric Data types
+i. Boolean data type
+-Size: Not Applicable[Virtual Machine dependent]
+-Range: Not Applicable [ but allowed values are true or false]
+-Wrapper class: Boolean
+-Default value: false
+-Example:
+boolean b = true; //right
+boolean b = 0;  //compile-time error comes as incompatible types : fount int required boolean
+boolean b = True;  // compile-time error saying cannot find saying found variable,location class...
+boolean b = "True";  //C.E saying incompatibilty types found java.lang.string required boolean
+
+int x=0;
+if(x){
+  System.out.println("hello")
+}else{
+  System.out.println("hi")
+}
+In this example, compile time error comes saying, Incompatible types found int , required boolean, 
+because in older languages like c and c++ , 0 and 1 were also used to represent boolean values, but in java, it is not.
+
+while(1){
+  System.out.println("hello world")
+}
+In this program too, same compile time error comes as above.
+
+
+ii. Char Data Type
+Old languages like C or C++,  are ASCII code based and the number of allowed ASCII code characters are less than or equal to 256.
+To represent these 256 characters, 8 bits are enough. Hence, the size of char in old languages is 1byte. 
+But Java is UNICODE based and the number of different code characters are greater than 256 and less than or equal to 65536.
+To represent these many characters, 8 bits may not be enough , compulsory we should go for 16 bits. Hence, the size of char in java is 2bytes.
+Size:2bytes
+Range:0 to 65535
+Wrapper class: Character
+Default value: 0 [represents space character]
+
+
+
+Note: Null is a default value for Object reference and we can't apply for primitive data types, if we are trying to use for primitives,then
+we will get compile-time error.
+Exmple char ch = null;  //compile-time error comes as incompatible types, found <nulltype> required char
+
+
