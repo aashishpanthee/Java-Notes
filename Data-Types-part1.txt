@@ -1,0 +1,76 @@
+Java Language is considered as STRONGLY TYPED programming language.
+In Java, every variable and expression has some type.
+Each and every data type is clearly defined.
+Each and every assignment should be strictly checked by compiler for type compatibility.
+Because of above reasons, we can conclude that Java is STRONGLY TYPED programming language.
+
+---
+
+Java is not considered as pure object-oriented language because :
+a. Several OOP's features are not satisfied by Java like Multiple Inheritance, Operator Overloading etc.
+b.Moreover we are depending on primitive data types which are not objects.
+
+---
+
+Data Types in Java:
+
+1. Primitive Data Types (8)
+   => A. Numeric Data Types
+   => a. Integral Data Types // data types used to represent number without decimal point
+   => i. byte
+   => ii. short
+   => iii. int
+   => iv. long
+   => b. Floating Point Data Types // data types used to represent number with decimal point
+   => i. float
+   => ii. double
+   => B. Non-Numeric Data Types // data types used to represent characters and boolean values
+   => i. char
+   => ii. boolean
+
+---
+
+NOTE:
+
+1. Byte is the best data type which is used to handle data in terms of streams, either from the file or from the network.(files supported form or network supported form is byte)
+   1 Byte = 8 bits
+   8 bits = 11111111
+   the first one is msb which is used to represent the sign of the number and remaining 7 bits are used to represent the number.
+   sign bit = 0 => positive number and sign bit = 1 => negative number
+   Positive number are represented directly in memory whereas negative numbers will be represented in 2's complement form.
+   Byte data type ranges from 2^7 to 2^7-1
+   Minimum value of byte is -128 and maximum value of byte is 127.
+
+2. Short Data Type
+   Short data type is the most rarely used data type in java.
+   Size of short is 2 bytes (16 bits)
+   Range: -2^15 to 2^15-1
+   Minimum value of short is -32768 and maximum value of short is 32767.
+   Short data type is best suitable for 16 bit processors like 8085. but shortly, these processors are completely outdated.
+   In early days, there were 16 bit processors but these days there are 32 bit , 64 bit processors, so corresponding short data type is also outdated.
+
+3. Int data type
+   The most commonly used data type in Java is int data type.
+   Size: 4 bytes which is (32)bits
+   Range: -2^31 to 2^31-1
+   Minimum value of int is -2,147,483,648 and maximum value of int is 2,147,483,647.
+   Example:
+   int x = 2,147,483,647 // right
+   int x = 2,147,483,648 //compile-time error comes as interger number too large.
+   int x = 2147483648l //compile-time error comes as found:long required:int
+   int x = true // compile-time error comes as found:boolean required:int
+
+4. Long data type
+   Sometimes, int may not be enough to hold big values,then we such go for long data type.
+   Example:
+   1. The amount of distance travelled by light in 1000 days, to hold this value , int data type may not be enough , so in this case , we should for long data type.
+    long l = 26,000 * 60 * 60 * 24 * 1000 //miles
+
+   2. The number of characters present in a big file may exceed int range. Hence, the return type of length method is long but not int.
+    long l = f.length();
+    
+   Size: 8 bytes which is (64)bits.
+   Range: -2^63 to 2^63-1
+   Minimum value of int is -9,223,372,036,854,775,808 and maximum value of int is 9,223,372,036,854,775,807
+
+
