@@ -1,0 +1,169 @@
+
+Literal
+=> Any constant value which can be assigned to the variable is called literal.
+Example:  int x = 10;
+here, int is a data_type/keyword
+x is a name of variable/identifier
+10 is a constant value/literal
+
+********************INTEGRAL LITERALS******************
+
+For integral data types(byte,short,int,long) , we can specify literal value in the following ways:
+i.Decimal Literals/Form (base 10)
+=>Allowed Digits are 0 to 9. Example int x = 10;
+ii. Octal Form (base 8)
+=>Allowed Digits are 0 to 7. Literal value should be prefixed with zero(0).Example int x = 010;
+iii. Hexadecimal form (base 16)
+=>Allowed Digits are 0 to 9, a to f . For extra digits(a to f), we can use both lower-case & upper-case characters. This is one of very few areas where Java is not case-sensitive. 
+The literal value should be prefixed with (0X).
+Example: int x = 0X10;
+
+** These are only possible values to specify literal values for integral data types.**
+
+int x = 10 ; // right
+int x = 0786; // compile time error comes saying integer number too large.
+int x = 0777; //right
+int x = 0XFACE; //right
+int x = 0XBEER; // compile time error comes because R is not defined. 
+
+example:
+class Test{
+public static void main(String[] args){
+  int x= 10;   
+  int y= 010;  //it is in octal form, jvm will convert to decimal form , 0*8^0 + 1*8^1 = 8
+  int z = 0X10; //it is in hexadecimal form, jvm will convert to decimal form, 0*16^0 + 0*16^1 = 16
+  System.out.println(x+"..."+y+"..."+z);   //output is 10...8...7
+}
+}
+
+Note::
+By default, every integral literal is of int type but we can specify explictly as long type by suffix with l or L  i.e. 10l, 010L, 0X10L
+Example:
+int x =  10; //right
+long l = 10L;  //right
+int x = 10L; //compile time error will occur saying found long , required int.
+long x = 10; //right
+
+
+There is no direct way to specify byte and short literals explicitly but indirectly we can specify.
+Whenever we are assigning integral literal to the byte variable and if the value within the range of byte then compiler treats it automatically as byte literal.
+Similar for short literal also.
+Example::
+byte b = 10;  //right
+byte b = 127; //right
+byte b = 128; //compile time error will occur saying possible loss of precision, found int required byte
+
+short s = 32767; //right
+short s =  32768; //compile time error will occur saying possible loss of precision, found int required short
+
+
+
+******************** FLOATING POINT LITERALS******************
+By default, every floating point literal is a double data type and hence we can't assign directly to the float variable.
+But we can specify floating point literal as a float type by suffixed with f or F.
+Example:
+float f = 123.456 // compile time error will occur saying possible loss of precision, found double required float
+float f = 123.456F //right
+double d = 123.456 //right
+double d = 123.456D; //right 
+float f = 123.456D; // compile time error will occur saying possible loss of precision, found double required float.
+
+we can specify floating point literals only in decimal form,and we can't specify in octal & hexadecimal forms.
+double d = 123.456; //right
+double d = 0123.456; //right.. it is decimal literal but not octal literal , 0 in the prefix in floating point literal is treated as decimal only .
+double d = 0X123.456 //compile time error will occur saying malformed floating point literal
+
+double d = 0786; //compile time error saying integer number too large 
+here, there is no any point , by default it is treated as integral, and integral literal having 0 in the first place means octal, and octal is not allowed in floating point literal.
+double d = 0XFace; //it is integral literal
+double d = 076.0 //right, even though 0 is there in first place of literal, it is treated as decimal form in floating point literal.
+double d = 0XFace.0; //compile time error comes. floating point literal starting with 0X is hexadecimal which is not acceptable.
+
+Note: we can assign integral literal directly to floating point variables and that integral literal can be specified either in decimal or octal or hexadecimal forms.
+double d =  10 //output wil come as 10.0
+int x = 10.0 //compile time error will occur saying possible loss of precision , found double required int
+We can't assign floating point literals to integral types.
+
+We can specify floating point literal even in exponential form (e).
+double d = 1.2e3 //right , 1.2 * 10^3 = 1200.0
+float f = 1.2e3 //compile time error occurs. found double required float.
+float f = 1.2e3F //right
+
+
+******************** BOOLEAN LITERALS******************
+The only allowed values for boolean data types are true or false.
+Example:
+boolean b = true; //right 
+boolean b = 0; //compile time error will occur saying incompatible types , found int required boolean
+boolean b = True; //compile time error will occur saying cannot find symbol  , symbol: variable True  location : class Test
+boolean b = "false"; //compile time error will occur saying incompatible types , found Java.lang.string required boolean
+
+
+******************** CHARACTER LITERALS******************
+We can specify char literal as single character within single quotes.
+char ch = 'a'; //right
+char ch = a; //compile time error will occur sayinng cannot find symbol , symbol: variable a , location: class Test
+char ch = "a"; //compile time error will occur saying incompatible types, found: java.lang.string required: char
+char ch = "ab"; //comile time error will occur saying unclosed char literal, not a statement.
+We can specify char literal as integral literal which represents UNICODE value of the character and that integral literal can be specified either in decimal or octal or hexadecimal forms.
+But allowed range is 0 to 65535.
+char ch = 97; //right 
+char ch = 0XFace; //right 
+char ch = 0777; //right
+char ch = 6335; //right
+char ch = 65536; //C.E P.L.P found int , require char
+
+We can also specify char literal as Unicode representation
+
+Every escape character is a char literal.
+char ch='\n';
+char ch='\t';
+
+
+******************** STRING LITERALS******************
+Any sequence of characters in double quotes is represented as string literals.
+string s = "aashish";
+In 1.7 enhanced version, enhancements came:
+i. Binary Literal
+
+
+For integral data types, untill 1.6 version we can specify literal values, in the following ways:
+i.decimal form
+ii.octal form
+iii.hexadecimal form
+
+But from 1.7 version onwards, we can specify literal values, even in binary form also.
+a.Allowed digits are 0 and 1 in binary form. 
+b.Literal value should be prefixed with 0b or 0B.
+Example: 
+int x = 0B1111; //output 15
+int y = 0b0100; //output 4
+c.Usage of underscore in numeric literals. from 1.7version onwards, we can use underscore symbols between digits of numeric literal.
+Example: double d= 123456.789
+how we can write: double d= 1_23_456.7_8_9
+double d = 123_456.7_8_9
+d. The main advantage of this approach is readability of the code will be improved.
+e. At the time of compilation, this underscore symbols will be removed automatically. Hence, after compilation the above lines will become double d= 123456.789
+f. We can use more than one underscore also between the digits.Example: double d = 1__2_3__4_5_6.7_8_9
+g. We can use underscore symbol only between the digits,if we are using anywhere else, we will get compile time error.
+Example: double d = _1_23_4_5_6.7_8_9; //wrong
+double d = 1_23456_.7_89; //wrong
+double d = 1_23_456.7_8_9_; //wrong
+
+*******************************************OTHER NOTES******************************
+byte(1byte)-->short(2byte)-->int(4byte)
+char(2byte)-->int(4byte)
+int(4byte)-->long(8byte)-->float(4byte)-->double(8byte)
+
+Internal representation of integral data types and floating point data types in computer memory is totally different.
+8byte long value , we can assign to 4byte float variable because both are following different memory representation internally.
+Example: float f = 10l;
+System.out.println(f); //output is 10.0
+
+ 
+
+
+
+
+
+
