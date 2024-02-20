@@ -1,0 +1,106 @@
+****************Array**************
+An array is an indexed collection of fixed number of homogeneous data elements.
+The main advantage of arrays is we can represent huge number of values by using single variable. So that, readability of the code will be improved.
+But the main disadvantage of array is fixed in size.i.e, once we created an array, there is no chance of increasing or decreasing the size based on our requirement.
+Hence, to use array's concept, compulsary we should know the size in advance, which may not be possible always.
+
+****Array Declaration********
+***One Dimensional Array Declaration****
+int[] x; //valid
+int []x; //valid
+int x[]; //valid
+
+but among these  first one is recommended to use because name is clearly separated from type.
+This is one dimensional array declaration.
+
+At the time of declaration, we can't specify the size otherwise we will get compile time error.
+Example : int[6] x; //invalid
+int[] x;  //valid
+
+***Two-Dimesional Array Declaration***
+int[][] x; //valid
+int [][]x; //valid
+int x[][]; //valid
+int[] []x; //valid
+int[] x[]; //valid
+int []x[]; //valid
+
+--Which of the following are valid--
+int[] a,b;  a's dimension 1. b's dimension 1.
+int[] a[],b; a's dimension 2. b's dimension 1.
+int[] a[],b[]; a's dimension 2. b's dimension 2.
+int[] []a,b; a's dimension 2. b's dimension 2.
+int[] []a,b[]; a's dimension 2. b's dimension 3.
+Above all are valid declaration.
+int[] []x,[]b; //compile time error will occur. //invalid
+If we want to specify dimension before the variable, that facility is applicable to only first variable in a declaraion.
+If we are trying to apply for remaining variables, we will get compile time error.
+
+
+**********THREE DIMENSIONAL ARRAY DECLARATION*****************
+we can declare in these many ways:
+int[][][] a;
+int [][][]a;
+int a[][][];
+int[] [][]a;
+int[] a[][];
+int[] []a[];
+int[][] []a;
+int[][] a[];
+int [][]a[];
+int []a[][];
+These all declaration for three dimensional array is valid.
+
+
+
+***************ARRAY CREATION*******************
+int[] a= new int[3];
+Every array in Java is an object only, Hence, we can create arrays by using new operator.
+int[] a = new int[3];
+
+
+******for every array type, corresponding classes are there**********
+These classes are part of  programming language level and not available to programmer level.
+
+Array Type            Corresponding Class name
+int[]            [I
+int[][]          [[I
+double[]         [D
+short[]          [S
+byte[]           [B
+boolean[]        [Z
+
+
+At the time of array creation, compulsory we should specify the size. Otherwise, we will get compile time error.
+int[] x = new int[]; //invalid compile time error will occur.
+int[] x = new int[6]; //valid 
+
+It is legal to have to have an array with size 0 in Java.
+int[] x = new int[0]; //valid
+
+If we are trying to specify array size with some negative int value then we will get Runtime Exception saying negative array size exception.
+int[] x = new int[-3];
+
+To specify array  size, the allowed data types are byte,short,char,int.
+If we are trying to specify any other data types then, we will get compile time error.
+int[] x = new int[10];
+int[] x = new int['a'];
+byte b = 20;
+int[] x = new int[b];
+short s = 20;
+int[] x =new int[s];
+int[] x = new int[10l] //compile time error will occur saying incompatible types: possible lossy conversion from long to int
+
+The maximum allowed Array Size in Java is 2147483647 which is the maximum value of int data type.
+int[] x = new int[2147483647] //valid but runtime-error
+int[] x = new int[2147483648] //compile time error will occur integer number too large.
+Even in the first case,we may get Runtime Exception: insufficient heap memory not available.
+
+
+
+
+
+
+
+
+
