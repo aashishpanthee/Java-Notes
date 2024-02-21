@@ -1,0 +1,69 @@
+************CREATION OF two-dimensional-array**************
+In Java, two-dimensional array by using Matrix-Style . 
+Some people followed Array of Arrays approach for multi-dimensional creation.
+The main advantage of this approach is Memory Utilization will be improved.
+Example:
+int[][] x= new int[2][];
+x[0]=new int[2];
+x[1]=new int[3];
+
+***************Now for three dimesional array************
+int[][][] x = new int[2][][];
+int x[0]=new int[3][];
+int x[0][0]=new int[1];
+int x[0][1]=new int[2];
+int x[0][2]=new int[3];
+int x[1]=new int[2][]
+
+Array initialization::
+Once we create an array , every element by default initializes with default values zero.
+public class Program {
+    public static void main(String[] args) {
+        int[] x=new int[10];
+        System.out.println(x); //output: [I@d716361
+        System.out.println(x[0]); //output: 0
+    }
+}
+Whenever we are trying to print any reference variable, internally two string method will be called 
+which is implemented by default to return the string in the following form: classname@hashcode-in-hexadecimalform
+
+
+int[][] x = new int[2][3]
+Sopln(x); //output: [[I@75d647
+Sopln(x[0]); //output: [[I@25d645
+Sopln(x[0][0]); //output: 0
+
+
+int[][] x = new int[2][]
+Sopln(x); //output: [[I@75d647
+Sopln(x[0]); //output: null
+Sopln(x[0]); //output: Runtime Exception: Null Pointer reference
+
+If we are trying to perform any operation on null, then we will get runtime-exception.
+
+
+ONce we created an array, every array element by default initialized with default values.
+if we are not satisfied with default values, then we can override these values with our customized values.
+int[] x = new int[6];
+x[0]=10;
+x[1]=10;
+x[2]=20;
+x[3]=30;
+x[4]=40;
+x[5]=50;
+x[6]=70; //invalid Runtime-exception: Array index out of bounds exception.
+x[-6]=70; //invalid Runtime-exception: Array index out of bounds exception.
+x[2.5]=90; //compile time error will occur found:double required int
+
+
+NOte: SYNTAX ERROR: COMPILE TIME ERROR
+    : LOGICAL ERROR: RUNTIME-ERROR
+
+
+Note: if we are trying to access array element with out of range index, (either positive value or negative int value),then we will get runtime exception saying: Array index out of bound exception.
+
+
+
+
+
+
