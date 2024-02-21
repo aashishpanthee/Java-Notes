@@ -1,0 +1,132 @@
+Array declaration , creation and initialization , in a single line : 
+int[] x; //declare
+x=new int[6] //creation
+x[0]=10; //initialization
+
+WE can declare declare, create and initialize array in a single line in a shortcut representation:
+int[] x = {10,20,30}
+char[] ch = {'a','b','c','d'}
+string[] st = {"A","AA","AAA"}
+
+We can extend this shorcut for multi-dimensional array's also.
+int[][] x={{10,20},{30,40,50}};
+
+int[][][] x = {{{10,20,30},{40,50,60}},{{70,80},{90,100,110}}}
+Sopln(x[0][1][2]); //output:60
+Sopln(x[1][0][1]); //output:80
+Sopln(x[2][0][0]); //output: Runtime-TIME ERROR
+
+
+If we want to use this shortcut , compulsory we should perform all activities in a single line. If we are trying to divide into
+multiple lines, then we will get COMPILE-TIME-ERROR.
+EXAMPLE: 
+int x; //valid
+x=30; //valid
+this is valid
+
+int[] x; //valid line
+x={10,20,30}; //compile time error occur
+
+
+
+***************length vs length()****************
+length is a final variable applicable for Arrays.
+length variable represents the size of the array.
+Example: int[] x = new int[6];
+Sopln(x.length()); ==>> compile time error : cannot find symbol() symbol: method length() location: class int[]
+Sopln(x.length); //output: 6
+
+
+Another example in strings
+Length method is a final method applicable for string objects. Length method returns number of characters present in the string.
+string s = "charge";
+Sopln(s.length); //compile-time error will occur : cannot find symbol. symbol:variable length location:class java.lang.string
+Sopln(s.length()) //output: 6
+
+NOTE: length variable applicable for Arrays but not for string objects.
+     whereas , length method applicable for string objects but not for arrays.
+
+In multidimensional arrays, length variable represents only base size but not total size.
+int[][] x = new int[6][3];
+Sopln(x.length); //output:6
+Sopln(x[0].length); //output:3
+
+There is no direct way to specify total length of multi-dimensional array,but indirectly we can find as follows:
+x[0].length+x[1].length+x[2].length+x[3].length+...
+
+
+*****************Anonymous Arrays*******************
+An array without name is called anonymous array.
+Sometimes, we can declare array without name, such type of nameless array are called anonymous array.
+The main purpose of anonymous arrays is just for instant use (one-time-use).
+
+We can create anonymous array as follows: new int[]{10,20,30,40}
+
+UseCase::
+class Test {
+    public static void main(String[] args)
+    {
+          // anonymous array
+          sum(new int[]{ 1, 2, 3 });
+    }
+   
+    public static void sum(int[] a)
+    {
+        int total = 0;
+ 
+        // using for-each loop
+        for (int i : a) 
+            total = total + i;
+         
+        System.out.println("The sum is: " + total);
+    }
+}
+
+In the above example, just to call some method, we require an array, but after completing some method call, we are not using that array anymore,
+Hence, for this one-time requirement, anonymous array is the best choice.
+
+While creating anonymous arrays, we can't specify the size, otherwise, we will get COMPILE-TIME ERROR 
+new int[3]{10,20,30}
+new int[]{10,20,30}
+
+we can also create multi-dimensional anonymous arrays
+new int[][]{{10,20},{30,40,50}};
+
+Based on our requirement, we can give the name for anonymous array, then it is no longer anonymous.
+int[] x = new int[]{10,20,30}
+
+Array element assignments:
+Case 1: 
+In the case of primitive type arrays, as array elements we can provide any type which can be implicitly promoted to declared type.
+int[] x = new int[5];
+x[0]=10;
+x[0]='a'; //here char 'a' will be replace by 97, unicode value of a.
+byte b = 20;
+x[2]=b;
+x[3]=20;
+x[4]=10l; //compile-time error occurs as possible loss of precision: found long required int
+
+Case 2: 
+In case of object type arrays, as array elements , we can provide either declared type objects or it's child class objects.
+Example: Object[] a = new Object[10];
+a[0]= new Object();
+a[1]=new String("aashish");
+a[2]=new Integer(10);
+
+Example: Number[] n = new Number[10];
+n[0]=new Integer(10);
+n[1]=new Double(10.5);
+n[2]=new String("aashish"); //compile time error , incompatible types: found: java.lang.String required:java.lang.Number
+
+Case 3:
+For interface type arras, as array elements, it's implementation class objects are allowed.
+Runnable[] r = new Runnable[10];
+r[0]= new Thread();
+r[1]=new String("aashish"); //invalid:compile time error: incompatible types. found:j.l.String required:j.l.Runnable
+
+
+   Array Type       |||||||||||||||||         Allowed Element types
+Primitive Arrays            ==>              Any type which can be implicitly promoted to declared type
+Object type Arrays          ==>              Either declared type or it's child class objects
+Abstract class type Arrays  ==>          It's child class objects
+Interface type Arrays       ==>          It's implementation class objects are allowed.
