@@ -1,0 +1,11 @@
+After the compilation of class file, like javac Program.javac
+Now, for the execution of Program, like java Program
+these are the internal steps being done:
+i. Start JVM
+ii. Create and Start Main Thread
+iii. Locate Program.class file
+iv. Load Program.class
+v. Execute main method
+vi. UnLoad Program.class
+vii. Terminate Main Thread
+viii. Shut-down JVM
