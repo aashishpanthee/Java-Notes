@@ -1,0 +1,40 @@
+                Array Variable Assignment
+Element level promotions are applicable at array level.
+For example: char element can be promoted to int type whereas char array cannot be promoted to int array.
+int[] x = {1,2,3,4,5};
+char[] ch = {'a','b','c','d'};
+
+int[] b = x;  //valid
+int[] ch = ch; //invalid compile-time-error : incompatible types: found:char[] required:int[];
+
+Which one is valid & invalid??
+char==>int //valid
+char[]==>int[] //invalid
+int==>double //valid
+int[]==>double[] //invalid
+float==>int //invalid
+float[]==>int[] //invalid
+String[]==>object //valid
+String[]==>Object[] //valid
+
+CASE A:
+Child type array can be promoted to parent type array.
+int or double type array can be converted to number type array
+
+CASE B:
+whenever we are assigning one array to another array, internal elements won't be copied, just reference variables will be re-assigned.
+int[] a ={1,2,3,4,5};
+int[] b = {7,8};
+a=b; //valid
+b=a; //valid
+
+CASE C:
+Whenever we are assigning one array to another array, the dimensions must be matched.
+For example: in the place of one-dimensional int array, we should provide one dimensional array only.
+If we are trying to provide any other dimension, then we will get compile-time-error.
+int[][] a = new int[3][];
+a[0] = new int[4][3] //invalid compile-time-error comes as incompatible types,found int[][] required int[]
+a[0]= 10 //invalid compile-time-error comes as incompatible types,found int required int[]
+a[0]=new int[2] //valid 
+
+Whenever we are assigning one array to another array , both dimensions and types must be matched, but sizes are not required to match.
