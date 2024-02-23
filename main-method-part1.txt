@@ -1,0 +1,68 @@
+Whether class contains main method or not and whether main method is declared according to requirement or not.
+These things won't be checked by compiler. At runtime, JVM is responsible to check these things.
+If JVM unable to find main method, then we will get run-time exception saying: NoSuchMethodError: Main
+
+At runtime , JVM always suggests for the main method with the following prototype:
+public static void main(String[] args)
+public => To call by JVM from anywhere
+static => without existing object also JVM has to call this method
+void => main method won't return anything to JVM
+main => this is the name which is configured inside JVM
+String[] args => command line arguments
+
+The above syntax is very strict and if we perform any change then we will get runtime exception saying :  NoSuchMethodError: Main
+
+Even though , above syntax is very strict, the following changes are acceptable::
+i. Instead of public static, we can take static public. i.e. the order of modifiers is not important
+ii. We can declare string array in any acceptable form. 
+Eg. main(String[] args) or main(String []args) or main(String args[])
+iii. Instead or args, we can take any valid java identifier.  Eg. main(String[] aashish)
+iv. We can replace String array with var-arg parameter. Eg. main(String... args)
+
+We can declare main method with the following modifiers: final,synchronized,strictfp
+class Test{
+  static final synchronized stricfp public void main(String... aashish){
+    System.out.println("Valid main method");
+  }
+}
+
+CASE-1::
+Overloading of the main method is possible but JVM will always call String[] args main method only.
+The other overloaded method, we have to call explicitly like normal method call.
+class Test{
+  public static void main(String[] args){
+    Sopln("String array");
+  }
+  public static void main(int[] args){
+    Sopln("int array");
+  }
+}
+//output:String array.
+
+CASE-2::
+Inheritance concept applicable for main method. Hence , while executing child class if child doesn't contain main method then parent class main method will be executed.
+class Program{
+    public static void main(String[] args){
+        System.out.println("Parent method");
+    }
+}
+class SubProgram extends Program{
+}
+
+CASE-3::
+It seems overriding concept applicable for main method. But it is not over-riding but it is method-hiding.
+For main method, inheritance and over-loading concept are applicable. but over-riding concept are not applicable. Instead of over-riding , method hiding is possible
+class Program{
+    public static void main(String[] args){
+        System.out.println("Parent method");
+    }
+}
+class SubProgram extends Program{
+      public static void main(String[] args){
+        System.out.println("Child method");
+    }
+}
+
+NOTE: For main method, inheritance and over-loading concept are applicable. but over-riding concept are not applicable. Instead of over-riding , method hiding is possible
+
+
