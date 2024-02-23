@@ -1,0 +1,107 @@
+Var-arg methods (variable number of argument methods)
+Untill 1.4 version, we can't declare a method with variable number of arguments, if there is a change in no. of arguments compulsory we should go for new method. It increases length of the code and reduces readability.
+To overcome this problem, some people introduced var-arg methods in 1.5 version. According to this, we can declare a method which can take variable no. of arguments , such type of methods are called var-arg methods.
+We can declare a var-arg method as follows:
+m1(int... x )
+We can call this method by passing any number of values including zero number.
+m1() //valid
+m1(10) //valid
+m1(10,20) //valid
+m1(10,20,30) //valid
+m1(10,20,30,40) //valid
+Example::
+public class Program {
+  public static void method1(int... a){
+    System.out.println("Var-args");
+  }
+  public static void main(String[] args) {
+    method1(); //valid output:var-arg methods
+    method1(10); //valid output:var-arg
+    method1(20); //valid output:var-arg
+  }
+}
+
+Internally , var-arg parameter will be converted into 1-dimensional array . Hence, withthin the var-arg method we can differentiate values by using index.
+class Program{
+    public static void sum(int... a){
+        int total = 0;
+        for(int x:a){
+            total+=x;
+        }
+        System.out.println("Sum:"+total);
+    }
+    public static void main(String[] args){
+        sum(); //output: Sum: 0
+        sum(10); //output: Sum: 10
+        sum(10,20); //output: Sum: 30
+        sum(10,20,30); //output: Sum: 60
+    }
+}
+
+Another::
+method1(int x, int... y);  //valid
+method2(string s, double... y);  //valid
+
+method3(double... d, string s); //invalid
+method3(char ch, string... s); //valid
+
+If we mix, normal parameter with var-arg parameter then var-arg parameter should be last parameter.
+
+Inside var-arg method, we can take only one(1) var-arg parameter and we can't take more than one var-arg parameter.
+method1(int... x, double... y);  //invalid
+
+Inside a class, we can't declare var-arg method and the corresponding one-dimensional array method simultaneously. otherwise, we will get compile-time error.
+class Test{
+  p s v m1(int... x){
+    Sopln("int...");
+  }
+  p s v m1(int[] x){
+    Sopln("int[]");
+  }
+}
+//invalid : Cannot declare both m1(int[]) and m1(int..) in Test.
+class Test{
+  public static void m1(int... x){
+    System.out.println("var-arg method");
+  }
+  public static void m1(int x){
+    System.out.println("general method");
+  }
+  public static void main(String[] args){
+    m1();  //var-arg method will be called
+    m1(10,20); //var-arg method will be called
+    m1(10);  //general method will be called
+  }
+}
+Note: In general var-arg method will get least priority. i.e. if no other method matched, then only var-arg method will get chance.
+It is exactly same as default case inside switch.
+
+
+EQUIVALENCE BETWEEN VAR-ARG PARAMETER AND ONE-DIMESIONAL ARRAY
+m1(int[] x) ===> m1(int... x)
+m1(String[] args) ===> m1(String... args)
+//  Main of string array args can be replaced with main of String... args
+
+Wherever var args parameter present , we can't replace with one-dimensional array.
+m1(int... x) ===> m1(int[] x)  
+because m1(int[] x) this method is expecting exactly one array. so if we provide m1() nothing arguments, then it will not work.
+
+i. A group of int values and x will become one-dimensional array 
+ii. m1 of int[]... x , we can call this method by passing a group of one-dimensional int arrays, and x will become two-dimensional int array.
+
+class Test{
+  public void static main(String[] args){
+    int[] a = {10,20,30};
+    int[] b = {40,50,60};
+    m1(a,b);
+  }
+  public static void m1(int[]... x){
+    for(int[] x1:x){
+      System.out.println(x1[0]);  //output:10,40
+    }
+  }
+}
+
+
+
+
