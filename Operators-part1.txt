@@ -1,0 +1,133 @@
+***************Topics****************
+
+1. Increment and Decrement Operators
+2. Arithmetic Operators
+3. String concatenation Operato
+4. Relational Operators
+5. Equality Operators
+6. instanceof Operators
+7. bitwise Operators
+8. short circuit Operators
+9. type cast Operator
+10. assignment Operators
+11. conditional Operator
+12. new Operator
+13. [] Operator
+14. operator precedence
+15. Evaluation order of operands
+16. new VS newInstance()
+17. instance VS isInstance()
+18. classNotFoundException VS NoClassDefFoundError
+
+
+*************************************Increment/Decrement Operators********************************************
+
+Expression               Initial value of x         Value of y          Final value of x
+y=++x (Pre-increment)           10                       11                    11
+y=x++ (Post-increment)          10                       10                    11
+y=--x                           10                       9                     9
+y=x--                           10                       10                    9
+
+a. We can apply increment and decrement operators only for variables but not for constant values. If we are trying to apply for constant values, then we will get compile-time error.
+Example:
+class Program{
+    public static void main(String[] args){
+        int x=10;
+        int y = ++10;
+        System.out.println(y);  //unexcepted type. found:value required:variable
+    }
+}
+Another Example:
+class Program{
+    public static void main(String[] args){
+        int x=10;
+        int y = ++x;
+        System.out.println(y);  //output:11
+    }
+}class Program{
+    public static void main(String[] args){
+        int x=10;
+        int y = ++10;
+        System.out.println(y);  //unexcepted type. found:value required:variable
+    }
+}
+
+b. Listing of increment and decrement operators are not allowed.
+Example:
+int x = 10;
+int y = ++ (++x);
+System.out.println(y);  //unexcepted type. found:value required:variable because ++x will be converted to 11 and increment operator to const value is not allowed.
+
+c. For final variables , we can't apply increment or decrement operators.
+Example:
+final int x = 10;
+int y = x++;
+System.out.println(y); //CE: cannot assign a value to final variable.
+
+d. We can apply increment and decrement operators for every primitive type except boolean.
+Example: 
+int x = 10;
+x++;
+Sopln(x); //output:11
+
+char ch = 'a';
+ch++;
+Sopln(ch); //output:b
+
+double d = 10.5;
+d++;
+Sopln(d); //ouput:11.5
+
+boolean b = true;
+b++;
+Sopln(b); //CE: operator ++ cannot be assigned to boolean 
+
+
+d. If we apply any arithmetic operator between two variables a and b , the result type is always max of int,typeof a , typeof b.
+Example:
+byte a = 10;
+byte b = 20;
+byte c = a+b;  //possible loss of precision:found:int required:byte
+Sopln(c); //compile-time error occurs
+//   max(int,typeof a, typeof b)
+//   max(int,byte,byte) which will be int.
+ 
+ byte b = 20;
+ b=b+1;
+ Sopln(b); //CE: Possible loss of precision. found:int required:byte
+
+ byte b=20;
+ b=(byte)(b+1);
+ Sopln(b); //valid
+
+In the case of increment and decrement operators, internal typecasting will be performed automatically.
+Example:
+byte b =20;
+b++;   // b=(typeof b)(b+1)
+Sopln(b); //valid
+
+
+
+*************************************ARITHMETIC Operators********************************************
+If we apply any arithmetic operator between variables a and b , the result type is always: max(int, type of a , type of b)
+
+byte + byte = int
+byte + short = int
+short + short = int
+byte + long = long 
+long + double = double 
+float + long = float
+char + char = int
+char + double = double
+
+Example:
+class Program{
+    public static void main(String[] args){
+        char ch = 'a';
+        char ch2 = 'b';
+     System.out.println(ch+ch2); //output:195
+    }
+}
+
+
+
