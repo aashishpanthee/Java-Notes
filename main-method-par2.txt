@@ -1,0 +1,17 @@
+Untill 1.6 version, if the class doesn't contain main method then we will get run-time exceptionn saying: NoSuchMethodError:main
+But from 1.7 version onwards, instead of NoSuchMethodError , we will get more elaborated error information.i.e. Main method not found in class Test, please define main method as : public static void main(String[] args)
+
+From 1.7 version onwards, main method is mandatory to start program execution. Even though class contains static block , it won't be executed if the class doesn't contain main method.
+
+
+class Test{
+  static{
+    System.out.println("Static Block");
+    System.exit(0)  //this statement meaning is shut down the JVM 
+  }
+}
+
+This will be executed in 1.6 version but will not in 1.7 version because From 1.7 version onwards, main method is mandatory to start program execution.
+
+Without writing main method, is it possible to print some statements to the console ? 
+=> Yes, by using static block. But this rule is applicable untill 1.6 versio. but from 1.7 version onwards , it is impossible to print some statements to the console without writing main method.
