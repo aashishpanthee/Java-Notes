@@ -129,5 +129,117 @@ class Program{
     }
 }
 
+Infinity
+In intergral arithmetic(byte,short,int,long), there is no way to represent infinity. Hence, if infinity is result, we will get arithmetic exception in integral arithmetic.
+For example: Sopln(10/0); //Runtime-exception:Artithmetic exception: / by 0
+
+But in floating point arithmetic, float and double, there is a way to represent infinity.
+Float and Double classes, contains following contrainsts.
+i. Positive_infinity
+ii. Negative_infinity
+Hence, even though result is inifinity, we won't get any arithmentic exception floating point arithmentic.
+For example: Sopln(10/0.0) //Infinity
+Sopln(-10/0) //-Infinity
+
+In integral arithmetic(byte,short,int,long) , there is no way to represent undefined results.Hence, if the result is undefined, we will get runtime-exception saying arithmetic exceptio.
+Sopln(0/0) //RE: Arithemetic Exception: / by 0
+But in floating point arithmetic, there is a way to represent undefined results, for this, Float and Double classes contains NaN constant.
+Hence, if the result is undefined, we will not get runtime-exception.
+Sopln(0.0/0) //valid OUtput: NaN
+
+*************************************STRING CONCATENATION Operators********************************************
+The only overloaded operator in Java is + operator.
+Sometimes, it acts as arithmetic addiditon operator, and sometimes it acts as string concatenation operator.
+
+If at least one-argument is string type, then + operator acts as concatenation operator and if both arguments are number type then + operator acts arithmetic addition operator.
+Example1: 
+String a = "aashish";
+int b = 20;
+int c = 30;
+Sopln(a+b+c+d); //output: aashish2030
+Sopln(b+c+a); //output: 50aashish   left to right operation
+Sopln(b+a+c); //output:20aashish30
+
+Example2:
+String a = "aashish";
+int b = 20;
+int c = 30;
+a = b+c; //CE occurs as icompatible types found:int required:java.lang.string
+a=a+b+c; //valid
+b=a+c;  //CE occurs as icompatible types found:java.lang.string required:int
+b=b+c; //valid
+
+
+*************************************RELATIONAL Operators (<,>,<=,>=)********************************************
+We can apply relational operators for every primitive type except boolean.
+Sopln(10 < 20); //true
+Sopln('a' < 10); //false
+Sopln('a' < 97.6); //true
+Sopln(true < false); //Compile-time error occurs saying: Operator > cannot be applied to boolean,boolean
+
+We can't apply for object types.
+Sopln("aashish" > "aash"); //Compile-time error occurs saying: Operator > cannot be applied to java.lang.string,java.lang.string
+
+Nesting of relational operator is not allowed in Java. Otherwise, we will get compile-time error
+Sopln(10<20<30); //compile-time error occurs because 10<20 comes true and true<30 is invalid.
+
+
+*************************************EQUALITY Operators (==,!=)********************************************
+We can apply equality operators for every primitive type including boolean type also.
+Sopln(10 == 20); //false
+Sopln('a' == 'b'); //false
+Sopln('a' == 97.0); //true
+Sopln(false == false); //true
+
+We can apply equality operators for object types also. 
+For object references r1,r2, 
+r1==r2 return true, if and only if both references pointing to same object(reference comparison or address comparison).
+    r1 ==> object <== r2
+Example:1
+Thread t1 = new Thread();
+Thread t2 = new Thread();
+Thread t3 = t1;
+Sopln(t1 == t2); //false
+Sopln(t1 == t3); //true because both are pointing to the same object
+
+
+To apply equality operator, compulsory there should be relation between the type of operands .
+Example:2
+Thread t1 = new Thread();
+Object o = new Object();
+String s = new String("aashish");
+Sopln(t1 == o); //false  because both are not pointing to the same object
+Sopln(o == s); //false  because both are not pointing to the same object
+Sopln(t1 == s); //ivalid: Compile time error occurs saying incomparable types: because string and thread has no relation.
+
+***DIFFERENCE BETWEEN  == operator and .equals()method*******
+In general we can use == operator for reference comparison(address comparison) and .equals() method for content comparison.
+For example::
+String s1 = new String("aashish");
+String s2 = new String("aashish");
+Sopln(s1==s2); //false
+Sopln(s1.equals(s2)); //true
+
+For any object reference r, 
+r == null is always false.
+but null == null is always true.
+For example::
+String s = new String("aashish");
+Sopln(s == null); //false
+
+String s = null;
+Sopln(s == null); //true
+
+Sopln(null == null); //true
+
+
+
+
+
+
+
+
+
+
 
 
