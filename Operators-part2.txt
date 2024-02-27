@@ -1,0 +1,82 @@
+******************instanceof operator*******************
+We can use instanceof operator to check  whether the given object is of particular type or not.
+Object o = l.get(o);
+if(o instanceof Student){
+  Student s = (Student)o;
+  //perform student specific functionality
+}
+else if (o instanceof Customer){
+  Customer c = (Customer)o;
+  //perform customer specific functionality
+}
+
+
+Syntax::
+r instanceof X 
+where, 
+r => object reference
+X => Class or Interface name
+
+
+For example: Thread is a child of Object, and Thread implements Runnable Interface.
+Thread t = new Thread();
+Sopln(t instanceof Thread); //true
+Sopln(t instanceof Object); //true
+Sopln(t instanceof Runnable); //true
+
+Sopln(t instanceof String); //CE: inconvertible types found:j.l.Thread required:j.l.String
+To use instanceof operator, compulsory there should be some relationship between argument types(either child to parent, parent to child or same type), otherwise, we will get compile-time error saying: inconvertible types
+
+For any class or interface X, null instanceof X is always false.
+For example:
+Sopln(null instanceof Thread); //false
+Sopln(null instanceof Object); //false
+Sopln(null instanceof Runnable); //false
+
+
+**********BITWISE OPERATORS (&, | , ^)*****************
+& -> AND ==> returns true if both arguments are true
+| -> OR ==> returns true if at least one argument is true
+^ -> X-OR ==> returns true if both arguments are different
+For example:
+Sopln(true & false) //false
+Sopln(true | false) //true
+Sopln(true ^ false) //true
+
+We can apply these operators for integral types also.
+Sopln(4 & 5); //output:4   
+Sopln(4 | 5); //output:5
+Sopln(4 ^ 5); //output:1
+   HOW
+here 4 means 100 and 5 means 101, now perform according to those operators.
+
+      ***BITWISE COMPLEMENT OPERATOR (~)*****
+Sopln(~true); //compile-time(CE): will occur : operator ~ cannot be applied to boolean.
+Bitwise complement operator applicable only for integral types not for boolean types.
+For example::
+Sopln(~4); //output: -5 
+HOW::  HERE  4 is int type, so it is 32-bit number, so when we represent it in 32 bit form , it will be something like 00000...0100
+now negating it, 111111...1011,, here this first-one which is most-significant bit , is 1 which means it will be negative number.
+now , 2's complement of it is : 
+0000...1100 , here so -5
+
+NOTE::
+THE MOST SIGNIFICANT ACT AS SIGN BIT.
+0 MEANS POSITIVE NUMBER
+1 MEANS NEGATIVE NUMBER
+Positive number will be represented directly in the memory.
+Negative number will be represented indirectly in the memory in 2's complement form.
+
+
+      ***BOOLEAN COMPLEMENT OPERATOR (!)*****
+We can apply this operator only for boolean type not for integral types.
+Sopln(!4); //CE occurs saying boolean complement operator is not applicable to integral types
+Sopln(!false); //true
+
+
+
+
+
+
+
+
