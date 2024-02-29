@@ -1,0 +1,112 @@
+****SHORT-CIRCUIT OPERATORS ( &&, || )*************
+these are exactly same as bitwise operator(& and | ) , except following differences:
+
+&,| 
+=> Both arguments should be evaluated always.
+=> Relatively , performance is low.
+=> Applicable for both boolean and integral types.
+
+
+&&, ||
+=> Second argument evaluation is optional.
+=> Relatively , performance is high.
+=> Applicable for  boolean, not for integral types.
+NOTE: x && y 
+here, y will be evaluated if and only if x is true. i.e if x is false, then y won't be evaluated.
+
+    x || y
+here, y will be evaluated if and only if x is false. i.e if x is true, then y won't be evaluated.
+
+
+Example::
+int x = 10, y=15;
+if(++x<10 symbol(given_down) ++y>15){
+  x++;
+}
+else{
+  y++;
+}
+Sopln(x+""+y);
+
+Solution Table:::
+     x   y
+&   11   17
+&&  11   16
+|   12   16
+||  12   16
+
+
+Example::
+int x =10;
+if(++x < 10 && (x/0 >10)){
+  Sopln("hello")
+}
+else{
+  Sopln("HI");
+}
+
+//output is HI, because x/0 will give  runtime exception saying arithmetic exception but that is not evaluated because, firstly we got false in ++x<10 , so else block executed .
+
+
+
+************TYPE CAST OPERATOR*************
+1. Implicit Type-Casting
+a. Compiler is responsible to perform Implicit-typecasting.
+b.Whenever we are assigning smaller data type value to bigger data type variable, Implicit typecasting will be performed.
+c. It is also known as widening or up-casting.
+d. There is no loss of information in this typecasting.
+e. The following are various possible conversions where implicit typecasting will be performed.
+byte to short , short to int, int to long, long to float , float to double and char to int
+For example:
+int x = 'a'; [Compiler converts char to int automatically by implicit typecasting]
+Sopln(x); //output:97
+
+double d = 10; [Compiler converts int to double automatically by implicit typecasting]
+Sopln(d); //output:10.0
+
+2. Explicit Type-Casting
+a. Programmer is responsible to perform Explicit typecasting.
+b. Whenever we are assigning bigger data type value to smaller data type variable then Explicit typecasting is required.
+c. It is also known as narrowing or down-casting.
+d. There may be a chance of loss of information in this typecasting.
+e. The following are various possible conversions where explicit typecasting is required.
+double to float, float to long, long to int, int to short, short to byte, int to char.
+For example::
+class Program{
+class Program{
+   public static void main(String[] args){
+      double d = 100.5;
+      int x = (int)d;
+      System.out.println( x);
+   }
+}
+
+second example::
+int x = 130;
+byte b = (byte)x;
+Sopln(b); //output: -126
+
+NOTE: Whenever we are assigning bigger data type value to smaller data type variable by explicit type-casting , the most significant bits will be lost, we have to consider only least significant bits.
+int x = 130;
+byte b = (byte)x;
+Sopln(b); //output: -126
+here, 
+int x = 130;  => 0000..010000010
+byte b = (byte)x => 10000010. here , first msb which is one , so it will be negative number and if it is negative number , remaining 0000010 will be represented in 2's complement form and that will be 1111110 which is 126. so it became -126
+
+
+third example:
+NOTE: If we assign floating point values to integral types by explicit type-casting, the digits after the decimal point will be lost.
+double d = 130.456;
+int x = (int)d;
+Sopln(x); //output:130
+
+byte b = (byte)d;
+Sopln(b); //output:-126
+
+
+
+
+
+
+
