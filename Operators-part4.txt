@@ -1,0 +1,50 @@
+********ASSIGNMENT OPERATORS**************
+There are 2 types of assignment operators:
+a. Simple assignment
+=> int x = 10;
+
+b. Chained assignment
+=> int a,b,c,d;
+    a=b=c=d=20;
+    We can't perform chained assignment directly at the time of declaration.
+    int a=b=c=d=20; //compile-time error occurs saying cannot find symbol: Symbol:variable b , location: class Test
+
+c. Compound assignment
+=> Assignment operator mixed with some other operator is known as compund assignment operator.
+   a+=20;
+The following are all possible compound assignment operators in java:
++=,-=,*=,/=,%=,&=,|=,^=,>>=,>>>=,<<=
+
+In the case of compound assignment operator , internal typecasting will occur internally.
+For example: 
+byte b = 10;
+b+=1;
+Sopln(b); //output:11    b = (byte)(b+1);
+
+but, 
+byte b = 10;
+b=b+1;
+Sopln(b); //compile time error: Possible loss of precision. found:int required:byte
+
+*******************CONDITIONAL OPERATOR(?:)********************************
+The only possible ternary operator in java is conditional operator.
+int x = (10<20)?40:30
+Sopln(x); //output:40
+
+int x = (10>20)?30:((40>50)?60:70);
+Sopln(x); //output:70
+
+
+*******************NEW OPERATOR********************************
+We can use new operator to create objects.
+For example: Test t = new Test();
+NOTE:: So, after creating an object, constructor will be executed to perform initialization of object,Hence constructor is not for creation of object and it is for initialization of object.
+:: In java, we  have only new keyword but not delete keyword because destruction of useless objects is the responsibility of garbage collector.
+
+
+***********************[] operator**********************
+We can use this operator to declare and create arrays.
+For example: int[] x = new int[10];
+
+
+
