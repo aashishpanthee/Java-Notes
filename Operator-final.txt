@@ -1,0 +1,76 @@
+*************difference between new and newInstance()******************************************
+We can use new operator to create an object if we know class name at the beginning.
+For example: Test t = new Test();
+Student s = new Student();
+
+newInstance is a method present in class Class.
+We can use newInstance method to create object if we don't know class name at the beginning and it is available dynamically at runtime.
+
+class Program{
+    public static void main(String[] args) throws Exception {
+        Object o = Class.forName(args[0]).newInstance();
+        System.out.println("bject created for class:" + o.getClass().getName());
+    }
+}
+
+
+In the case of new operator based on our requirement, we can invoke any constructor example: Test t = new Test(), Test t1 = new Test(10), Test t2 = new Test("aashish").
+But newInstance() method internally calls no-argument constructor . Hence to use newInstance() method, compulsory corresponding class should contain no-argument constructor. Otherwise , we will get run-time Exception saying:Instantiation Exception.
+
+While using new operator , at runtime if the corresponding.class file is not available then we will get runtime exception saying : NoClassDefFoundError:Test
+For example:: Test t = new Test();
+At runtime , if Test.class not available then we will get runtime Exception saying: NoClassDefFoundError:Test
+
+While using newInstance() method, at runtime if corresponding.class file is not availablecorresponding.class file is not available then we will get runtime Exception saying: ClassNotFoundException
+For example: Object o = Class forName(args[0]).newInstance();
+At Runtime, if Test123.class file not available, then we will get Runtime-Exception saying: ClassNotFoundException: Test123
+
+
+
+*************difference between new and newInstance()******************************************
+new operator
+1. It is a operator in java.
+2. We can use new operator to create object if we know the class name at the beginning.
+3. To use new operator , class not required to contain no-argument constructor.
+4. At runtime, if .class file not available then RutimeError occurs saying: NoClassDefFoundError
+
+newInstance() 
+1. It is a method present in java.lang.Class
+2. We can use this method to create object if we don't know class name at the beginning and it  is available dynamically at runtime.
+3. To use newInstance() , compulsory class should contain no-argument constructor Otherwise we will get RE: Instantiation Exception
+4. At runtime, if .class file not available then RutimeError occurs saying: ClassNotFoundException
+
+
+*************difference between ClassNotFoundException and NoClassDefFoundError()******************************************
+For hard-coded class names , at runtime if the corresponding .class file is not available then we will get runtime Exception saying NoClassDefFoundError, which is unchecked exception
+For eg: Test t = new Test();
+At runtime, if Test.class is not available then we will get runtime exception saying NoClassDefFoundError:Test
+
+For dynamically provided class names, at runtime if the corresponding .class file is not available then we will get runtime Exception saying ClassNotFoundException, which is checked exception
+For eg: Object o = Class.forName(args[0]).instanceOf();
+At runtime , if Test.class is not available then we will get runtime exception saying ClassNotFoundException:Test
+
+
+*************difference between instanceof and isInstance()******************************************
+instanceof
+1. instanceof is an operator  in java. 
+2. We can use instanceof to check whether the given object is of particular type or not and if we know the type at the beginning.
+3. For example: 
+Thread t = new Thread();
+Sopln(t instanceof Runnable); //output:true
+Sopln(t instanceof Object); //output:true
+
+isInstance()
+1. isInstance() is a method present in java.lang.Class .
+2. We can use isInstance() method to check whether the given object is of particular type or not and if we don't know the type at the beginning and it is available dynamically at runtime.
+3. For example:
+class Test{
+  public static void main(String[] args){
+    Thread t = new Thread();
+    Sopln(Class.forName(args[0]).isInstance(t));
+  }
+}
+java Test Runnable //output:true
+Java Test String //output:false
+
+
