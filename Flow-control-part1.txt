@@ -1,0 +1,14 @@
+***********Flow-Control***********
+Flow Control describes the order in which statements will be executed at run-time.
+There are 3 types of flow-control statements:
+a. Selection Statements
+=> Among several options, only one option will be selected and will be executed.
+=> if..else, switch
+
+b. Iterative Statements
+=> A group of statements will be executed iteratively.
+=> while(), do-while(), for(), for-each loop
+
+c. Transfer Statements
+=> These statements alter the flow of control by transferring it to a different part of the program, hence the term "transfer."
+=> break,continue,return,try-catch-finally,assert()
