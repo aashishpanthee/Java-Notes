@@ -1,0 +1,213 @@
+******************************Selection Statements***********************************
+a. if-else
+=> Syntax::
+if(b){   
+   //b should be boolean type
+  //Action if b is true
+}
+else{
+  //Action if b is false
+}
+
+The argument to if statement should be boolean type. By mistake, if we are trying to provide any other type then we will get compile-time error
+
+For example::
+class Program{
+    public static void main(String[] args) throws Exception {
+        int x = 0;
+        if(x){
+            System.out.println("Hello");
+        }
+        else{
+            System.out.println("not hello");
+        }
+    }
+}
+output::Incompatible types: int cannot be converted to boolean.
+
+class Program{
+    public static void main(String[] args) throws Exception {
+        int x = 0;
+        if(x=20){
+            System.out.println("Hello");
+        }
+        else{
+            System.out.println("not hello");
+        }
+    }
+}
+output::Incompatible types: int cannot be converted to boolean.
+
+class Program{
+    public static void main(String[] args) throws Exception {
+        int x = 0;
+        if(x==20){
+            System.out.println("Hello");
+        }
+        else{
+            System.out.println("not hello");
+        }
+    }
+}
+output: not hello
+
+class Program{
+    public static void main(String[] args) throws Exception {
+        boolean x = true;
+        if(x=true){
+            System.out.println("Hello");
+        }
+        else{
+            System.out.println("not hello");
+        }
+    }
+}
+output: hello
+
+class Program{
+    public static void main(String[] args) throws Exception {
+        boolean x = false;
+        if(x==false){
+            System.out.println("Hello");
+        }
+        else{
+            System.out.println("not hello");
+        }
+    }
+}
+output:hello
+
+
+class Program{
+    public static void main(String[] args) throws Exception {
+        boolean x = false;
+        if(x==false){
+            System.out.println("Hello");
+        }
+        else{
+            System.out.println("not hello");
+        }
+    }
+}
+
+
+Else-part and curly braces {} are optional. Without curly braces, only one statement is allowed but that one statement must not be declaration statement.
+if(true)
+Sopln("okay") //valid
+
+if(true);  //valid
+
+if(true)
+int x=10  //invalid Compile-time error occurs saying variable declaration not allowed here
+
+if(true){
+  int x = 20; //valid
+}
+
+
+Semi-Colon is a valid java statement which is also known as empty statement.
+
+There is no dangling else problem in Java. 
+Every else is mapped to the nearest if statement.
+For example:
+class Program{
+    public static void main(String[] args) {
+        if(true)
+        if(false)
+            System.out.println("Hello World");
+        else
+        System.out.println("not hello");
+    }
+}
+//output: not hello
+
+
+
+******************************Selection Statements***********************************
+If several options are available then it is not recommended to use nested if-else because it reduces readability.
+To handle this , we should go for SWITCH statement.
+Syntax:
+switch(x)
+{
+  case 1:
+    //statements
+    break;
+  case 2:
+    //statements
+    break;
+  case n:
+    //statements
+    break;
+  default:
+    //default statements
+}
+
+The allowed arguments types for switch statement byte,short,char,int untill 1.4 version.
+But 1.5 version onwards , corresponding wrapper classes and enum type also allowed.
+From 1.7 version onwards, String type also allowed.
+
+Curly braces are mandatory . Except switch, everywhere curly braces are optional.
+
+Both case and default are optional. i.e an empty switch statement is valid java syntax.
+For eg:
+class Program{
+    public static void main(String[] args) {
+    int x = 10;
+    switch(x){
+    } 
+    }
+}
+
+Inside switch, every statement should be under some case or default. i.e. independent statements are not allowed inside switch otherwise we will get compile-time error.
+For eg:
+int x = 10;
+switch(x){
+    System.out.println("Hello");  //CE: case,default,or} excepted.
+}
+
+
+Every case label should be compile-time constant(i.e constant expression).
+For eg:
+int x = 10;
+int y = 20;
+switch(x){
+    case 10:
+    Sopln(10);
+    break;
+    case y: 
+    Sopln(20);
+    break;
+}
+here, we will get compile-time error: Constant expression required.
+If we declare y as final, we won't get any compile-time error.
+
+NOTE: One kind of expression that can always be evaluated at compile time is called a “constant expression”.
+
+Both switch argument and case label can be expression but case case-level should be constant expression.
+For eg:
+int x  = 10;
+switch(x+1){
+    case 10:
+        Sopln(10);
+        break;
+    case 10+20+30:
+        Sopln(60);
+}
+//valid Program
+
+
+NOTES:
+a. It should be constant expression.
+b. The value should be in the range of switch argument type.
+c. Duplicate case labels are not allowed.
+
+Fallthrough inside switch::
+=> Within the switch, if any case is matched , from that case onwards , all statements will be executed untill break or end of the switch.
+This is called Fallthrough inside switch.
+The main advantage of fallthrough switch is we can define common action for multiple cases(code-reusability).
+
+: Within the switch, we can take default case at most once.
+: Default case will be executed if and only if there is no case matched.
+: Within the switch case , we can write default case anywhere, but it's recommended to write in last case.
+: 
+
