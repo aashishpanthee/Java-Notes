@@ -1,0 +1,334 @@
+*************************WHILE LOOP************************************
+If we don't know number of iterations in advance then we should go for while loop.
+Syntax::
+while(b){
+  //b should be boolean type
+  //action statements
+}
+Curly braces are optional and without curly braces we can take only one statement which should not be declarative statement.
+
+: The argument should be boolean type, if we are trying to provide any other type, then we will get compile-time error.
+
+while(1){
+  Sytem.out.println("hello world");  //CE: incompatible types. found:int required:boolean
+}
+
+class Program{
+    public static void main(String[] args) {
+        while(false){
+            System.out.println("Hello World"); //CE: Unreachable statement
+        }
+        System.out.println("not hello");  
+    }
+}
+
+class Program{
+    public static void main(String[] args) {
+        while(true){
+            System.out.println("Hello World");
+        }
+        System.out.println("not hello");  //CE: Unreachable statement
+    }
+}
+
+class Program{
+    public static void main(String[] args) {
+        int a =10;
+        int b = 20;
+        while(a<b){
+            System.out.println("Hello World"); //valid 
+        }
+        System.out.println("not hello");
+    }
+}
+
+class Program{
+    public static void main(String[] args) {
+      final  int a =10;
+     final  int b = 20;
+        while(a<b){
+            System.out.println("Hello World");
+        }
+        System.out.println("not hello");  //CE: Unreachable statement
+    }
+}
+
+
+NOTE:   Every final variable will be replaced by the value at compile-time only.
+        For eg: final int a = 10; 
+                int b = 20;
+                Sopln(a);
+                Sopln(b);
+                After compilation of this code::
+                Sopln(10);
+                Sopln(b);
+
+        If every argument is a final variable(compile-time constant) then that operation should be performed at compile-time only.
+        For eg: final int a =10,b=20;
+                int c =20;
+                Sopln(a+b);
+                Sopln(a+c);
+                Sopln(a<b);
+                Sopln(a<c);
+                After compilation of this code::
+                Sopln(30);
+                Sopln(10+c);
+                Sopln(true);
+                Sopln(10<c);
+
+
+*************************DO WHILE LOOP*****************************************
+If we wan't to execute body at least once, we should go for do-while loop.
+Syntax:
+do{
+    body
+}while(b);  //here b should be boolean type
+Curly braces are optional and without curly braces we can take only one statement which should not be declarative statement.
+For eg: 
+do
+ Sopln(Hello);
+while(true);  //valid
+
+do;
+while(true); //valid
+
+do
+ int x = 10;
+while(true); //invalid
+
+do{
+    int x = 10;
+}while(true); //valid
+
+do
+while(true); //invalid because within do and while we should take compulsory one statement but there isn't one.
+
+Is this a valid do while statement?
+
+do while(true)
+Sopln("Hello");
+while(false);
+
+=> yes, it is  , here is how::
+ let's see :
+ do
+    while(true)
+        Sopln("Hello");
+while(false);
+
+in this way , it is valid.
+
+
+Valid or invalid ? 
+
+do{
+    Sopln("Hello");
+}while(true);
+Sopln("Hi");  //CE: Unreachable statement
+
+
+do{
+    Sopln("Hello");
+}while(false);
+Sopln("Hi"); //valid
+
+int a = 10, b = 20;
+do{
+    Sopln("Hello");
+}while(a<b);
+Sopln("Hi");  //valid
+
+int a = 10, b = 20;
+do{
+    Sopln("Hello");
+}while(a>b);
+Sopln("Hi");  //valid
+
+final int a = 10, b = 20;
+do{
+    Sopln("Hello");
+}while(a>b);
+Sopln("Hi");   //valid
+
+final int a = 10, b = 20;
+do{
+    Sopln("Hello");
+}while(<b);
+Sopln("Hi");   //CE: Unreachable statement
+
+
+*************************FOR LOOP*****************************************
+For loop is most commonly used loop in java.
+If we know no. of iterations in advance then for loop is best choice.
+Syntax:
+for(initialization_section;conditional_check;increment_decrement_section){
+    //loop body
+}
+
+Curly braces are optional and without curly braces we can take only one statement which should not be declarative statement.
+for(int i =0;i<10;i++)
+Sopln("hello"); //valid
+
+for(int i =0;i<10;i++); //valid
+
+for(int i =0;i<10;i++)
+    int x = 10;     //invalid
+
+NOTES::
+initialization_section will be executed only once in loop lifecycle.
+Here, we can declare and initialize local variables of for loop.
+Here , we can declare any no. of variables but should be of the same type. By mistake, if we are trying to declare different data type variable, then we will get compile-time error.
+For eg:
+int i = 0, j = 0;  //valid
+in i = 0, String j = "durga"; //invalid
+int i = 0, int j = 0; //invalid
+
+NOTES::In the initialization section, we can take any valid java statement including Sopln.
+For example::
+class Program
+    public static void main(String[] args) {
+        int a =0;
+        for(System.out.println("Boss");a<2;a++){
+    }
+    }
+}
+//valid: output will be Boss.
+
+NOTES::In Condiitional_check_section, we can take any valid java expression but should be of the type boolean.
+for(int i = 0;;i++){
+    System.out.println("hello");
+}
+This part is optional and if you are not taking anything, then compiler will always place true.
+
+NOTES:: In increment_decrement_section, we can take any valid java expression including Sopln.
+For eg:
+class Program{
+    public static void main(String[] args) {
+        for(int i = 0;i<3; System.out.println("hello"+i)){
+            i++;
+        }
+    }
+}
+
+NOTES: All three parts of for loop are independent of each other and optional . 
+class Program{
+    public static void main(String[] args) {
+        for(;;){
+            System.out.println("hello");
+        }
+    }
+}
+//this will lead to infinite loop printing hello
+
+
+*************************FOR EACH LOOP*****************************************
+for-each loop is introduced in 1.5 version.
+specially designed loop to retrieve elements of arrays and collections.
+EXAMPLE-1::  To print elements of one dimensional array, for eg:
+a. by using normal for loop
+=> class Program{
+    public static void main(String[] args) {
+        int[] a = {10,20,30};
+        for(int i =0;i<a.length;i++){
+            System.out.println(a[i]);
+        }
+    }
+}
+
+b. by using enchanced for loop / for-each loop
+=> class Program{
+    public static void main(String[] args) {
+        int[] a = {10,20,30};
+        for(int x:a){
+            System.out.println(x);
+        }
+    }
+}
+
+
+EXAMPLE-2:: To print elements of two-dimensional array.
+int[][] x = {{10,20,30},{40,50}};
+a. by using normal for loop
+=> class Program{
+    public static void main(String[] args) {
+        int[][] a = {{10,20,30},{40,50}};
+        for(int i =0;i<a.length;i++){
+            for(int j = 0;j<a[i].length;j++){
+                System.out.println(a[i][j]);
+            }
+        }
+    }
+}
+
+b. by using enchanced for loop / for-each loop
+=> class Program{
+    public static void main(String[] args) {
+        int[][] Array = {{10,20,30},{40,50}};
+        for(int[] subArray : Array){
+            for(int element:subArray){
+                System.out.println(element);
+            }
+        }
+    }
+}
+
+
+EXAMPLE-3::
+b. by using for-each loop:
+class Program{
+    public static void main(String[] args) {
+        int[][][] Array = {{{10,20,30},{40,50}},{{60,70},{80,90}}};
+        for(int[][] subArray : Array){
+            for(int[] subsArray:subArray){
+                for(int element:subsArray){
+                    System.out.println(element);
+                }
+            }
+        }
+    }
+}
+
+
+For-each is the best choice to retrieve elements of arrays and collections but it's limitations is it is applicable only for arrays and collections and it is not a general purpose loop.
+for example:
+for (int i=0;i<10;i++){
+    Sopln("Hello");
+}
+for this normal for loop, we can't write an equivalent for-each loop directly.
+
+
+By using normal for loop, we can print array elements either in original order or in reverse order but by using for-each loop, we can print array elements only in original order but not in reverse order.
+For example:
+int[] x = {10,20,30};
+for(int i = x.length-1;i>=0;i--){
+    System.out.println(x[i]);  //output:30,20,10
+}
+for this normal for loop, we can't write an equivalent for-each loop directly.
+
+*****ITERABLE INTERFACE*****
+for(eachitem x: target){
+    //body
+}
+here, target can be Iterable Object which might be Array or Collection.
+      the target element in for-each loop should be iterable object 
+      an object is said to be iterable if and only if corresponding class implements java.lang.Iterable(I) INTERFACE
+      Iterable interface introduced in 1.5 version and it contains only one method which is iterator() method.
+      public Iterator iterator()
+      So, all array related classes and collection implemented classes already implement Iterable interface.
+      Being a programmer , we are not required to do anything, just should be  aware about this things.
+
+
+Difference between Iterator(I) and Iterable(I)
+
+a. Iterator(I)
+i. It is related to collections.
+ii. We can use to retrieve the elements of collection one by one.
+iii. Present in java.util.pkg
+iv. It contains 3 methods: hasNext(),next(),remove()
+
+b. Iterable(I)
+i. It is related to for-each loop
+ii. The target element in for-each loop should be Iterable.
+iii. Present in java.lang.pkg
+iv. It contains 1 method: iterator()
+
