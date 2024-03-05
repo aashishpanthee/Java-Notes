@@ -1,0 +1,80 @@
+***********************Static import**************************
+Explain about System.out.println ? 
+=>
+class Test{
+  static String s = "java";
+}
+Test.s.length();
+here, Test is a class name .  s is a static variable present in Test class of the type java.lang.String. length() is a method present in String class.
+Similarly,
+class System{static int s1 = 4;
+        System.out.println(s1);
+  static PrintStream out;
+}
+System.out.println();
+here, System is a class present in java.lang package. out is a static variable present in System class of type PrintStream. println() is a method present in PrintStream class.
+
+Next,
+import static java.lang.System.out;
+ class Program{
+    public static void main(String[] args) {
+        out.println("hello");
+    }
+}
+out is a static variable present in System class hence we can access by using class-name system but whenever we are writing static import it is not required to use className , we can access out directly.
+
+------------------------------------------------------------------------------------
+While resolving static members compiler will always consider the precendence in following order:
+i. Current class static members
+ii. Explicit static import
+iii. Implicit static import
+
+For example:
+import static java.lang.Integer.MAX_VALUE;
+import static java.lang.Byte.*;
+class Program{
+    static int MAX_VALUE = 999;  //if this line is commented, then explicit static import MAX_VALUE will be printed.
+    public static void main(String[] args) {
+        System.out.println(MAX_VALUE); //output: 999 
+    }
+}
+
+------DIFFERENCE BETWEEN NORMAL IMPORT AND EXPLICIT IMPORT----------
+a. Normal import
+=> i. Explicit import
+      Syntax:: import packagename.classname;
+      example:: import java.util.ArrayList;
+
+  ii. Implicit import
+      Syntax: import packagename.*;
+      example:: import java.util.*;
+
+b. Static import
+   i. Explicit static import
+      Syntax: import static packagename.classname.staticmember;
+      example: import static java.lang.Math.sqrt;
+              import static java.lang.System.out;
+
+    ii. Implicit static import
+      Syntax: import static packagename.classname.*;
+      example: import static java.lang.Math.*;
+              import static java.lang.System.*;
+
+
+ 
+Two packages contains class or interface with the same name is very rare and hence ambuiguity is also very rare in normal import.
+But two classes or interfaces contain a variable or method with same name is very common and hence ambuiguity problem is also very common problem in static import.
+
+CONCLUSION:::::  Usage of static import reduces readability and creates confusion and hence if there is no specific requirement then it is not recommended to use static import.
+
+                                     DIFFERENCE BETWEEN NORMAL IMPORT AND STATIC IMPORT ? 
+=> We can use normal import to import classes and interfaces of a particular package.
+=> Whenever we are using normal import, it is not required to use fully qualified name and we can use shortname directly
+
+
+=> We can use static import to import static members of a particular class or interface.
+=> Whenever we are using static import, it is not required to use classname to access static members and we can access directly.
+
+
+
+ 
