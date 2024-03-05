@@ -1,0 +1,211 @@
+Declarations of Access Modifiers
+-Java Source File Structure
+-Class Level Modifiers
+-Member Level Modifiers
+-Interfaces
+
+
+---------------------------------JAVA SOURCE FILE STRUCTURE-----------------------------------
+A java program can contain any number of classes but at most one class can be declared as public.
+If there is a public class then name of the Program and name of the public class must be matched otherwise we will get compile-time error.
+
+class A{
+
+}
+class B{
+
+}
+class C{
+
+}
+case-1: If there is no public class then we can use any name and there are no restrictions.For eg: A.java , B.java , Aashish.java, etc.
+case-2: If class B is public then name of the program should be B.java otherwise we will get compile-time error saying: class B is public, should be declared in a file named B.java.
+case-3: If class B and C is declared as public and name of the program is B.java then we will get compile-time error saying: class C is public , should be declared in a file named C.java.
+---------------------------------------------------------------------------------
+class A{
+     public static void main(String[] args) {
+        System.out.println("A class will be printed");
+        
+    }
+
+}
+class B{
+     public static void main(String[] args) {
+        System.out.println("B class will be printed");
+        
+    }
+
+}
+ class C{
+    public static void main(String[] args) {
+        System.out.println("D class will be printed");
+        
+    }
+}
+class D{
+
+}
+--When we compile the program Program.java as javac Program.java
+Different class file will be generated which are A.class, B.class, C.class, D.class
+Now, when we run this class file independently, as like:
+java A => A class will be printed.
+java B => B class will be printed.
+java C => C class will be printed.
+java D => We will get Runtime Error saying: Main method not found in class C
+java Program => We will get Runtime Error saying: Could not find or load main class Program. ClassNotFoundException: Program
+
+CONCLUSION::
+i. Whenever we are compiling a java program, for every class present in that program , a separate .class file will be generated.
+ii. We can compile a java program (java source file) but we can run a java class (.class) file.
+iii. Whenever we are executing a java class, the corresponding class main method will be executed.
+iv. If the class doesn't contain main method then we will get Runtime Exception saying: Main method not found in class
+v. If the corresponding .class file not available then we will get Runtime Exception saying:  ClassNotFoundException: Could not find or load main class className.
+vi. It is not recommended to declare multiple classes in a single source file.
+vii. It is highly recommended to declare only one class per source file and name of the program we have to keep same as class name.
+viii. The main advantage of this approach is readability,maintainability of the code will be improved.
+
+----------------IMPORT STATEMENT-----------
+ class Program{
+    public static void main(String[] args) {
+        ArrayList al = new ArrayList();
+        
+    }
+}
+//here in this program while compiling, compile-time error will occur saying: cannot find symbol: symbol: class ArrayList location:class Program
+
+We can solve this problem by using fully qualified name.
+ class Program{
+    public static void main(String[] args) {
+        java.util.ArrayList al = new java.util.ArrayList();  
+    }
+}
+
+java.util.ArrayList => fully qualified name
+The problem with the usage of fully qualified name everytime is it increases length of code and reduces readability.
+
+We can solve this problem by using IMPORT STATEMENT
+Whenever we are writing import statement, it is not required to use fully qualified name everytime. We can use shortname directly.
+
+import java.util.ArrayList;
+ class Program{
+    public static void main(String[] args) {
+        ArrayList al = new ArrayList();
+    }
+}
+ArrayList => shortname
+Hence, import statement acts as typing shortcut.
+
+CASE 1: TYPES OF IMPORT STATEMENTS
+There are two types of import statements:
+i. Explicit class import
+=> eg: import java.util.ArrayList
+It is highly recommended to use Explicit class import because it improves readability of the code.
+Best suitable for Hi-Tech city where readability is important.
+
+ii. Implicit class import
+=> eg: java.util.*
+Not recommended to use because it reduces readability of the code.
+Best suitable for Amir-Pet where typing is important.
+
+CASE 2: Which of the following import statements are meaningful?
+a. import java.util.AL; //valid
+b. import java.util.AL.*; //invalid
+c. import java.util.*; //valid
+d. import java.util; //invalid
+
+CASE 3: Consider the following code:
+class myObject extends java.rmi.UnicastRemoteObject{
+
+}
+The code compiles fine even though we are not writing import statement because we used fully qualified name.
+NOTE: Whenever we are using fully qualified name, it is not required to write import statement.
+      Similarly, Whenever we are writing import statement, it is not required to write fully qualified name.
+
+CASE 4: 
+    import java.util.*;
+    import java.sql.*;
+    class Program{
+        public static void main(String[] args){
+            Date d = new Date();
+        }
+    }
+Here, while compiling this program, we will get Compile-time Error saying: reference to Date is ambiguous. both class java.sql.Date in java.sql and class java.util.Date in java.util match
+
+CASE 5:
+While resolving class names , compiler will always gives a precedence in the following order.
+i. Explicit class import
+ii. Classes present in current working directory (default package)
+iii. Implicit class import
+For example:
+import java.util.Date;
+import java.sql.*;
+ class Program{
+    public static void main(String[] args) {
+        Date d = new Date();
+        System.out.println(d.getClass().getName());   //output:Date
+    }
+}
+In the above example, util package Date got considered. 
+
+
+CASE 6:
+Whenever we are importing a java package , all classess and interfaces present in the package by default available but not sub-package classes.
+If we want to use sub-package class , compulsory we should write import statement untill sub-package level.
+For eg: import java.util.regex.*; // To use Pattern class inside of java program , we should import java.util.regex.*
+
+CASE 7:
+All classess and interfaces present in the following packages are by default available to every java program.
+Hence, we are not required to write import statement:
+a. java.lang package
+b. default package(current working directory)
+
+
+CASE 8:
+Import statements is totally compile-time related concept.
+If more number of imports, then more will be the compile-time.
+But there is no affect on execution time (Runtime).
+
+CASE 9:
+Difference between C language #include and Java language import statement ?
+=> In the case of C language #include file, all input-output header files will be loaded at the beginnning time only (at translation time). Hence it is static include.
+=> But in the case of Java import statement, no .class file will be loaded at the beginning. Whenever we are using a particular class then only corresponding .class file will be loaded. This is considered as Dynamic include or Load on Demand or Load on Fly.
+
+
+NOTE::
+1.5 version , new features :
+a. for-each loop
+b. var-arg methods
+c. Autoboxing and AutoUnboxing
+d. Generics
+e. Co-Varient return types
+f. Queue
+g. Annotations
+h. enum
+i. static import 
+
+
+******************STATIC IMPORT*********************
+a. Introduced in 1.5 version 
+b. Acc to SUN , usage of static import reduces length of code and improves readability but according to worldwide programming experts(like us) , usage of static import creates confusion and reduces readability.Hence , if there is no specific requirement then it is not recommended  to use static import.
+c. Usually, we can access static members by using class-name but whenever we are writing static import we can access static members directly without class-name.
+For example: 
+a. without static import
+ class Program{
+    public static void main(String[] args) {
+        System.out.println(Math.sqrt(4)); //output:2.0
+    }
+}
+
+b. with static import
+import static java.lang.Math.sqrt;
+ class Program{
+    public static void main(String[] args) {
+        System.out.println(sqrt(4)); //output:2.0
+    }
+}
+
+
+
+
+
+
