@@ -1,0 +1,80 @@
+*****************************PACKAGE / PACKAGE STATEMENT*******************************
+It is an encapsulation mechanism to group related classes and interfaces into a single unit which is nothing but package.
+For example: All classes and interfaces which are required for database operations are grouped into a single package which is nothing but java.sql package
+For example: All classes and interfaces which are useful for file i/o operations are grouped into a separate package which is nothing but java.io package.
+
+The main advantages of package are:
+i. To resolve naming conflicts. i.e unique identification of our components
+ii. It improves modularity of our application.
+iii. It improves maintainability of our application.
+iv. It provides security for our component.
+
+There is universally accepted naming convention. i.e to use internet domain name in reverse.
+For example:  com.icicibank.loan.housing.Account
+here,  com.icicibank => client's internet domain name in reverse
+       loan => module name
+       housing => sub-module name
+       Account => class name
+
+Exaple: 
+package com.aashish.scjp;
+public class Program{
+  public static void main(String[] args){
+    System.out.println("Package demo");
+  }
+}
+
+While Compiling with these commands:
+i.  javac Program.java 
+Generated .class file will be placed in current working directory.
+current working directory => Program.class
+
+ii. javac -d . Program.java
+-d => destination to place generated .class files
+. => current working directory
+Generated .class file will be placed in corresponding package structure.
+current working directory => com => aashish => scjp => Program.class
+
+If the corresponding package structure not already available , then this command itself will create corresponding package structure.
+
+As destination instead of dot, we can take any valid directory name. For eg: javac -d F: Program.java  now, this will be represented as F: => com => aashish => scjp => Program.class
+
+If the specified directory not already available then we will get compile-time error. For eg: javac -d z: Program.java  If z: not available then we will get compile-time error saying directory not found: z:
+
+At the time of execution, we have to use fully qualified name:  java com.aashish.scjp.Program
+For example: to run this code, we have to provide above command because Program.class will be located inside corresponding package structure which is com.aashish.scjp.Program
+package com.aashish.scjp;
+public class Program{
+    public static void main(String[] args){
+        System.out.println("Hello World");
+    }
+}
+
+CONCLUSION 1 : In any java source file, there can be at most one package statement. i.e More than one package statement is not alllowed. otherwise we will get compile-time error.
+For example: 
+package pack1;
+// Compile-time error will occur saying  CE: class,interface or enum expected
+package pack2;
+public class A{
+
+}
+
+
+CONCLUSION 2 :  In any java program, the first non-comment statement should be package statement (if it is available) otherwise we will get compile-time error.
+import java.lang.Math.*;
+// Compile-time error will occur saying  CE: class,interface or enum expected
+package com.aashish.scjp;
+public class Program{
+    public static void main(String[] args){
+        System.out.println("Hello World");
+    }
+}
+
+CONCLUSION 3 : The following is java file structure.
+This order is important.
+            package statement;   ----> Atmost one
+            import statements;  -----> Any number
+            class/interface/enum declaration  ----> Any number
+
+Note:
+i. An empty source file is a valid java program.
