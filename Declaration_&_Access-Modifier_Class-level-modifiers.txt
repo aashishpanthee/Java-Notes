@@ -1,0 +1,275 @@
+*************Class-Level-Modifiers***********************
+Whenever we are writing our own classes, we have to provide some information about our class to the JVM.
+Like : 
+i. whether this class can be accessible from anywhere or not.
+ii. whether child class creation is possible or not.
+iii. whether object creation is possible or not
+We can specify this information by using appropriate modifier.
+
+The only applicable Modifiers for top-level classes are :: 
+i. public
+ii. <default>
+iii. final
+iv. abstract
+v. strictfp
+
+But for inner classes , the applicable modifiers are : 
+i. public
+ii. <default>
+iii. final
+iv. abstract
+v. strictfp
+vi. private
+vii. protected
+viii. static
+
+For example: Top-level classes
+private class Program{
+    public static void main(String[] args){
+        System.out.println("Hello World");
+    }
+}
+Compile-time (CE) occurs saying: modifier private not allowed here.
+
+*************Access Specifiers vs Access Specifiers****************
+Public , Private, protected , default are considered as Specifiers.
+Except these, remaining are considered as Modifiers.
+But this rule is applicable only for old languages like C++ but not in Java.
+In Java, all are considered as Modifiers only. There is no word like Specifiers.
+
+
+
+***********************************************Public Classes*****************************************************
+If a class declared as public then we can access that class from anywhere.
+For example:
+package pack1;
+public class Program{
+        public void  helloWorld(){
+            System.out.println("Hello World");
+        };
+}
+Now to access this class from different class, class Program should be public.
+package pack2;
+import pack1.Program;
+public class Programs {
+  public static void main(String[] args){
+    Program p= new Program();
+    p.helloWorld();
+
+  }
+}
+If the public modifier from class Program is removed, then compile time error would occur while compiling Programs.java saying: 
+Programs.java:2: error: Program is not public in pack1; cannot be accessed from outside package
+import pack1.Program;
+            ^
+
+
+**************************************************Default Classes****************************************
+Default access is also known as package-level access.
+If a class declared as default , then we can access that class only within the current package. i.e from outside package, we can't access.
+Hence, Default access is also known as package-level access.
+For example:
+package pack1;
+ class Program{
+    public static void main(String[] args) {
+        A a = new A();
+        a.helloWorld();
+    }
+}
+class A{
+    public void  helloWorld(){
+     System.out.println("Hello World");
+    }; 
+}
+Here, class A is default , but it's accessible to Program.
+Hence , we can say default classes are accessible within the package itself.
+
+
+*************************************************Final Modifier**************************************************
+Final is a modifier applicable for classes, methods and variables.
+a. Final method
+=> Whatever method parent has, by default available to the child through inheritance.
+=> If the child not satisfied with the parent method implementation then child is allowed to redefine that method based on it's requirement. This process is called OVER-RIDING.
+=> If the parent class method is declared as final then we can't override that method in child class because it's implementation is final.
+For example:
+package pack1;
+ class A{
+
+    public void sum(){
+        System.out.println("Sum");
+    }
+    public void helloWorld(){
+        System.out.println("Next Hello world");
+    }
+    }
+
+class Program extends A{
+    public void helloWorld(){
+        System.out.println("Not Hello world");
+    }
+    public void sum(){
+        System.out.println("Not sum");
+    }
+    public static void main(String[] args) {
+        A a = new A();
+        Program p = new Program();
+        a.helloWorld();
+        a.sum();
+        p.helloWorld();
+        p.sum();
+    }
+}
+
+Here, class A methods sum and helloWorld are extended to child class Program and override. 
+But if the class A method was declared as final then we will not be able to override it. 
+For example:
+package pack1;
+ class A{
+    public final void  sum(){
+        System.out.println("Sum");
+    }
+    public final void  helloWorld(){
+        System.out.println("Next Hello world");
+    }
+    }
+
+class Program extends A{
+    public void helloWorld(){
+        System.out.println("Not Hello world");
+    }
+    public void sum(){
+        System.out.println("Not sum");
+    }
+    public static void main(String[] args) {
+        A a = new A();
+        Program p = new Program();
+        a.helloWorld();
+        a.sum();
+        p.helloWorld();
+        p.sum();
+    }
+}
+Here, while compiling Program.java, there will occur compiling error saying: 
+Program.java:13: error: helloWorld() in Program cannot override helloWorld() in A
+    public void helloWorld(){
+                ^
+  overridden method is final
+Program.java:16: error: sum() in Program cannot override sum() in A
+    public void sum(){
+                ^
+  overridden method is final
+2 errors
+
+---------------
+b. Final class
+If a class declared as final , we can't extend functionality of that class. i.e. We can't create child class for that class. i.e. inheritance is not possible for final classes.
+For example:
+final class A{
+
+}
+class B extends A{
+
+}
+Compile-time error will occur while compiling saying : CE: cannot inherit from class A.
+
+NOTES:
+a. Every method present inside final class is always final by default.
+b. Every variable present inside final class need not be final.
+
+The main advantage of final keyword is we can achieve security and we can provide unique implementation. 
+but the main disadvantage of final keyword is we are missing key benefits of OOPs: Inheritance(because of final classes) and Polymorphism(because of final methods).
+Hence, if there is no specific requirement then it is not recommended to use final keyword.
+
+
+
+*************************************************Abstract Modifier**************************************************
+=> Abstract is a modifier applicable for classes and methods but not for variables.
+
+a. Abstract method
+=> Event though we don't know about implementation still we can declare a method with abstract modifier. i.e for abstract methods , only declaration is available but not implementation.
+Hence, abstract method declaration should end with semi-colon(;).
+For example: 
+i. public void abstract m1();  //valid
+ii. public void abstract m1(){};  //invalid
+
+=> Child class is responsible to provide implementation for parent class abstract methods.
+For example:
+package pack1;
+abstract class A{
+    abstract public int getMethodNumber();
+}
+
+class Programs extends A{
+    public int getMethodNumber(){
+        return 5;
+    }
+}
+
+class Program extends A{
+    public int getMethodNumber(){
+        return 4;
+    }
+    public void helloWorld(){
+        System.out.println("Hello World");
+    }
+    public static void main(String[] args){
+
+    }
+}
+
+=> By declaring abstract method in the parent class , we can provide guidelines to the child classes such that which method compulsory, child has to implement.
+
+Abstract method never talks about implementation. If any modifier talks about implementation then it forms illegal combination with abstract modifier.
+The following are various illegal combination of modifiers for methods with respect to abstract.
+final,native,synchronized,static,private,strictfp
+For example:
+abstract final void m1();
+Compilation Error will occur saying: illegal combination of modifiers abstract and final.
+
+b. Abstract Class
+=> For any  Java class, if we are not allowed to create an object (because of partial implementation) such type of class , we have to declare with abstract modifier.
+i.e. for abstract classes , instantiation is not possible.
+For example:
+abstract class Program{
+    public static void main(String[] args){
+        Program p = new Program();
+    }
+}
+While compiling , we get compilation error saying: Program is abstract; cannot be instantiated
+
+***********************Abstract Class vs Abstract Methods********************************
+i.If a class contains at least one abstract method, then compulsory we should declare class as abstract otherwise we will get compile-time error.
+Reason::
+a. If a class contain at least one abstract method, then implementation is not complete, and hence it is not recommended to create object.
+b. To restrict object instantiation, compulsory we should declare class as abstract.
+c. Even though , class doesn't contain any abstract methods, still we can declare class as abstract if we don't want instantiation .i.e. abstract class can contain zero(0) no. of abstract methods also.
+Example: 
+HTTPSERVLET class is abstract but it doesn't contain any abstract methods.
+Every Adapter class is recommended to declare as abstract but it doesn't contain any abstract method.
+
+ii. For each and every method of abstract class, we should provide implementation in child class otherwise we have to declare child as abstract class too.
+
+
+**********************************FINAL VS ABSTRACT*********************************************
+a. Abstract methods compulsory we should override in child classes to provide implementation whereas we can't override final methods. Hence, final & abstract combination is illegal combination for methods.
+b. For final classes, we can't create child class whereas for abstract classes we should create child class to provide implementation.
+c. Final-Abstract combination is illegal for classes.
+d. Abstract class can contain final method, whereas final class can't contain abstract method.
+Example::
+abstract class Test{
+    public final void m1(){
+
+    }
+}//valid
+
+final class Test{
+    abstract public void m1()
+}//invalid
+
+
+
+
+
+
+
+
