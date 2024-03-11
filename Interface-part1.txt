@@ -1,0 +1,59 @@
+--Introduction--
+Any service requirement specification (SRS) is considered as an interface.
+Example 1.
+JDBC Api acts as requirement specification to develop database driver.
+Database vendor is responsible to implement this JDBC Api.
+
+Example 2.
+Servlet Api acts as requirement specification to develop web server.
+Web Server Vendor is responsible to implement Servlet Api.
+
+--Introduction--
+From client point of view, an interface defines the set of services what he/she is expectiong.
+From Service Provider point of view, an interface defines set of services what he/she is offering.
+Hence, any contract between client and service provider is considered as an interface.
+
+example: Through Bank ATM GUI screen, bank people are highlighting set of services they are offering , at the same time the same GUI screen represents the set of services what customer is expecting. Hence this GUI screen acts as contract between customer and bank people.
+
+
+--Introduction--
+Inside interface every method is abstract whether we are declaring or not. 
+Hence, interface is considered as 100% pure abstract class.
+
+Summary Intro:: Any service requirement specification or any contract between client and service provider or 100% pure abstract class is nothing but interface.
+
+i. Whenever we are implementing an interface , for each and every method of that interface we have to provide implementation. Otherwise, we have to declare class as abstract . Then next-level child class is responsible to provide implementation.
+ii. Every interface method is always public and abstract whether we are declaring or not. Hence, Whenever we are implementing an interface method, compulsory we should declare as public, Otherwise we will get compile-time error.
+  For example:
+package pack1;
+interface Interf{
+  void m1();
+  void m2();
+}
+abstract class Programs implements Interf{
+  public void m1(){
+    System.out.println("hi");
+  }
+}
+class Program extends Programs{
+  public void m2(){
+    System.out.println("hello");
+  }
+  public static void main(String[] args){
+  Program p = new Program();
+  p.m2();
+  p.m1();
+  }
+}
+
+
+------------------extends vs implements-----------------------
+i. A class can extend only one class at a time.
+ii. An interface can extend any number of interfaces simultaneously.
+    For example:
+    interface A{}
+    interface B{}
+    interface C extends A,B{}
+iii. A class can implement any number of interfaces simultaneously.
+iv. A class can extend another class and can implement any number of interfaces simultaneously.
+    For example: class A extends B implements C,D,E{}
