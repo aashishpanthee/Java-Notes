@@ -1,0 +1,121 @@
+Static is a modifier applicable for methods and variables but not for classes.
+We can't declare top-level class with static modifier but we can declare inner-class as static (such type of inner classes are called static nested classes).
+
+In the case of instance variables, for every object a separate copy will be created. But in case of static variables , a single copy will be created at class-level and shared by every object of that class.
+package pack1;
+class Program{
+  static int x = 10;
+  int y;
+  public static void main(String[] args){
+    Program p1 = new Program();
+    p1.x = 100;
+    p1.y= 30;
+    Program p2 = new Program();
+    System.out.println(p2.x+"..."+p2.y);  //output: 100...0
+  }
+}
+
+a. We can't access instance members directly from static area but we can access from instance area directly.
+b. We can access static members from both instance and static areas directly.
+
+Within the same class, which of the above declarations we can take simultaneously??
+i. int x = 10;
+ii. static int x =  10;
+iii. public void m1(){
+    Sopln(x);
+  }
+iv. public static void m1(){
+    Sopln(x);
+  }
+------Options----
+a. i and iii   //yes
+b. i and iv    //no  CE: non-staic variable x cannot be referenced from a static context.
+c. ii and iii  //yes
+d. ii and iv   //yes
+e. i and ii    //no CE: variable x is already defined in Test
+f. iii and iv  //no CE: m1() is already defined in Test
+
+CASE I. Overloading loading concept applicable  for static methods including main method. But JVM can always call string[] args main method only.
+package pack1;
+class Program{
+  public static void main(String[] args){
+    System.out.println("Hello World");
+  }
+  public static void main(int[] args){
+    System.out.println("Hello World is here");
+  }
+}
+
+CASE II. Inheritance concept applicable for static methods including main method. Hence, while executing child class if child doesn't contain main method then parent class main method will be executed.
+package pack1;
+class Program{
+  public static void main(String[] args){
+    System.out.println("Hello World");
+  }
+}
+class C extends Program{
+
+}
+
+here while executing Program , hello world will be printed and also while executing C , hello world will be printed which is of parent main method.
+
+
+CASE III. It seems over-riding concept applicable for static method, but it is not method over-riding but it is method hiding.
+class P{
+  public static void main(String[] args){
+    Sopln("Parent main method");
+  }
+}
+class C extends p{
+    public static void main(String[] args){
+    Sopln("Child main method");
+  }
+}
+NOTES::
+For static methods, Overloading and Inheritance concepts are applicable but overriding concepts are not applicable.
+But instead of overriding , method hiding concept is applicable.
+
+
+a. Inside method implementation, if we are using at least one instance variable, then that method talks about particular object . Hence, we should declare method as instance method.
+Inside method implementation , if we are not using any instance variable then this method no where related to particular object. Hence, we have to declare such type of method as static method irrespective of whether we are using static variables or not.
+For example:
+ class Student{
+  string name;
+  int rollno;
+  int marks;
+  static string cname;
+
+  getStudentInfo(){
+    return name+"..."+marks;   //this is instance method
+  }
+
+  getCollegeInfo(){
+    return cname;   //this is static method
+  }
+
+  getAverage(int x, int y){
+    return x+y/2;   //this is static method
+  }
+
+  getCompleteInfo(){
+    return name+".."+rollno+".."+marks+".."+cname;  //this is instance method
+  }
+ }
+
+
+b. For static method implementation should be available whereas for abstract method implementation may not be available. Hence, abstract-static combination is illegal for methods.
+
+
+*****************************SYNCHRONIZED MODIFIER*******************************************
+Synchronized is the modifier applicable for methods,blocks but not for classes and variables.
+If a multiple threads trying to operate simultaneously on the same java object then there may be a chance of data-inconsistency problem. This is called Race Condition.
+We can overcome this problem by using Synchronized keyword. 
+If a method or block declared as Synchronized then at a time only one thread is allowed to execute that method,block or the given object so the data inconsistency problem will be resolved.
+but the main disadvantage of Synchronized keyword is it increases waiting time of threads and creates performance problems. Hence, if there is no specific requirement then it is not recommend to use Synchronized keyword.
+Synchronized method should compulsory contain implementation whereas abstract method doesn't contain any implementation. Hence, abstract-Synchronized is illegal combination of modifiers for methods.
+
+
+
+
+
+
