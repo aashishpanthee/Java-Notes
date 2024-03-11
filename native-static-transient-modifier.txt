@@ -1,0 +1,60 @@
+*********************************native modifier***************************************
+native is a modifier applicable only for methods and we can't apply anywhere else.
+The methods which are implemented in non-java ( mostly C or C++) are called native methods or foreign methods.
+
+The main objectives of native keyword are:
+i. To improve performance of the system.
+ii. To achieve machine-level or memory-level communication.
+iii. To use already existing legacy non-java code.
+
+Psuedo code to use native keyword in java.
+class Native{
+  static
+  {
+    System.loadLibrary("native library path"); //Load native libraries
+  }
+  public native void m1();  //Declare native method
+}
+
+class Client{
+  public static void main(String[] args){
+    Native n = new Native();
+    n.m1();  //Invoke  a native method
+  }
+}
+
+For native methods, implementation is already available in old languages like C or C++ and we are not responsible to provide implementation.
+Hence, native method declaration should ends with semi-colon.
+For example:
+public native void m1();  //valid
+public native void m1(){}; //invalid CE: native methods cannot have a body
+
+
+For native methods, implementation is already available in old languages but for abstract methods implementation should not be available. Hence, we can't declare native methods as abstract. i.e. native-abstract combination is illegal combination for methods.
+We can't declare native method as strictfp because there is no guarantee that old languages follow IEEE-754 standard. Hence, native-strictfp combination is illegal combination for methods.
+
+The main advantage of native keyword is performance will be improved but the main dis-advantage  of native keyword is it breaks platform-independent nature of java.
+
+
+*****************************************transient modifier******************************************
+transient is a modifier applicable only for variables.
+We can use transient keyword in serialization context.
+At the time of serialization, if we don't want to save the value of a particular variable to meet security constraint then we should declare that variable as transient.
+At the time of serialization, JVM ignores original value of transient variables and saves default value to the file. Hence, transient means not to serialize.
+
+
+***************************************** volatile modifier ******************************************
+volatile is a modifier applicable only for variables and we can't apply anywhere else.
+If the value of a variable keep on changing by multiple threads then there may be a chance of data-inconsistency problem.
+We can solve this problem by using Volatile Modifier.
+If a variable declared as volatile then for every thread JVM will create a local copy.
+Every modification performed by the thread will take place in local copy so that there is no affect on remaining threads.
+
+The main advantage of volatile keyword  is we can overcome data inconsistency problem but the main disadvantage of volatile keyword is creating and maintaining a separate copy for every thread increases complexity of programming and creates performance problems.Hence, if there is no specific requirement it is never Recommended to use volatile keyword and it is almost depreciated keyword.
+
+
+
+Final variable means value of the variable never changes whereas volatile variable means vlaue keeps on changing.
+hence, volatile-final is illegal combination for variables.
+
+  
