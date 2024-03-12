@@ -1,0 +1,180 @@
+*************************** INTERFACE METHOD **********************************
+Every method present inside interface is always public and abstract whether we are declaring or not.
+
+interface Interf{
+  void m1();
+}
+Why interface method is public and abstract ?
+void m1() -- public => To make this method available to every implementation class.
+void m1() -- abstract => Implementation class is responsible to provide implementation.
+Hence, inside interface, the following method declarations are equal:
+a. void m1();
+b. public void m1();
+c. abstract void m1();
+d. public abstract void m1();
+
+As every interface method is always public and abstract , we can't declare interface method with the following modifiers:
+a. private
+b. protected
+c. static
+d. final
+e. synchronized
+f. strictfp
+g. native
+
+Which of the following method declarations are allowed in interface?
+i. public void m1(){};  //invalid
+ii. private void m1();  //invalid
+iii. protected void m1();  //invalid
+iv. static void m1();  //invalid
+v. public abstract native void m1(); //invalid
+vi. abstract public void m1();  //valid
+
+
+
+******************************* Interface Variables **************************************
+An interface can contain variables. The main purpose of interface  variables is to define requirement level constants.
+
+Every interface variable is always public static final whether we are declaring or not.
+interface Interf{
+  int x = 10;
+}
+// Abouve interface variable x is public,static and final by default.
+i. public => To make the variable available to every implementation class
+ii. static => Without existing object, implementation class can access this variable.
+iii. final => If one of implementation class changes value then remaining implementation class will be affected. To restrict this, every interface variable is final.
+
+As every interface is always public static final, we can't declare with the following modifiers: private,protected,transient,volatile.
+For interface variables, compulsory we should perform initialization at the time of declaration otherwise we will get compile-time error.
+For eg:
+interface Interf{
+  int x;  //CE: error: = expected
+  void m1();
+  void m2();
+}
+
+Inside implementation class, we can access interface variables but we can't modify values.
+For eg:
+interface Interf{
+  int x = 1;
+}
+class Program implements Interf{
+  public static void main(String[] args){
+    x = 77;
+    System.out.println(x);  //invalid  CE: cannot assign a value to final variable x
+  }
+}
+---Inside implementation class, we can access interface variables but we can't modify values.----
+
+class Program implements Interf{
+  public static void main(String[] args){
+    int x = 77;
+    System.out.println(x);  //Output:77  here, this x is local variable of main method, this x we are re-declaring but not modifying of interface variable x.
+  }
+}
+
+
+*************** Interface naming conflicts ******************
+a. Method naming conflicts
+=> i. If two interfaces contains methods with same signature and same return type then in the implementation class we have to provide implementation for only one method.
+For example:
+package pack1;
+interface Left{
+  public void m1();
+}
+interface Right{
+  public void m1();
+}
+class Program implements Left,Right{
+  public static void main(String[] args){
+    Program p = new Program();
+    p.m1();
+  }
+  public void m1(){
+    System.out.println("m1");
+  }
+}
+
+ii. If two interfaces contains method with a same name but different argument types, then in the implementation class we have to provide implementation for both methods and these methods acts as overloaded methods.
+For example:
+package pack1;
+interface Left{
+  public void m1();
+}
+interface Right{
+  public void m1(int i);
+}
+class Program implements Left,Right{
+  public static void main(String[] args){
+    Program p = new Program();
+    p.m1();
+    p.m1(10);
+  }
+  public void m1(){
+    System.out.println("m1");
+  }
+  public void m1(int i){
+    System.out.println("m1 with int arg "+ i);
+  }
+}
+
+
+iii. If two interfaces contains methods with the same signature but different return types then it is impossible to implement both interfaces simultaneously( if return types are not co-variant).
+For example:
+package pack1;
+interface Left{
+  public void m1();
+}
+interface Right{
+  public int m1();
+}
+class Program implements Left,Right{
+  public static void main(String[] args){
+    Program p = new Program();
+    p.m1();
+    p.m1();
+  }
+  public void m1(){
+    System.out.println("m1");
+  }
+  public int m1(){  //CE: method m1() is already defined in class Program
+    return 10;
+  }
+}
+We can't write any java class which implements both interfaces simultaneously. 
+
+Is a Java Class can implement any no. of interfaces simultaneously ? 
+=> Yes, except a particular case. 
+CASE: If two interfaces contains a method with same signature but different return type then it is impossible to implement both interfaces simultaneously.
+
+
+
+
+*************** Variable naming conflicts ******************
+i. Two interfaces can contain a variable with same name and there may a chance of variable naming conflicts but we can solve this problem by using interface names.
+For example:
+package pack1;
+interface Left{
+  int x = 77;
+}
+interface Right{
+  int x = 88;
+}
+class Program implements Left,Right{
+  public static void main(String[] args){
+    Program p = new Program();
+    System.out.println(p.x);   //Invalid CE: reference to x is ambiguous
+    System.out.println(Left.x);  //Output: 77
+    System.out.println(Right.x);  //Output:88
+  }
+}
+
+
+
+
+
+
+
+
+
+
