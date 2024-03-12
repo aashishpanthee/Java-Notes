@@ -1,0 +1,80 @@
+************************ Marker Interface *************************
+If an interface doesn't contain any methods and by implementing that interface if our object will get some ability , such type of interfaces are called marker interfaces.
+For example: Serializable(I), Cloneable(I), RandomAccess(I), SingleThreadModel(I). These are marked as ability interface or Tag interface.
+
+For example: By implementing Serializable interface, our objects can be saved to file and can travel across the network.
+For example: By implementing Cloneable interface , our objects are in a position to produce exactly dublicate clone objects.
+
+Without having any methods, how the objects will get some ability in marker interfaces ?
+=> Internally JVM is responsible to provide required ability.
+Why JVM is providing required ability in marker interfaces ?
+=> To reduce complexity of programming and to make Java Language as simple.
+
+Is it possible to create our own marker interface ?
+=> Yes but customization of JVM is required. 
+
+
+******************************** Adapter Classes ************************************
+Adapter class is a simple Java Class that implements an interface with the only empty implementation.
+interface X{
+  m1();
+  m2();
+  m3();
+  .
+  .
+  .
+  m100();
+}
+
+abstract class AdapterX implements X{
+    public void m1(){}
+    public void m2(){}
+    .
+    .
+    public void m100(){}
+}
+-----------------------------------
+If we implement an interface , for each and every method of interface compulsory we should provide implementation whether it is required or not.
+class Program implements Left{
+  public void m1(){
+    System.out.println("m1");
+  }
+  public void m2(){
+  }
+  public void m3(){
+  }
+  public void m4(){
+  }
+  .
+  .
+  .
+  public void m100(){
+  }
+  public static void main(String[] args){
+    Program p = new Program();
+    p.m1();
+  }
+}
+The problem in this approach is it increases length of the code and reduces readability.
+We can solve this problem by using Adapter classes.
+-----------------------------------
+Instead of implementing interface , if we extend Adapter class we have to provide implementation only for required methods and we are not responsible to provide implementation for each and every method of interface so that length of code will be reduced.
+class Test extends AdapterLeft{
+  public void m2(){
+    System.out.println("m2");
+  }
+  public void m3(){
+    System.out.println("m3");
+  }
+}
+
+class Program extends AdapterLeft{
+  public void m1(){
+    System.out.println("m1");
+  }
+  public static void main(String[] args){
+    Program p = new Program();
+    p.m1();
+  }
+}
+
