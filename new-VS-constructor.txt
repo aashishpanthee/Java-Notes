@@ -1,0 +1,17 @@
+The main objective of new Operator is to create an object.
+The main purpose of constructor is to initialize object.
+First, object will be created by using new operator and then initialization will be performed by the constructor.
+For example:
+class Student{
+  String name;
+  int rollno;
+  Student(String name, int rollno){
+    this.name = name;
+    this.rollno = rollno;
+  }
+}
+
+Student s =  new Student("aashish",101);
+here, new is responsible to create object s.
+and, Student("aashish",101) is responsible to initialize object.
+
