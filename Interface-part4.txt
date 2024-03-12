@@ -1,0 +1,60 @@
+************************* interface VS abstract class VS concrete class **********************************
+
+i. If we don't know anything about implementation , just we have requirement specification then we should go for interface.
+  For example: Servlet(I)
+ii. If we are talking about implementation but not completely (partial implementation) then we should go for abstract class.
+  For example: GenericServlet(AC), HttpServlet(AC)
+iii. If we are talking about implementation completely and ready to provide service then we should go for concrete class.
+  For example: myOwnServlet
+
+******************* Difference between interface and abstract class *********************************
+
+a. Interface Class
+i. If we don't know anything about implementation and just we have requirement specification then we should go for interface.
+ii. Inside interface, every method is always public and abstract whether we are declaring or not. Hence , interface is considered as 100% pure abstract class.
+iii. As every interface method is always public and abstract and hence we can't declare with the following modifiers. Eg:  private,protected,final,static,synchronized,strictfp
+iv. Every variable present inside interface is always public, static, final whether we are declaring or not.
+v. As every interface variable is always public,static,final. We can't declare with the following modifiers:private,protected,volatile,transient.
+vi. For interface variables , compulsory we should perform initialization at the time of declaration only otherwise we will get compile-time error.
+vii. Inside interface, we can't declare static and instance blocks.
+viii. Inside interface, we can't declare constructors.
+
+b. Abstract Class
+ii. If we are talking about implementation but not completely (partial implementation) then we should go for abstract class.
+i. Every method present inside abstract class nedd not be public and abstract and we can take concrete methods also.
+iii. There are no restrictions on abstract class method modifiers.
+iv. Every variable present inside abstract class need not be public,static,final.
+v. There are no restrictions on abstract class variable modifiers.
+vi. For abstract class variables , it's not necessary to perform initialization at the time of declaration.
+vii. Inside abstract class , we can declare static and instance blocks.
+viii. Inside abstract class, we can declare constructors.
+
+
+
+QUESTION: We can't create object for abstract class but abstract class can contain constructor. What is the need ?
+=> Abstract class constructor will be executed whenever we are creating child class object to perform initialization of child class object.
+i. Whenever we are creating child class object, parent object won't be created just parent class constructor will be executed for the child object purpose only.
+  For example:
+  class P{
+    P(){
+      System.out.println(this.hashCode());
+    }
+  }
+  class C extends P{
+    C(){
+      System.out.println(this.hashCode());
+    }
+  }
+  class Program{
+    public static void main(String[] args){
+      C c = new C();
+      System.out.println(c.hashCode());
+    }
+  }
+
+--------------------------------------------------------------
+Inside interface every method is always abstract and we can take only abstract methods in abstract class also then what's Difference betwwen interface and abstract class ? Is it possible to replace interface with abstract class ?
+=> Yes, we can replace interface with abstract class but it is not a good programming practice. This is something like recruting IAS Officer for sweeping activity.
+  If everything is abstract then it is highly recommended to go for interface.
+   
+
