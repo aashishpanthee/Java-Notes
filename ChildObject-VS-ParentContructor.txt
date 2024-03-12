@@ -1,0 +1,50 @@
+
+Whenever we are creating child class object automatically parent contructor will be executed to perform initialization for instance variables which are inherit from parent.
+package pack1;
+
+ class Person{
+  String name;
+  int age;
+  Person(String name, int age){
+    this.name = name;
+    this.age = age;
+  }
+}
+
+ class Program extends Person{
+    int rollno;
+    int marks;
+    Program(String name, int age, int rollno, int marks){
+      super(name, age);  //initialization performed by parent contructor
+      this.rollno = rollno;  //these bottom two initialization performed by children constructor(Person in this case)
+      this.marks = marks;
+    }
+    public static void main(String[] args){
+      Program p = new Program("aashish",12, 101, 90);
+      System.out.println(p.name);
+      System.out.println(p.age);
+      System.out.println(p.rollno);
+      System.out.println(p.marks);
+    }
+ }
+In the above program, both parent and child constructor are executed for child object initialization only.
+
+-**-Whenever we are creating child class object , parent constructor will be executed but parent object won't be created.-**-
+class P{
+  P(){
+    System.out.println(this.hashCode());
+  }
+}
+class C extends P{
+  C(){
+    System.out.println(this.hashCode());
+  }
+}
+class Program{
+  public static void main(String[] args){
+    C c = new C();
+    System.out.println(c.hashCode());
+  }
+}
+In the above example, we just created only child class object but both parent and child constructor executed for the child class object only.
+Hence, Whenever we are creating child class object , parent constructor will be executed but parent object won't be created.
