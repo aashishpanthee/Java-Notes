@@ -1,0 +1,57 @@
+*************************** METHOD SIGNATURE ********************
+Method Signature consists of method names followed by argument types.
+public static int m1(int i, float f)
+=> m1(int, float)
+Return type is not part of method-Signature in java.
+-Compiler will use method Signature to resolve method calls.
+
+class Test{
+  public void m(int i){
+
+  }
+  public void m2(String s){
+
+  }
+}
+
+Test t = new Test();
+t.m1(10);
+t.m2("aashish");
+t.m3(10.5) //CE: cannot find symbol Symbol:method m3(double) location:class Test
+
+Within a class, two method with a same signature, not allowed. 
+package pack1;
+class Program{
+  public int m2(int i){
+    return 10;
+  }
+  public int m2(int i){  //CE: method m2(int) is already defined in class Program
+    return 20;
+  }
+  public static void main(String[] args) {
+
+  }
+}
+
+
+
+************************ METHOD OVERLOADING *****************************
+Two methods are said to be over-loaded if and only if both methods having same name but different argument types.
+In C language , method over-loading concept is not available. Hence,we can't declare multiple methods with same name but different argument types. If there is change in argument  type, compulsory we should go for new method  name which increases complexity of programming.
+Example:
+abs(int i);
+labs(long l);
+fabs(float f);
+But in Java, we can declare multiple methods with same name but different argument types . Such types of methods are called over-loaded methods.
+Example:
+abs(int i);
+abs(long l);
+abs(float f);
+Having over-loading concept in Java reduces complexity of programming. 
+
+
+
+
+
+
+
