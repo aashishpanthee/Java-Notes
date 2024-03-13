@@ -1,0 +1,54 @@
+*********************************** DATA HIDING ************************
+Outside person can't access our internal data directly or our internal data should not go out directly. This OOP feature is nothing but data-hiding.
+
+After validation or authentication, outside person can access our internal data.
+For example1: After providing username and password, we can access our gmail inbox information.
+For example2: Event though we are valid customer of bank, we can be able to access our account information and we can't access other's information.
+
+By declaring data member (variable) as private , we can achieve data-hiding.
+For eg:
+public class Account{
+  private double balance;
+  public double getBalance(){
+    //validation
+    return balance;
+  }
+}
+The main advantage of data-hiding is security.
+NOTE: It is highly recommended to declare data member (variable) as private.
+
+
+****************************** ABSTRACTION *************************************
+Hiding internal implementation and just highlight the set of services what we are offering is a concept of ABSTRACTION.
+For Example: Through Bank ATM GUI Screen , bank people are highlighting the set of services what they are offering without highlighting internal implementation.
+
+The main advantages of ABSTRACTION are:
+i. We can achive security because we are not highlighting our internal implementation.
+ii. Without affecting outside person, we can able to perform any type of changes in our internal system and hence, enchancement will become easy.
+iii. It improves maintainability of the application.
+iv. It improves easiness to use our system.
+
+By using interfaces and abstract classes, we can implement abstraction.
+
+
+*********************** ENCAPSULATION ******************************
+The process of binding data and corresponding methods into a single unit is nothing but ENCAPSULATION.
+For eg: 
+class Student{
+  data members
+    + 
+  behaviour(methods)
+}
+If any component follows data-hiding and abstraction , such type of component is said to be encapsulated component.
+Encapsulation = Data-Hiding + Abstraction
+
+public class Account{
+  private double balance;
+  public double getBalance(){
+    //validation
+    return balance;
+  }
+  public void setBalance(double balance){
+    this.balance = balance
+  }
+}
