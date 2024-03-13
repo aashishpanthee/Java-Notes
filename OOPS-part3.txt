@@ -1,0 +1,40 @@
+******************************* Inheritance ***********************************
+******************************* HAS A Relationship ***********************************
+
+i. Has A Relationship is also known as Composition/Aggregation.
+ii. There is no specific keyword to implement Has A Relationship. But most of the time , we are depending on new keyword.
+iii. The main advantage of HAS A Relationship is Reusability of the code.
+Example:
+class Car{
+  Engine e = new Engine();
+  //here car has a engine Reference
+}
+class Engine{
+  //Engine specific functionality
+}
+
+* Difference between Composition and Aggregation ?
+=> Without existing Container Object, if there is no chance of existing Contained Objects , then Container and Contained Objects are strongly associated and this strong association is nothing but Composition.
+Example: University consists of several departments. Without existing University , there is no chance of existing departments. Hence, University and departments are strongly associated and this strong association is nothing but Composition.
+
+=> Without existing Container Object if there is a chance of existing Contained Object, then Container and Contained Object are weakly associated and this weak association is nothing but Aggregation.
+Example: department consists of several professors , without existing department there may be a chance of existing professors Objects. Hence, department and professors objects are weakly associated and this weak association is nothing but Aggregation.
+
+
+NOTE: 
+i. In Composition, Objects are strongly associated whereas in Aggregation objects are weakly associated.
+ii. In Composition, Container Object holds directly Contained Objects whereas in Aggregation , Container Objects holds just a References of Contained Objects.
+
+
+
+**************** IS A Relationship VS HAS A Relationship ****************************
+If we want a total functionality of a class automatically then we should go for IS A Relationship.
+Example: class Person{}  IS A Relationship  class Student{}
+
+If we want part of the functionality, then we should go for Has A Relationship.
+Example: class Test{ 100 methods} HAS A Relationship  class Demo{ 4 method from Test}
+
+
+
+
+
