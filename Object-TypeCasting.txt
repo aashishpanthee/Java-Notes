@@ -1,0 +1,38 @@
+*********************** Object Type-Casting *************************
+We can use parent reference to hold child object.
+Example: Object o = new String("aashish");
+We can use Interface reference to hold implemented class object.
+Example: Runnable r = new Thread();
+
+
+A b = (C) d;
+A => class/Interface name
+b => name of reference variable
+C => class/Interface name
+d => reference variable name
+
+Case i.
+Compile-time checking  1:  The type of 'd' and 'C' must have some relation either child to parent or parent to child or same type otherwise we will get Compile-time error saying inconvertible types. found: d type  required: C
+Example i: Object o = new String("aashish");
+        StringBuffer sb = (StringBuffer)o;
+Example ii: String s = new String("aashish");
+            StringBuffer sb = (StringBuffer)s;
+  //this example ii will get compile-time error saying: CE: inconvertible types found: java.lang.String required: java.lang.StringBuffer
+
+Case ii. 
+Compile-time checking 2:  'C' must be either same or derived type of A otherwise we will get compile-time error saying incompatible types found:C reuqired:A
+Example i: Object o = new String("aashish");
+            StringBuffer sb = (StringBuffer)o;
+Example ii: Object o = new String("aashish");
+            StringBuffer sb = (String)o;
+   //this example ii will get compile-time error saying: CE: incompatible types found: j.lang.String required: j.l.sb
+
+Case iii.
+Runtime-checking: Runtime object type of 'd'  must be either same or derived type of 'C' otherwise we will get Runtime Exception saying: CE: class-cast Exception
+Example i: Object o = new String("aashish");  
+             StringBuffer sb = (StringBuffer)o;
+    //this example will get Runtime Exception saying: RE: ClassCast Exception j.l.String cannot be cast to j.l.StringBuffer
+Example ii: Object o = new String("aashish");  
+             Object o1 = (String)o;
+
+
