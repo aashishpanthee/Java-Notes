@@ -1,0 +1,33 @@
+******************************** POLYMORPHISM ***********************************
+One name but multiple forms is a concept of Polymorphism.
+Example i: Method name is the same but we can apply for different type of arguments (Over-loading)
+            abs(int), abs(float), abs(float)
+Example ii: Method signature is same but in parent class one type of implementation and in the child class another type of implementation (Over-Riding).
+            class P{
+              marry(){
+                Sopln("Laxmi");
+              }
+            }
+            class C extends P{
+              marry(){
+                Sopln("Indira");
+              }
+            }
+Overloading and Over-riding is a concept of Polymorphism.
+
+Example iii. Usage of Parent reference to hold child object is a concept of Polymorphism.
+            List l = new AL();
+            List l = new LL();
+            List l = new Stack();
+            List l = new Vector();
+
+-------------------
+Parent class reference can be used to hold child Object but by using that reference we can call only the methods available in Parent class and we can't call child specific methods.
+P p = new C();
+p.m1();  //valid
+p.m2(); //invalid  CE: cannot find symbol symbol:method m2()  location: class p
+
+But by using child reference we can call both parent and child class methods. 
+C c = new C();
+c.m1();
+c.m2();
