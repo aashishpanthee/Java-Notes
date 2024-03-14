@@ -1,0 +1,37 @@
+***************** static control flow ******************************
+Whenever we are executing a Java class , the following sequence of steps will be executed as a part of static control flow.
+i. Identification of static members from top to bottom
+ii. Execution of static variables assignments and static blocks from top to bottom
+iii. Execution of main method
+
+ Example:
+ clas Base{
+  static int i = 0;
+  static
+  {
+    m1();
+    Sopln("First static block");
+  }
+  public static void main(String[] args){
+    m1();
+    Sopln("main method");
+  }
+  public static void m1(){
+    Sopln(j);
+  }
+  static
+  {
+    Sopln("second static block");
+  }
+  static int j = 20
+ }
+
+
+ Output:
+ 0
+ First static block
+ second static block
+ 20
+ main method
+
+ 
