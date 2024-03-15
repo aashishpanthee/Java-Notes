@@ -1,0 +1,42 @@
+****************** Checked Exception and UnChecked Exception **********************
+
+1. Checked Exception
+=> The Exceptions which are Checked by Compiler for smooth Execution of the Program are called Checked Exceptions.
+Example: HallTicketMissingException , PenNotWorkingException , FileNotFoundException , etc.
+In our program, if there is a chance of rising Checked Exception then compulsory we should handle that Checked Exception (either by try-catch or by throws keyword) otherwise we will get Compile-time Error.
+
+2. UnChecked Exception
+=> The Exceptions which are not Checked by Compiler whether programmer handling it or not . Such types of exceptions are called UnChecked Exceptions.
+Example: ArithmeticExceptions, BombBlastException, MemoryOutOfSpace  etc. 
+
+
+Note: 
+i. Whether it is Checked or UnChecked , every Exception occurs at Runtime only . There is no chance of occuring any Exception at Compile-Time.
+ii. Runtime Exception and it's Child Classes , Error and it's Child Classes are UnChecked Exceptions. Except these remaining are Checked Exceptions.
+
+
+
+********************* Fully Checked VS Partially Checked ****************************
+A Checked Exception is said to be Fully Checked if and only if all it's child classes are also Checked.
+For Example: IOException, InterruptedException.
+
+A Checked Exception is said to be Partially Checked if and only if some of it's child classes are UnChecked.
+For Example: Throwable,Exception,
+The only possible Partially Checked Exception in Java re Exception, Throwable.
+
+
+
+*****Describe the behaviour of following Exceptions ***************
+
+i. IOException                => Checked (Fully)
+ii. RuntimeException          => UnChecked
+iii. InterruptedException     => Checked (Fully)
+iv. Error                     => UnChecked
+v. Throwable                  => Checked (Partially)
+vi. ArithmeticException       => UnChecked
+vii. NullPointerException     => UnChecked
+viii. Exception               => Checked (Partially)
+ix. FileNotFoundException     => Checked (Fully)
+
+
+
