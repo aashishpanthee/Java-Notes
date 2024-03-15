@@ -1,0 +1,88 @@
+***************** Default Exception Handling in Java *****************
+
+i. Inside a method, if any Exception occurs , the method in which it is rised is responsible to create Exception Object by including the following information: 
+  a. Name of Exception
+  b. Description of Exception
+  c. Location at which Exception occurs(stack-trace)
+ii. After creating Exception Object, method handovers that Object to the JVM.
+iii. JVM will check whether the method contains any Exception Handling code or not. If the method doesn't contain Exception Handling code then JVM terminates that method abnormally and removes the corresponding entry from the stack.
+iv. Then JVM identifies the caller method and checks whether caller method contains any Handling code or not.
+v. If the caller method doesn't contain Handling code then JVM terminates the caller method also abnormally and removes the corresponding entry from the stack.
+vi. This process will be continued untill main method and if the main method also doesn't contain Handling code then JVM terminates main method also abnormally and removes corresponding entry from the stack.
+vii. Then JVM handovers responsibility of Exception Handling to Default Exception Handler, which is a part of JVM itself.
+viii. Default Exception Handler prints Exception Information in the following format and terminates program abnormally.
+      format: Exception in thread "xxx" : Name of Exception: Description: StackTrace
+
+For example i.: 
+package pack1;
+class Test{
+  public static void main(String[] args){
+    doStuff();
+  }
+  public static void doStuff(){
+    doMoreStuff();
+  }
+  public static void doMoreStuff(){
+    System.out.println(10/0);
+  }
+}
+//output: Exception in thread "main" java.lang.ArithmeticException: / by zero
+        at pack1.Program.doMoreStuff(Program.java:10)
+        at pack1.Program.doStuff(Program.java:7)
+        at pack1.Program.main(Program.java:4)
+
+--How Stack looks--
+doMoreStuff()
+doStuff()
+main()
+
+For example ii.: 
+package pack1;
+class Program{
+  public static void main(String[] args){
+    doStuff();
+    System.out.println(10/0);
+  }
+  public static void doStuff(){
+    doMoreStuff();
+    System.out.println("hi");
+  }
+  public static void doMoreStuff(){
+    System.out.println("hello");
+  }
+}
+
+//output: 
+hello
+hi
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+        at pack1.Program.main(Program.java:5)
+
+--How Stack looks--
+doStuff()
+main()
+
+NOTE:
+In a program , if at least terminates abnormally then the program termination is Abnormal Termination. 
+If all methods terminated normally then only program termination is Normal Terminal.
+
+
+*************************************** Exception Hierarchy **************************************************
+Throwable class acts as Root for the Java Exception Hierarchy. 
+Throwable class defines two child classes:
+i. Exception
+ii. Error
+
+a. Exception => Most of the times, Exceptions are caused by our program and these are recoverable.
+                For example: If our program requirement to read data from remote file locating at London at Runtime . If remote file is not available then we will get Runtime Exception saying: FileNotFoundException . If FileNotFoundException occurs we can provide local file and continue rest of the program normally.
+                try{
+                  read data from remote file locating at London
+                }
+                catch(FileNotFoundException e){
+                  use local file and continue rest of the program normally
+                }
+
+b. Error => Most of the times, Errors are not caused by our program and these are due to lack of System Resources. Errors are not recoverable.
+            For example: If OutOfMemory occurs, being a Programmer we can't do anything and the program will be terminated abnormally. System Admin or Server Admin is responsible to increase Heap Memory.
+
+
