@@ -1,0 +1,40 @@
+Static blocks will be executed at the time of class loading. Hence, at the time of class loading if we want to perform any activity, we have to define that in static block.
+Example 1 : At the time of java class loading, the corresponding native libraries should be loaded. Hence, we have to define this activity inside static block.
+            class Test{
+              static
+              {
+                System.loadLibrary("native library path");
+              }
+            }
+
+Example 2: After loading every database driver class, we have to register driver class with driver manager but inside database driver class there is a static block to perform this activity and we are not responsible to register explicitly.
+          class DbDriver{
+            static
+            {
+              register this driver with driverManger
+            }
+          }
+
+Note:: Within a class we can declare any number of static blocks but all these static blocks will be executed from top to bottom.
+
+
+Without writing main method, is it possible to print some statements to the console ?
+=> Yes, by using static block.
+package pack1;
+class Program{
+  static
+  {
+    System.out.println("Hello world !");
+    System.exit(0);
+  }
+}
+//output: Hello World !
+
+
+Without writing main method and static block, is it possible to print some statements to the console ?
+=> Yes, there are multiple ways.
+
+
+
+
+
