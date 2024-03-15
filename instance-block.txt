@@ -1,0 +1,45 @@
+**************** Instance control flow *********************
+Whenever we are executing a Java Class, first static control flow will be executed.
+In the static control flow, if we are creating an object, the following sequence of events will be executed as a part of Instance control flow.
+i. Identification of Instance members from top to bottom.
+ii. Execution of Instance variable assignments and instance blocks from top to bottom.
+iii. Execution of constructor
+
+Example:
+
+class Program{
+ int i = 0;
+ {
+  m1();
+  System.out.println("First instance block");
+ }
+ Program(){
+  System.out.println("constructor");
+ }
+ public static void main(String[]  args){
+  Program p = new Program();
+  System.out.println("main");
+ }
+ public void m1(){
+  System.out.println(j);
+ }
+ {
+  System.out.println("Second instance block");
+ }
+ int j = 20;
+}
+
+Output:
+0
+First instance block
+Second instance block
+constructor
+main
+
+NOTE:
+i. If we comment out line one of main method then, output is : main
+ii. Static Control flow is a one-time activity which will be performed at the time of class loading.
+But instance control flow is not one-time activity and it will be performed for every object creation.
+iii. Object creation is the most costly operation , if there is no specific requirement then it is not recommended to create object.
+
+
