@@ -1,0 +1,93 @@
+------------------Topics to be covered-----------------
+i. Introduction
+ii. Runtime Stack Mechanism
+iii. Default Exception Handling in Java
+iv. Exception Hierarchy
+v. Customized Exception Handling by using try-catch 
+vi. Control-flow in try-catch
+vii. Methods to print Exception Information
+viii. try with multiple catch blocks
+ix. finally block
+x. difference between final, finally and finalize
+xi. Control flow in try-catch-finally
+xii. Control flow in nested try-catch-finally
+xiii. Various possible combinations of try catch finally
+xiv. throw keyword
+xv. throws keyword
+xvi. Exception Handling keywords summary
+xvii. Various possible compile-time errors in Exception Handling
+xviii. Customized or User-defined Exceptions
+xix. Top 10 Exceptions
+xx. 1.7 version enhancements
+    i. try with resources
+    ii. multi-catch block
+
+
+
+********************** Introduction *****************
+An exception is an event, which occurs during the execution of a program, that disrupts the normal flow of the program's instructions.
+or
+An unexpected unwanted event that disturbs the normal flow of the program is called Exception.
+For example: TyrePunctureException, SleeepingException, FileNotFoundException,etc.
+
+It is highly recommended to handle Exceptions and the main objective of Exception Handling is graceful termination of the program.
+
+Exception Handling doesn't mean repairing an Exception. We have to provide alternative way to continue rest of the program normally is a concept of Exception Handling.
+For example: our program requirement is to read data from remote file locating at London.
+At runtime if London file is not available, our program should not be terminated abnormally. We should to provide some local file to continue rest of the program normally. This way of defining alternative is nothing but Exception Handling.
+try{
+  Read data from remote file locating in London
+}
+catch(FileNotFoundException e){
+  use local file and continue rest of the program normally
+}
+
+************** Runtime Stack Mechanism ***************
+For every thread JVM will create a runtime stack.
+Each and every method call performed by that thread will be stored in the corresponding stack.
+Each entry in the stack is called Stack Frame or Activation Record.
+After completing every method call, the corresponding entry from the stack will be removed.
+After completing all method calls, the stack will become empty and the empty stack will be destroyed by JVM just before terminating the thread.
+
+For example:
+class Test{
+  public static void main(String[] args){
+    doStuff();
+  }
+  public static void doStuff(){
+    doMoreStuff();
+  }
+  public static void doMoreStuff(){
+    System.out.println("Hello");
+  }
+}
+//Output: Hello
+---What happens---
+i. Here for main thread, JVM will create a Runtime Stack
+
+ii. Now, In this Stack , it is calling main() method.   
+//this below is the structure of Runtime stack of main thread.
+              main()method
+
+iii. Now, In main() method, it is calling doStuff() method.
+              doStuff() method
+              main() method
+
+iv.  Here, doStuff() method, it is calling doMoreStuff() method.
+              doMoreStuff() method
+              doStuff() method
+              main() method
+
+v.  Now, in doStuff() method,there is a print statement "Hello" which will be executed.After that there are no other statements in doMoreStuff() method. So doMoreStuff() method will be destryed or finished.
+            doStuff() method
+            main() method
+
+vi. Now , after completing doMoreStuff() method, it will now go to doStuff() method where there was doMoreStuff() method which has already been executed and there are no other remaining lines of code to be executed. So doStuff() method will also be destryed or finished.
+            main() method
+
+vii.  Now , after completing doStuff() method, it will now go to main() method where there was doStuff() method which has already been executed and there are no other remaining lines of code to be executed. So doStuff() method will also be destryed or finished.
+            stack is now empty
+
+viii. This empty stack will be destroyed by JVM.
+
+
