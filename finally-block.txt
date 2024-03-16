@@ -1,0 +1,362 @@
+******************* final **********************
+final is a modifier applicable for classes, methods and variables.
+If a class declared as final then we can't extend that class. i.e. we can't create child class for that class. i.e inheritance is not possible for final classes.
+If a method is final, we can't over-ride that method in the child class. 
+If a variable declared as final then we can't perform re-assignment for that variable.
+
+
+******************* finally *********************
+finally is a block always associated with try-catch to maintain cleanup code.
+
+try{
+  // Risky code
+}
+catch(Exception e){
+  // Handling code
+}
+finally{
+  clean-up code
+}
+
+The speciality of finally block is it will be executed always irrespective of whether Exception is rised or not rised and whether handled or not handled.
+
+
+******************* finalize() *********************
+finalize is a method always invoked by Garbage Collector just before destroying an object to perform cleanup activities. 
+Once, finalize() method completes, immediately Garbage Collector destroys that object.
+
+
+------------------------ NOTES -----------------
+i. finally block is responsible to perform cleanup activities related to try block. i.e. whatever resources we opened as a part of try block will be closed inside finally block.
+ii. finalize() method is responsible to perform activities related to Object. i.e. whatever resources associated with Object will be de-allocated before destroying an Object by using finalize() method.
+
+
+  CONCLUSIONS:
+i.   In try-catch-finally , order is important.
+ii.  Whenever we are writing try, compulsory we should write either catch or finally otherwise we will get compile-time error. i.e. try without catch or finally is invalid.
+iii. Whenever we are writing catch block, compulsory try block must be required. i.e. catch without try is invalid.
+iv.  Whenever we are writing finally block, compulsory we should write try block. i.e. finally without try is invalid.
+v.   Inside try,catch and finally blocks , we can declare try-catch-finally blocks. i.e nesting of try-catch-finally is allowed.
+vi.  For try-catch-finally blocks , curly braces are mandatory(compulsory).
+
+
+
+-------------- Some various combinations of try-catch-finally blocks ----------------
+
+1.
+try{
+
+}
+catch(X e){
+
+}
+//valid
+
+
+2.
+try{
+
+}
+catch(X e){
+
+}
+catch(Y e){
+
+}
+//valid
+
+
+3.
+try{
+
+}
+catch(X e){
+
+}
+catch(X e){
+
+}
+//invalid
+
+
+4.
+try{
+
+}
+catch(X e){
+
+}
+finally{
+
+}
+//valid
+
+
+5.
+try{
+
+}
+finally{
+
+}
+//valid
+
+
+6.
+try{
+
+}
+catch(X e){
+
+}
+try{
+
+}
+catch(Y e){
+
+}
+//valid
+
+
+7.
+try{
+
+}
+catch(X e){
+
+}
+try{
+
+}
+finally{
+
+}
+//valid
+
+
+8.
+try{
+
+}
+//CE: try without catch or finally
+
+
+9.
+catch(X e){
+
+}
+ // CE: catch without try
+
+
+10.
+finally{
+
+}
+// CE: finally without try
+
+
+11.
+try{
+
+}
+finally{
+
+}
+catch(X e){
+
+}
+ // CE: catch without try
+
+
+12.
+try{
+
+}
+Sopln("Hello");
+catch(X e){
+
+}
+// CE: try without catch or finally
+// CE: catch without try
+
+
+13.
+try{
+
+}
+catch(X e){
+
+}
+Sopln("Hello");
+catch(Y e){
+
+}
+// CE: catch without try
+
+
+14.
+try{
+
+}
+catch(X e){
+
+}
+Sopln("Hello");
+finally{
+
+}
+// CE: finally without try
+
+
+15.
+try{
+  try{
+
+  }
+  catch(X e){
+
+  }
+}
+catch(X e){
+
+}
+// valid
+
+
+16.
+try{
+  try{
+
+  }
+}
+catch(X e){
+
+}
+// CE: try without catch or finally
+
+
+17.
+try{
+  try{
+
+  }
+  finally{
+
+  }
+}
+catch(X e){
+
+}
+//valid
+
+
+18.
+try{
+
+}
+catch(X e){
+  try{
+
+  }
+  finally{
+
+  }
+}
+// valid
+
+
+19.
+try{
+
+}
+catch(X e){
+  finally{
+
+  }
+}
+// CE: finally without try
+
+
+20.
+try{
+
+}
+catch(X e){
+
+}
+finally{
+  try{
+
+  }
+  catch(X e){
+
+  }
+}
+//valid
+
+
+21.
+try{
+
+}
+catch(X e){
+
+}
+finally{
+  finally{
+
+  }
+}
+// CE: finally without try
+
+
+22. 
+try{
+
+}
+catch(X e){
+
+}
+finally{
+
+}
+finally{
+
+}
+// CE: finally without try
+
+
+23.
+try
+  Sopln;
+catch(X e){
+  Sopln("catch");
+}
+finally{
+
+}
+// invalid because when using try-catch-block , curly braces are always mandatory.
+
+
+24.
+try{
+
+}
+catch(X e)
+  Sopln("catch");
+finally{
+
+}
+// invalid because when using try-catch-block , curly braces are always mandatory.
+
+
+25.
+try{
+
+}
+catch(X e){
+
+}
+finally
+  Sopln("finally");
+// invalid because when using try-catch-block , curly braces are always mandatory.
