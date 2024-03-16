@@ -1,0 +1,167 @@
+*********************** throw keyword ***********************
+Sometimes we can crete Exception object explicitly and we can handover to the JVM manually.
+For this we have to use throw keyword. 
+    throw new ArithmeticException("/ by zero");
+throw => handover our created exception object to the JVM manually.
+new ArithmeticException(" / by zero") =>  creation of ArithmeticException object explicitly.
+Hence, the main objective of throw keyword is to handover our created Exception Object to the JVM manually.
+
+class Program{
+  public static void main(String[] args){
+    throw new ArithmeticException("/ by zero explicitly");
+  }
+}
+//Output:
+Exception in thread "main" java.lang.ArithmeticException: / by zero explicitly
+        at pack1.Program.main(Program.java:4)
+
+- In this case, programmer is creating Exception Object explicitly and handover to the JVM manually.
+
+
+NORMAL Program
+class Program{
+  public static void main(String[] args){
+    System.out.println(10/0);
+  }
+}
+//Output:
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+        at pack1.Program.main(Program.java:4)
+
+- In this case, main method is responsible to create Exception Object and handover to the JVM.
+
+
+NOTES:
+Best use of throw keyword for user-defined Exceptions or Customized Exceptions.
+
+
+*************************** throws keyword **************************************
+In our program, if there is a possibility of rising Checked Exception then compulsory we should handle that Checked Exception otherwise we will get compile-time error saying Unreported exception XXX; must be caught or declared to be thrown.
+Example i.
+import java.io.*;
+class Program{
+  public static void main(String[] args){
+    PrintWriter pw = new PrintWriter("abc.txt");
+    pw.println("Hello");
+  }
+}
+// CE: unreported exception FileNotFoundException; must be caught or declared to be thrown
+
+
+Example ii.
+class Program{
+  public static void main(String[] args){
+    Thread.sleep(10000);
+  }
+}
+// CE: unreported exception InterruptedException; must be caught or declared to be thrown
+WE can handle this compile-time error by using the following two ways:
+i. By using try-catch
+=>
+  class Program{
+  public static void main(String[] args){
+    try{
+      Thread.sleep(10000);
+    }
+    catch(InterruptedException e){
+      System.out.println(e);
+    }
+  }
+}
+
+ii. By using throws keyword
+=> 
+We can use throws keyword to delegate responsibility of Exception handling to the caller (it may be another method or JVM). Then caller method is responsible to handle that Exception.
+class Program{
+  public static void main(String[] args) throws InterruptedException{
+      Thread.sleep(10000);
+  }
+}
+
+
+Throws keyword required only for Checked Exceptions and usage of throws keyword for UnChecked Exceptions there is no use or impact.
+Throws keyword required only to convince Compiler and usage of throws keyword doesn't prevent abnormal termination of the program.
+
+In the below program if we remove at least one throws statement then the code won't compile.
+class Program{
+  public static void main(String[] args) throws InterruptedException{
+    doStuff();
+  }
+  public static void doStuff() throws InterruptedException{
+    doMoreStuff();
+  }
+  public static void doMoreStuff() throws InterruptedException{
+    Thread.sleep(10000);
+  }
+}
+
+ CONCLUSION FOR "throws" keyword
+i. We can use to delegate responsibility of exception handling to the caller (it may be method or JVM).
+ii. It is required only for Checked Exceptions and usage of throws keyword for UnChecked Exceptios there is no impact.
+iii. It is required only to convience compiler and usage of throws does not prevent abnormal termination of program.
+
+
+NOTE:
+i. It is recommended to use try-catch over throws keyword.
+
+CASE:
+i. We can use throws keyword for methods and constructors but not for classes.
+  class Program throws Exception {  //invalid
+  Program() throws Exception{  //valid
+
+  }
+  public void m1() throws Exception{ //valid
+
+  }
+  }
+
+ii. We can use throws keyword only for Throwable types. If we are trying to use for normal java classes then we will get compile-time error saying: incompatible types
+  Example 1:
+  class Test{
+    public void m1() throws Test{   // CE: incompatible types found: Test  required: java.lang.Throwable
+
+    }
+  }
+
+  Example 2:
+  class Test extends RuntimeException{
+    public void m1() throws Test{
+
+    }
+  }
+ //valid
+
+iii. 
+    Example 1:
+     class Test{
+      public static void main(String[] args){
+        throw new Exception();
+      }
+     }
+  // CE: unreported exception java.lang.Exception; must be caught or declared to be thrown
+
+    Example 2:
+    class Test{
+      public static void main(String[] args){
+        throw new Error();
+      }
+    }
+  // RE: Exception in thread "main" java.lang.Error at Test.main();
+
+iv. Within a try block , if there is no chance of rising an Exception then we can't write catch block for that Exception otherwise we will get compile-time error saying: Exception XXX is never thrown in body of corresponding try statement.
+    But this rule is applicable only for Fully-Checked-Exceptions.
+    Example 1:
+    import java.io.*;
+    class Test{
+      public static void main(String[] args){
+        try{
+          Sopln("Hello");
+        }
+        catch(IOException e){
+
+        }
+      }
+    }
+  // CE: Exception java.lang.IOException is never thrown in body of corresponding try statement.
+
+
