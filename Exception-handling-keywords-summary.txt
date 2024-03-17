@@ -1,0 +1,180 @@
+************* Exception handling keywords summary *******************
+try - To maintain Risky Code
+catch = To maintain Exception handling Code
+finally = to maintain cleanup Code
+throw = To hand-over our created Exception Object to the JVM manually
+throws = To delegate the responsibility of Exception Handling to the caller method (that can be caller method).
+
+
+Various possible Compile-time errors in Exception Handling:
+i. unreported exception XXX; must be caught or declared to be thrown
+ii. Exception XXX has already been caught
+iii. Exception XXX is never thrown in body of corresponding try statement
+iv. unreacheable statement
+v. incompatible types
+    found:Test
+    required: java.lang.Throwable
+vi. try without catch or finally
+vii. catch without try
+viii. finally without try
+
+***************************** Customized or User-Defined Exceptions ******************************************
+Sometimes, to meet programmer requirements we can define our own Exceptions , such types of exceptions are called Customized or User-Defined Exceptions.
+Example: TooYoungException, TooOldException, InSufficientFundsException,etc.
+
+class Program {
+  public static void main(String[] args){
+   int age = Integer.parseInt(args[0]);
+   if(age>60){
+    throw new TooOldException("very old");
+   }
+   else if(age<18){
+    throw new TooYoungException("too young");
+   }
+   else{
+    System.out.println("eligible for marriage");
+   
+   }
+
+  }
+}
+class TooYoungException extends RuntimeException{
+  TooYoungException(String s){
+    super(s);
+  }
+}
+class TooOldException extends RuntimeException{
+  TooOldException(String s){
+    super(s);  // to make description available to Default Exception Handler.
+  }
+}
+
+NOTES:
+i. throw keyword is best suitable for user-defined or Customized Exceptions but not for Pre-defined Exceptions.
+ii. It is highly recommended to define Customized Exceptions as Unchecked . i.e. we have to extends RuntimeException but not Exception.
+
+
+
+************* Top 10 Exceptions in Java **************
+i. Based on the person who is rising an Exception , all Exceptions are divided into two categories.:
+    a. JVM exceptions
+    b. Programmatic exceptions
+
+a. JVM exceptions
+=> The exceptions which are rised automatically by JVM whenever a particular event occurs are called JVM Exceptions.
+    Example: ArithmeticExceptions,NullPointerExceptions,etc.
+
+b. Programmatic exceptions
+=> The exceptions which are rised explicitly either by programmer or by API Developer to indicate that something goes wrong are called Programmatic exceptions.
+    Example: TooOldException, TooYoungException, IllegalArgumentException, etc.
+
+
+1. ArrayIndexOutOfBoundsException
+=> It is the child class of RuntimeException and hence  it is Unchecked.
+=> Rised automatically by JVM whenever we are trying to access array element with out of range index.
+Example:
+    int[] x = new int[4];
+    Sopln(x[0]);  0//valid
+    Sopln(x[10]); RE:ArrayIndexOutOfBoundsException
+    Sopln(x[-10]); RE:ArrayIndexOutOfBoundsException
+
+2. NullPointerException
+=> It is the child class of RuntimeException and hence it is Unchecked.
+=> Rised automatically by JVM whenever we are trying to perform any operation on Null.
+Example:
+    String s = null;
+    Sopln(s.length()); RE:NullPointerException
+
+3. ClassCastException
+=> It is the child class of RuntimeException and hence it is Unchecked.
+=> Rised automatically by JVM whenever we are trying to typecast Parent Object to Child type.
+Example: 
+      String s = new String("aashish");
+      Object o = (Object)s;  
+      //valid
+Example :
+      Object o = new Object();
+      String s = (String)o;
+      // RE: ClassCastException
+Example:
+      Object o = new String("aashish");
+      String s = (String)o;
+      //valid
+
+4. StackOverFlowError
+=> It is the child class of Error and hence it is Unchecked.
+=> Rised automatically by JVM whenever we are trying to perform recursive method call.
+Example:
+      class Test{
+        public static void m1(){
+          m2();
+        }
+        public static void m2(){
+          m1();
+        }
+        public static void main(String[] args){
+          m1();
+        }
+      }
+    // RE:StackOverFlowError
+
+5. NoClassDefFoundError
+=> It is the child class of Error and hence it is Unchecked.
+=> Rised automatically by JVM whenever JVM unable to find required .class file
+Example:
+      java Test
+      If Test.class file not available then we will get RuntimeException saying: RE: NoClassDefFoundError
+
+6. ExceptionInInitializerError
+=>  It is the child class of Error and hence it is Unchecked.
+=>  Rise automatically by JVM if any exception occurs while executing Static variable assignments and static blocks.
+  Example a:
+    class Test{
+      static int x = 10/0;
+    }
+    RE: ExceptionInInitializerError
+        Caused by java.lang.ArithmeticException: /by zero
+  
+  Example b:
+    class Test{
+      static
+      {
+        String s = null;
+        Sopln(s.length());
+      }
+    }
+    RE: ExceptionInInitializerError
+        Caused by: java.lang.NullPointerException
+
+7. IllegalArgumentException
+=> It is the child class of RuntimeException and hence it is Unchecked.
+=> Rised explicitly either by programmer or by API developer to indicate that a method has been invoked with IllegalArgument.
+=> The valid range of Thread priority is 1 to 10 . If we are trying to set the priority with any other value then we will get RuntimeException saying IllegalArgumentException.
+  Thread t = new Thread();
+  t.setPriority(7); //valid
+  t.setPriority(15); // RE: IllegalArgumentException
+
+8. NumberFormatException
+=> It is the direct child class of IllegalArgumentException which is child class of RuntimeException and hence it is Unchecked.
+=> Rised explicitly either by programmer or by API developer to indicate that we are trying to convert String to Number and the String is not properly formated.
+Example:
+    int i = Integer.parseInt("10");  //valid
+    int i = Integer.parseInt("ten"); // RE: NumberFormatException
+
+9. IllegalStateException
+=> It is the child class of RuntimeException and hence it is Unchecked.
+=> Rised explicitly either by programmer or by API Developer to indicate that a method has been invoked at wrong-time.
+Example: After starting of a thread , we are not allowed to re-start the same thread once again otherwise we will get RuntimeException saying: IllegalThreadStateException
+      Thread t = new Thread();
+      t.start(); //valid
+      .
+      .
+      t.start();  // RE: IllegalThreadStateException
+
+10. AssertionError
+=> It is the child class of Error and hence it is Unchecked.
+=> Rised explicitly by the programmer or by API developer to indicate that assert statement fails.
+Example: assert(x>10);
+        If x is not greater than 10, then we will get RuntimeException saying: RE:AssertionError
+
+
