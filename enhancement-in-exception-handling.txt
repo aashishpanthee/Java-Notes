@@ -1,0 +1,144 @@
+*********** 1.7 version enchancements with respect to exception handling ************
+As a part of 1.7 version, in Exception Handling the following two concepts introduced:
+i. try with resources
+ii. multi-catch block
+
+1. try with resources
+=> Untill 1.6 version, it is highly recommended to write finally block to close resources which are open as a part of try block.
+  BR br = null;
+  try{
+    br = new BR(new FR("input..txt"));
+    //use br based on our requirement
+  }
+  catch(IOException e){
+    //Handling code
+  }
+  finally{
+    if(br != null){
+      br.close();
+    }
+  }
+The problem in this approach are:
+a. Compulsory programmer is required to close resources inside finally block. It increases complexity of programming.
+b. We have to write finally block Compulsory and hence it increases length of code and reduces readability.
+
+-- To overcome above problems, some people introduced try-with-resources in 1.7 version:
+    The main advantages of try-with-resources is whatever resources we open as a part of try block will be closed automatically once control reaches end of try block either normally or abnormally.
+    And hence we are not responsible to close explicitly and so complexity of programming will be reduced.
+i. We are not required to write finally block so that length of the code will be reduced and readability will be improved.
+  try(BR br = new BR(new FR("input.txt")))
+  {
+    //use br based on our requirement
+    br will be closed automatically once control resources end of the try block either normally or abnormally and we are not responsible to close explicitly
+  }
+  catch(IOException e){
+    // Handling code
+  }
+
+CONCLUSIONS ABOUT NEW SYNTAX:
+i. We can declare multiple resources but these resources should be separated with semi-colon;
+  try(R1;R2;R3)
+  {
+
+  }
+  Example: try( FileWriter fw = new FileWriter("output.txt"); FR fr = new FR("input.txt"))
+           {
+
+           }
+All resources should be AutoCloseable resources.
+A resource is said to be auto-closeable if and only if corresponding class implements java.lang.AutoCloseable interface.
+All IO related resources, Database related resources and network related resources are already implemented AutoCloseable interface.
+Being a programmer , we are not required to do anything just we should aware the point.
+AutoCloseable interface came in 1.7 version and it contains only one method close() or public void close();     
+
+ii. All resource referene variables are implicitly final and hence, within the try block we can't perform re-assignment otherwise we will get compile time error.
+    import java.io.*;
+    class TryWithResources
+    {
+      public static void main(String[] args) throws Exception{
+        try(BufferedReader br = new BufferedReader(new FileReader("input.txt")))
+        {
+          br = new BufferedReader(new FileReader("output.txt"));  // CE: AutoCloseable resource br may not be assigned.
+        }
+      }
+    }
+
+iii. Untill 1.6 version, try should be associated with either catch or finally but from 1.7 version onwards we can take only try with Resource without catch or finally block.
+    try(R)
+    {
+
+    }
+
+Summary: The main advantage of try-with-resources is we are not required to write finally block explicitly because we are not required to close resources explicitly. Hence, untill 1.6 version finally block is just like hero but from 1.7 version onwards it is dummy and zero.
+
+
+
+2. multi-catch block
+=> Untill 1.6 version, even though multiple different exceptions having same handling code , for every exception type, we have to write a separate catch block. It increases length of code and reduces readability.
+    try{
+
+    }
+    catch(ArithmeticException e){
+       e.printStackTrace();
+    }
+    catch(IOException e){
+       e.printStackTrace();
+    }
+    catch(NullPointerException e){
+      Sopln(e.getMessage());
+    }
+    catch(InterruptedException e){
+      Sopln(e.getMessage());
+    }
+To overcome this problem , SUN people introduced multi-catch block in 1.7 version . Acc. to this, we can write a single catch block that can handle multiple different type of exceptions.
+    try{
+
+    }
+    catch(AE | IOException e){
+      e.printStackTrace();
+    }
+    catch(NullPointerException | InterruptedException e){
+      Sopln(e.getMessage());
+    }
+The main advantage of this approach length of the code will be reduced and readability will be improved.
+Example:
+import java.io.*;
+class MultiCatchBlock{
+  public static void main(String[] args){
+    try{
+      System.out.println(10/0);
+      String s = null;
+      System.out.println(s.length());
+    }
+    catch(ArithmeticException | NullPointerException e){
+      System.out.println(e);
+    }
+  }
+}
+In the above example, whether rise exception is either ArithmeticException or NullPointerException , the same  catch block can listen. 
+In multi-catch block, there should be any relation between exception types (either child to parent or parent to child or same type) otherwise we will get compile-time error.
+Example:
+  try{
+
+  }
+  catch(ArithmeticException | Exception e){
+    e.printStackTrace();  
+  }
+  // CE: Alternatives in a multi-catch statement cannot be related by subclassing.
+
+ 
+
+ *************** Exception Propagation ******************
+Inside a method if an Exception rised and if we are not handling that exception then Exception Object will be propagated to caller then caller method is responsible to handle Exception. This process is called Exception Propagation.
+
+
+ ************** Re-throwing Exception **************
+ We can use this approach to convert one exception type to another exception type.
+ Example:
+ try{
+  Sopln(10/0);
+ }
+ catch(ArithmeticException e){
+  throw new NullPointerException();
+ }
+
