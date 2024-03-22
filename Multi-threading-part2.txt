@@ -1,0 +1,240 @@
+************************* Defining a Thread ********************
+We can define a thread  in the following two ways:
+a. By extending Thread class
+b. By implementing Runnable interface.
+
+a. By extending Thread class
+=>  
+  class Program {
+    //main method is not main thread. main method is executed by main thread. main thread is responsible to call main method.
+  public static void main(String[] args){
+    myThread t1 = new myThread();  // thread instantiation
+    t1.start();  //starting of child thread from main thread
+    //execution by main thread
+    for(int i=0;i<10;i++){
+      System.out.println(i+"Main Thread");
+    }
+   }
+  }
+
+  //child thread
+  class myThread extends Thread{
+    public void run(){
+      //job of thread
+      for(int i=0;i<10;i++){
+        System.out.println(i+"Child Thread");
+      }
+    }
+  }
+
+  CASE 1: 
+Thread Scheduler
+=> It is a part of JVM and it is responsible to Schedule Threads. i.e. if multiple threads are waiting to get chance of execution then in which order threads will be executed is decided by thread-scheduler.
+   We can't accept exact algorithm followed by Scheduler. It is varied from JVM to JVM . Hence, we can't accept thread execution order and exact output.
+   Hence, whenever situation comes to multi-threading , there is no guarantee for exact output but we can provide several possible outputs.
+
+
+The following are various possible outputs for above program.
+i.
+Main thread
+Main thread
+  .
+  .
+Child thread
+
+ii.
+Child thread
+Child thread
+   .
+   .
+Main thread
+Main thread
+
+iii.
+Main thread
+Child thread
+Main thread
+Child thread
+   .
+   .
+
+iv.
+Child thread
+Main thread
+Child thread
+    .
+    .
+
+
+CASE 2:
+Diffrence between t.start() and t.run() ?
+=> In the case of t.start() , a new thread will be created which is responsible for the execution of run method.
+But in the case of t.run() , a new thread won't be created and run method will be executed just like a normal method call by main thread.
+Hence, in the above program, if we replace t.start() with t.run() then the output is 
+Child thread 
+Child thread
+    .
+    . 
+    10 times
+Main thread
+Main thread
+    .
+    .
+10 times
+This total output produced by only main thread.
+
+CASE 3:
+=> Importance of Thread class start() method::
+- Thread class start() method is responsible to register the thread with thread scheduler and other mandatory activities.
+Hence, without executing Thread class start() method, there is no chance of starting a new thread in java.
+Due to this Thread class , start() method is considered as heart of multi-threading.
+  start()
+  {
+    1. Register this thread with thread Scheduler
+    2. Perform all other mandatory activities
+    3. Invoke run()
+  }
+
+
+CASE 4:
+=> Over-loading of run() method is always possible but Thread class start() method can invoke no-argument run() method.
+- The other over-loaded method, we have to call explicitly like a normal method call.
+class Program {
+  public static void main(String[] args){
+    myThread t1 = new myThread();
+    t1.run();
+    for(int i=0;i<10;i++){
+      System.out.println(i+"Main Thread");
+    }
+   }
+  }
+
+  class myThread extends Thread{
+    public void run(){                         --overloaded methods
+        System.out.println("Child Thread");
+    }
+    public void run(int i){                    --overloaded methods
+      System.out.println("Child Thread - int args");
+    }
+  }
+
+// no-args method will be called
+
+
+CASE 5:
+If we are not over-riding run() method:
+=> If we are not over-riding run() method then Thread class run() method will be executed which has empty implemention.
+Hence, we won't get any output.
+class Program {
+  public static void main(String[] args){
+    myThread t1 = new myThread();
+    t1.start();
+   }
+  }
+
+  class myThread extends Thread{
+
+  }
+
+Note: It is highly recommended to over-ride run() method otherwise don't go for multi-threading concept.
+
+
+CASE 6:
+Over-riding of start() method:
+=> If we over-ride start() method then our start() method will be executed just like a normal method call and new thread won't be created.
+
+class Program {
+  public static void main(String[] args){
+    myThread t1 = new myThread();
+    t1.start();
+      System.out.println("Main Thread");
+   }
+  }
+
+  class myThread extends Thread{
+    public void start(){
+      System.out.println("Start Method");
+    }
+    public void run(){
+      System.out.println("run Thread");
+    }
+  }
+
+  //Output:
+  Start method
+  Main thread
+-> Produced by only main thread
+
+It is not recommended to over-ride start() method otherwise don't go for multi-threading concept.
+
+class Program {
+  public static void main(String[] args){
+    myThread t1 = new myThread();
+    t1.start();
+      System.out.println("Main Thread");
+   }
+  }
+
+  class myThread extends Thread{
+    public void start(){
+      super.start();  // because of this, new thread is created.
+      System.out.println("Start Method");
+    }
+    public void run(){
+      System.out.println("run Thread");
+    }
+  }
+Output:
+i. p-1
+run method
+start method
+main method
+
+ii. p-2
+  start method
+  main method
+  run method
+
+iii. p-3
+  start method
+  run method
+  main method
+
+
+
+*************************** States of Thread (Life-Cycle of Thread) **************************
+Thread t = new Thread()
+1. New/Born State
+
+t.start()
+2. Ready/Runnable State
+
+if T.S allocates processor
+3. Running State
+
+if run() , method completes
+4. Dead State
+
+
+--After starting a thread, if we are trying to restart the same thread then we will get runtime exception saying IllegalThreadStateException.
+Thread t = new Thread();
+t.start();
+    .
+    .
+    .
+t.start();  //RE: IllegalThreadStateException
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
