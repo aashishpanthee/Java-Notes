@@ -1,0 +1,111 @@
+************ INTRODUCTION **********
+For writing any java program, whether it is simple program or complex program, the most commonly required classes and interfaces are encapsulated or grouped into a separate package which is nothing but java.lang package.
+- We are not required to import java.lang package explicitly because all classes and interfaces present in lang package by default available to every java program.
+
+
+1. java.lang.Object
+=> The most commonly required methods for every java class (whether it is pre-defined class or customized class) are defined in a separate class which is nothing but Object class.
+   Every class in java is the child class of Object , either directly or indirectly. So that Object class methods by default available to every java program. Hence, Object class is considered as Root of all java classes.
+
+   i. If our class doesn't extend any other class then only our class is the direct child class of Object.
+     for eg.
+     class A {
+
+     }
+     here, A is child class of Object class.
+    
+  ii. If our class extends any other class then our class is indirect child class of Object.
+    for eg.
+    class A extends B{
+
+    }
+    here, A is child of B and A is child of Object. it is called multiple inheritance. Multiple inheritance not happening here. This is incorrect.
+    and now , A is child of B and B is the child of Object. it is called multi-level inheritance. This is correct.
+
+    CONCLUSION: Either directly or indirectly, java won't provide support for multiple inheritance with respect to clases.
+  
+-Object class defines the following 11 methods:
+  i. public String toString()
+  ii. public native int hashCode()
+  iii. public boolean equals(Object o)
+  iv. protected native Object clone() throws CloneNotSupportedException
+  v. protected void finalize() throws Throwable
+  vi. public final Class getClass()
+  vii. public final void wait() throws InterruptedException
+  viii. public final native void wait(long ms) throws InterruptedException
+  ix. public final void wait(long ms, int ns) throws InterruptedException
+  x. public native final void notify()
+  xi. public native final void notifyAll()
+
+  Strictly speaking Object class contains 12 methods, the extra method is private static native void registerNatives()
+  This method internally required for Object class and not available to child classes . Hence, we are not required to consider this method.
+
+
+a. toString()
+=> We can use toString() method to get string representation of an object.
+   String s = obj.toString();
+
+   Whenever we are trying to print object reference, internally toString() will be called.
+   Student s = new Student();
+   System.out.println(s) ==> System.out.println(s.toString())
+
+   - If our class doesn't contain toString() method then Object class toString() method will be executed. For eg: 
+     class Student{
+        String name;
+        int rollno;
+        Student(String name, int rollno){
+          this.name = name;
+          this.rollno = rollno;
+        }
+        public static void main(String[] args){
+          Student s1 = new Student("John", 2);
+          Student s2 = new Student("Doe", 3);
+          System.out.println(s1);  //Output: Student@d716361
+          System.out.println(s2);  //Output: Student@6ff3c5b5
+        }
+      }
+    In the above example, Object class toString() method got executed which is implemented as follows:
+      public String toString(){
+        return getClass().getName()+"@"+Integer.toHexString(hashCode());
+      }
+    
+  - Based on our requirement, we can override toString() method to provide our own string representation. for eg: whenever we are trying to print student object reference , to print his name and rollno, we have to override toString() as follows:
+     class Student{
+        String name;
+        int rollno;
+        Student(String name, int rollno){
+          this.name = name;
+          this.rollno = rollno;
+        }
+        public String toString(){
+          return "The name of the student is "+ name + "and the roll number is "+ rollno;
+        }
+        public static void main(String[] args){
+          Student s1 = new Student("John", 2);
+          Student s2 = new Student("Doe", 3);
+          System.out.println(s1);  //Output: The name of the student is Johnand the roll number is 2
+          System.out.println(s2);  //Output: The name of the student is Doeand the roll number is 3
+        }
+      }
+  
+  -In all Wrapper classes, in all Collection classes , String class , StringBuffer and StringBuilder classes, toString() method is over-ridden for meaningful string representation.
+   Hence, it is highly recommended to over-ride toString() method in our class also. For eg:
+    import java.util.ArrayList;
+    class Program{
+      public String toString(){
+        return getClass().getName();
+      }
+      public static void main(String[] args){
+        String s = new String("aashish");
+        System.out.println(s); //Output: aashish
+        Integer i = new Integer(10);
+        System.out.println(i); //Output: 10
+        ArrayList<String> s1 = new ArrayList<String>();
+        s1.add("aashish");
+        s1.add("panthee");
+        System.out.println(s1); //Output: [aashish, panthee]
+        Program p1 = new Program();
+        System.out.println(p1); //Output: Program
+    }
+  }
+
