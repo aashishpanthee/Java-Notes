@@ -1,0 +1,43 @@
+d. getClass()
+=> We can use getClass() method to get runtime class definition of an object.
+  public final Class getClass()
+  By using this Class class object , we can access class level properties like fully qualified name of the class , methods information, constructors information etc.
+  Example 1:
+      import java.lang.reflect.*;
+      class Program{
+        public static void main(String[] args){
+          Object obj = new String("aashish");
+          Class c = obj.getClass();
+          System.out.println("The name of the class is "+ c.getName());  //Output:java.lang.String
+          Method[] m = c.getDeclaredMethods();
+          for(Method m1:m){
+            System.out.println(m1.getName());  //Output: Methods available in java.lang.String class
+          }
+          Program p = new Program();
+          Class c2 = p.getClass();
+          System.out.println("The name of the class is "+ c2.getName()); //Output:Program
+        }
+      }
+
+  Example 2: To display database vendor specific connection interface implemented classname.
+  => Connection conn = DriverManager.getConnection();
+     System.out.println(conn.getClass().getName());
+    
+    Note: After loading every .class file, JVM will create an object of the type java.lang.Class in the heap area.
+          Programmer can use this class object to get class level information.
+          We can use getClass() method very frequently in reflections.
+
+
+e. finalize() method
+=> Just before destroying an object, garbage collector calls finalize() method to perform cleanup activities.
+   Once finalize() method completes, automatically garbage collector destroys that object.
+
+
+Other methods in Object class:
+    wait(), notify(), notifyAll() 
+    => We can use these methods for inter-thread communication. 
+       The thread which is exception updation, it is responsible to call wait() then immediately the thread will enter into waiting state.
+       The thread which is responsible to perform updation, after performing updation, the thread can call notify() method.
+       The waiting thread will get that notification and continue it's execution with those updates.
+
+
