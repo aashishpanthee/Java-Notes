@@ -1,0 +1,62 @@
+2. java.lang.String
+
+case-i::
+String s = new String("aasish");                     |     StringBuffer sb = new StringBuffer("aashish"); 
+s.concat("software");                                |     s.append("software");
+System.out.println(s);  //Output: aashish            |     System.out.println(sb);  //Output: aashishsoftware
+-- Once we create an String object, we can't perform any changes in the existing object. If we are trying to perform any changes, with those changes a new object will be created. This non-changeable behaviour is nothing but immutability of String.
+-- Once we create an StringBuffer object , we can perform any changes in the existing object. This changeable behaviour is nothing but mutability of StringBuffer object.
+
+case-ii::
+String s1 = new String("aasish");                     |     StringBuffer sb1 = new StringBuffer("aashish"); 
+String s2 = new String("aashish");                    |     StringBuffer sb2 = new StringBuffer("aashish");
+System.out.println(s1==s2); //Output: false           |     System.out.println(sb1==sb2); //Output: false
+System.out.println(s1.equals(s2));  //Output: true    |     System.out.println(sb1.equals(sb2));  //Output: false
+-- In String class, .equals() method is overridden for Content Comparison. Hence, even though objects are different , if content is same .equals() method returns true.
+-- In StringBuffer class, .equals() method is not overridden for Content Comparison. Hence, Object class .equals() method got executed which is meant for Reference Comparison (address comparison). Due to this, if objects are different .equals() method returns false even though Content is same.
+
+case-iii::
+String s1 = new String("aasish");      |     String s2 = "aashish"
+-- In s1's case, two objects will be created. one in the heap area and the other is in SCP (String Constant Pool) and s1 is always pointing to heap object.
+-- In s2's case, only one object will be created in SCP and s2 is always pointing to that object.
+Note: Object creation in SCP is optional. First JVM will check, is there any object already present in SCP with required content, if object already present then existing object will be re-used. If object not already available then only the new object will be created. But this rule is applicable only for SCP but not for the Heap.
+Note: Garbage Collector is not allowed to access SCP area. Hence, even though object does not contain reference variable, it is eligible for Garbage collector if it is present in SCP area.
+Note: All SCP object's will be destroyed automatically at the time of JVM shutdown.
+
+
+Example-1:
+String s1 = new String("aashish");
+String s2 = new String("aashish");
+String s3 = "aashish";
+String s4 = "aashish";
+
+      Heap           ||        SCP
+      s1=> aashish   ||      aashish
+      s2=> aashish   ||      s3,s4=> same aashish of s1 which is in SCP and in SCP there is already aashish,so no need to create aashish for s2 in SCP
+
+Note: Whenever we are using new operator, compulsory a new object will be created in the Heap area. Hence, there may be a chance of existing two objects with same content in the Heap area but not in SCP.
+      i.e. duplicate objects are possible in the Heap area but not in SCP.
+
+
+Example-2:
+String s1 = new String("aashish");
+s1.concat("software");
+String s2 = s1.concat("solutions");
+s1=s1.concat("soft");
+System.out.println(s1); //Output:aashishsoft
+System.out.println(s2); //Output:aashishsolutions
+
+    Heap                   ||             SCP
+    s1=> aashish           ||           aashish
+    software               ||           software
+    s2=> aashishsolutions  ||           solutions
+    s1=> aashishsoft       ||           soft
+Note: For every String constant, one object will be placed in SCP area.
+Note: Because of some run-time operations , if an object is required to create that object will be placed only in the Heap area but not in SCP area.
+
+
+
+
+
+
+
