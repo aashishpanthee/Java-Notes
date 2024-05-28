@@ -1,0 +1,92 @@
+****** String Buffer *****
+- If the content is fixed and won't change frequently then it is recommended to go for String.
+- If the content is not fixed and keep on changing then it is not recommended to use String because for every change a new object will be created which affects performance of the system.
+To handle this requirement , we should go for StringBuffer. 
+ The main advantage of StringBuffer over String is all required changes will be performed in the existing object only.
+
+
+ **** Constructors of StringBuffer *******
+
+ 1. StringBuffer sb = new StringBuffer();
+ => creates an empty StringBuffer object with default initial capacity 16. 
+  Once StringBuffer reaches it's maximum capacity , a new StringBuffer object will be created with:  new capacity = (currentcapacity + 1) * 2
+      StringBuffer sb = new StringBuffer();
+    System.out.println(sb.capacity());  //Output: 16
+    sb.append("abcdefghijklmnopq");
+    System.out.println(sb.capacity()); // Output: 34
+
+2. StringBuffer sb = new StringBuffer(int initialcapacity);
+=> creates an empty StringBuffer object with specified initial capacity.
+
+3. StringBuffer sb = new StringBuffer(String s);
+=> creates an equivalent an equivalent StringBuffer for the given string with capcity = s.length() + 16.
+    StringBuffer sb = new StringBuffer("aashish");
+    System.out.println(sb.capacity()); //Output:23
+
+
+***** Important methods of StringBuffer **********
+
+1. public int length();
+
+2. public int capacity();
+
+3. public char charAt(int index);
+    example:
+      StringBuffer sb = new StringBuffer("aashish");
+      System.out.println(sb.charAt(6)); //Output: h
+      System.out.println(sb.charAt(19)); //Output: RE:StringIndexOutoofBoundsException
+
+4. public void setCharAt(int index, char ch);
+=> To replace the character located at specified index with provided character.
+
+5. public StringBuffer append(String s);
+=> Here, this append method is overloaded method. so instead of String , there may be :
+ public StringBuffer append(int i);
+ public StringBuffer append(long l);
+ public StringBuffer append(char ch);
+ public StringBuffer append(boolean b);
+    example:
+      StringBuffer sb = new StringBuffer();
+      sb.append("PI value is : ");
+      sb.append(3.14);
+      sb.append(" It is exactly :");
+      sb.append(true);
+      System.out.println(sb); //Output: PI value is : 3.14 It is exactly :true
+
+6. public StringBuffer insert(int index, String s);
+=> append is used to insert at last , but insert is used to insert in between or first or at last index.
+    public StringBuffer insert(int index, String s);
+    public StringBuffer insert(int index, boolean b);
+    public StringBuffer insert(int index, int i);
+    public StringBuffer insert(int index, char ch);
+    public StringBuffer insert(int index, long l);
+  example:
+  StringBuffer sb = new StringBuffer("aashish");
+  sb.insert(1,"xyz");
+  System.out.println(sb); Output: axyzashish
+
+7. public StringBuffer deleteCharAt(int index);
+=> To delete character located in specified index.
+
+8. public StringBuffer delete(int begin, int end);
+=> To delete characters located from begin index to end-1 index.
+
+9. public StringBuffer reverse();
+=> StringBuffer sb = new StringBuffer("aash");
+  System.out.println(sb.reverse()); //Output: hsaa
+
+10. public void setLength(int length);
+=> example:
+      StringBuffer sb = new StringBuffer("aishwaryaxyz");
+      sb.setLength(9);
+      System.out.println(sb); //Output:aishwarya
+
+11. public void ensureCapacity(int capacity);
+=> to increase capacity on fly based on our requirement.
+  example:
+    StringBuffer sb = new StringBuffer();
+    System.out.println(sb.capacity()); //Output:16
+    sb.ensureCapacity(1000);
+    System.out.println(sb.capacity()); //Output: 1000
+
+---others are also there---
