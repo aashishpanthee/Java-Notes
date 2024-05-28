@@ -1,0 +1,119 @@
+***** Constructors of String class ****
+1. String s = new String();
+  => This creates an empty string object.
+
+2. String s = new String(String literal);
+  => This creates a string object and the heap for given string literal.
+
+3. String s = new String(StringBuffer sb);
+  => This creates an equivalent string object for given StringBuffer.
+
+4. String s = new String(char[] ch);
+  => This creates an equivalent string object for given char array.
+  For example: char[] ch = {a,b,c,d};
+               String s = new String(ch);
+               System.out.println(s); //Output: abcd
+
+5. String s = new String(byte[] b);
+=> This creates an equivalent string object for given byte array.
+  For example: byte[] b = {100,101,102,103}
+               String s = new String(b);
+               Sopln(s); //Output:defg
+
+       *** Important methods of String class  ***
+
+i. public char charAt(int index)
+=> This method returns the character locating at specified index.
+ class Program{
+  public static void main(String[] args){
+      String s = "aashish";
+      System.out.println(s.charAt(2)); //OUtput: s
+      System.out.println(s.charAt(30));  //Output: Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 30 (RuntimeException)
+    }
+  }
+
+
+ii. public String concat(String s)
+=> The overloaded + and += operators also meant for concatenation purpose only.
+   For example: 
+  class Program{
+  public static void main(String[] args){
+      String s = "Aashish";
+      s = s.concat("Panthee");
+      // s = s + "Panthee";
+      // s = s += "Panthee";
+      System.out.println(s);
+    }
+  }
+
+
+iii. public boolean equals(Object o)
+=> To perform content comparison where case is important. This is over-riding version of Object class equals() method
+  For example:
+  class Program{
+  public static void main(String[] args){
+      String s = "java";
+      System.out.println(s.equals("Java"));
+    }
+  }
+
+
+iv. public boolean equalsIgnoreCase(String s)
+=> To perform content comparison where case is not important.
+  For example:
+  class Program{
+  public static void main(String[] args){
+      String s = "java";
+      System.out.println(s.equalsIgnoreCase("Java"));
+    }
+  }
+
+
+v. public String substring(int begin)
+=> returns substring from begin index to end of the String.
+  For example:
+  class Program{
+  public static void main(String[] args){
+    String s = "aashishpanthee";
+    System.out.println(s.substring(3)); //Output: hishpanthee
+   }
+  }
+
+
+vi. public String substring(int begin, int end);
+=> returns substring from begin index to end-1 index.
+  For example:
+  class Program{
+  public static void main(String[] args){
+    String s = "aashishpanthee";
+    System.out.println(s.substring(3,6)); //Output: his
+  }
+  }
+
+
+vii. public int length()
+=> returns number of characters present in the string. 
+   For example:
+  class Program{
+  public static void main(String[] args){
+    String s = "aashishpanthee";
+    System.out.println(s.length()); //Output:14
+  }
+  }
+Note: For String object, length() method is used.
+    length property or variable is used only for arrays not for String object.
+
+For example: 
+    class Example{
+      public static void main(String[] args){
+        String s = "aashish";
+        System.out.println(s.length); //Output: CE: cannot find symbol  symbol: variable length  location: java.lang.String
+      }
+    }
+
+
+viii. 
+
+
+
+
