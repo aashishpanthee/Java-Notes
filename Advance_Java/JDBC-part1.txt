@@ -1,0 +1,74 @@
+**** JDBC ******
+JDBC is a technology which can be used to communicate with database from java-applications.
+- JDBC is a part of Java Standard Edition(JSE).
+- JDBC is a specification(Guidelines) defined by java vendor and implemented by Database vendor.
+- Database vendor provided implementation is called Driver Software.
+
+**** JDBC Features *****
+- JDBC is a standard API we can communicate with any database without rewriting our application. i.e. it is Database Independent API
+- Most of JDBC Drivers are developed in Java and hence JDBC concept can work for any platform. i.e. it is platform independent technology
+- By using JDBC API, we can perform basic CRUD operations very easily.
+- Huge vendor support for JDBC. They developed multiple products based on JDBC API.
+
+** Version of JDBC **
+=> Current version of JDBC is JDBC 4.2v, which is a part of Java Standard Edition 8.
+
+
+*********** Basic Components of JDBC Applications **********
+1. Database Driver  => Translator 
+=> To convert java apllication calls into database calls and database calls into java-application calls, we need translator which is called Driver.
+
+2. Connection  => Road
+=> Connection Object can be used to communicate with database from java-applications.
+
+3. Statement  => Vehicle
+=> To send SQL query from our java applications to database and to bring results from database to our java-applications , vehicle is required which is nothing but statement object.
+
+4. ResultSet  => Box
+=> ResultSet holds results of SQL query.  Java Applications can get results from ResultSet only.
+
+ ******** Steps to develop JDBC Applications ***********
+ 1. Load and Register Driver
+ 2. Establish Connection between Java-Application and Database
+ 3. Creation of Statement Object.**** JDBC ******
+JDBC is a technology which can be used to communicate with database from java-applications.
+- JDBC is a part of Java Standard Edition(JSE).
+- JDBC is a specification(Guidelines) defined by java vendor and implemented by Database vendor.
+- Database vendor provided implementation is called Driver Software.
+
+**** JDBC Features *****
+- JDBC is a standard API we can communicate with any database without rewriting our application. i.e. it is Database Independent API
+- Most of JDBC Drivers are developed in Java and hence JDBC concept can work for any platform. i.e. it is platform independent technology
+- By using JDBC API, we can perform basic CRUD operations very easily.
+- Huge vendor support for JDBC. They developed multiple products based on JDBC API.
+ 4. Send and execute SQL query.
+ 5. Process Result from ResultSet.
+ 6. Close Connection.
+
+
+ ** Difference between ODBC and JDBC **
+ 
+ 1. JDBC 
+ => JDBC stands for Java Database Connectivity
+ => Introduced by Sun Micro Systems in 1997
+ => We can use JDBC only for Java Language
+ => We can use JDBC for any platform
+ => Mostly JDBC Drivers are developed in Java
+ => For Java applications, it is highly recommended to use JDBC because there are no performance and platform dependent problems.
+
+ 2. ODBC
+ => ODBC stands for Open Database Connectivity
+ => Introduced by Microsoft in 1992
+ => We can use ODBC for any language like C, C++, Java, etc.
+ => We can use ODBC only for windows platform
+ => Mostly ODBC Drivers are developed in native languages like C, C++
+ => For Java applications, it is not recommended to use ODBC because performance will be down due to internal conversions and applications will become platform dependent.
+
+ 
+
+
+
+
+
+
+
