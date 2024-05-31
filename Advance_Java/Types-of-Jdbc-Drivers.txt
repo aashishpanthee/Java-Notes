@@ -1,0 +1,24 @@
+- While communicating with database, we have to convert Java calls into database specific calls and database specific calls into Java calls.
+  For this Driver Software is needed.
+- In the market, thousands of Drivers are available. But based on functionality and architecture , all drivers are categorized into 4 types:
+1. Type-1 Driver (JDBC-ODBC Bridge Driver) or (Bride Driver)
+2. Type-2 Driver (Native API-Partly Java Driver) or (Native Driver)
+3. Type-3 Driver (All Java Net Protocol Driver) or (Network Protocol Driver) or (Middleware Driver)
+4. Type-4 Driver (All Java Native Protocol Driver) or (Pure Java Driver) or (Thin Driver)
+Note: Progress Data Direct Software Company introduced Type-5 Driver which is not industry standard driver.
+
+***** WHICH DRIVER SHOULD BE USED ? *****
+1. If we are using only one type of database in our application then it is recommended to use Type-4 driver.
+   Example: Stand-alone applications and Small-Scale Web applications
+2. If we are using multiple types of databases in our applications then Type-3 Driver is recommended to use.
+   Example: Large-Scale Web applications and Enterprise applications
+3. If Type-3 and Type-4 Drivers are not available then only we should go for Type-2 Drivers.
+4. If no other Driver is available then only we should go for Type-1 Driver.
+
+Note: At a generalized point, don't use Type-1 and Type-2 , better to use Type-3 and Type-4.
+
+
+****** Difference between Thick Driver and Thin Driver *******
+- If the Database Driver requires some extra components to communicate with the database, such drivers are called Thick Drivers. Such as Type-1, Type-2 and Type-3 Drivers.
+- If the Database Driver does not require some extra components to communicate with the database, such Driver are called Thin Driver. Example: Type-4 Driver
+
