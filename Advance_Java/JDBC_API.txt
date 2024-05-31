@@ -1,0 +1,29 @@
+JDBC API provides several classes and interfaces.
+Programmer can use these classes and interfaces to communicate with database.
+Driver Software Vendors can use JDBC API while developing Driver Software.
+- JDBC API contains::
+i. java.sql package
+=> It contains basic classes and interfaces which can be used for database communication.
+Interfaces: Driver, Connection, Statement, Prepared Statement, Callable Statement, ResultSet
+Classes: DriverManager, Date, Time, TimeStamp, Types
+
+ii. javax.sql package
+=> It contains more advanced classes and interfaces which can be used for database communication.
+- Contains multiple sub-packages and they are: javax.sql.rowset , javax.sql.rowset.serial , javax.sql.rowset.spi
+Interfaces: DataSource, RowSet, RowSetListener, ConnectionEventListener
+Classes: RowSetEvent, ConnectionEvent
+
+
+** Programmers are not responsible to provide implementations for JDBC API's interfaces.
+** Most of the time Database vendor is responsible to provide implementation as the part of Driver Software.
+** Every Driver Software is a collection of classes implementating various interfaces of JDBC API, which can be used to communicate with a particular database.
+** Example: Driver Software for Oracle means collection of implementation classes of JDBC API, which can be used to communicate with Oracle database.
+
+------------------------------------------------------------------------------------------------------------------------------------
+- Every Driver Software is identified with a special class which is nothing but Driver class
+- It is the implementation class of java.sql.Driver interface.
+-Example:1 => Type1 Driver Software provided by Sun Micro Systems as the part of JDBC. The corresponding driver class name is Sun.jdbc.odbc.JdbcOdbcDriver
+-Example:2 => Thin Driver provided by Oracle Corporation and corresponding driver class name is oracle.jdbc.OracleDriver
+Here, oracle.jdb is package name and OracleDriver is the class name.
+
+
