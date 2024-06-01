@@ -1,0 +1,32 @@
+*** Steps for Connecting Java application with database and execute query ***
+1. Load or Register Driver Class
+2. Establish Connection between Java Application and Database
+3. Creating of Statement Object
+4. Send and execute SqlQuery
+5. Process result from ResultSet
+6. Close the connection
+
+From which version onwards AutoLoading of Driver Class is available ?
+=> JDBC 4.0 version onwards.
+
+**** From JDBC 4.0  version onwards , this step 1 is not required. **** 
+
+Note:
+We did not need to write this step:::   Class.forName("oracle.jdbc.OracleDriver");
+This step is the loading or registering of Driver Class of Oracle Database.
+
+How the Class Loader can identify Driver ClassName ? 
+=> Inside jar file , META-INF folder is there, inside it there is services folder and inside there java.sql.Driver file is available where our driver classname is there.
+
+This auto-loading of JDBC Driver Class is available after JDBC 4.0 version onwards.
+
+*** Before this version, inside META-INF folder, services folder or Driver file was not available. ***
+Compulsorily, we had to write this step: Class.forName("oracle.jdbc.OracleDriver");
+
+Note:
+Internally which method is going to take care of all these things ? 
+=> DriverManger.getConnection(url,username,password);
+This DriverManager.getConnection(some_parameters) method is internally responsible for all these activities.
+
+--Conclusion--
+Inside Driver Software jar file, they are maintaining Driver file where Driver class is available. From that file, JVM is going to read Driver className and load automatically based on JDBC url and classpath.
