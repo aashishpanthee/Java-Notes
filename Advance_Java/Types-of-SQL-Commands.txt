@@ -1,0 +1,111 @@
+***************************** Types of SQL Commands ******************************
+
+1. DDL(Data Definition Language) Commands
+=> Create table, alter table, drop table, etc
+
+2. DML(Data Manipulation Language) Commands
+=> insert,update,delete
+
+3. DQL(Data Query Language) Commands
+=> select
+
+4. DCL(Data Control Language) Commands
+=> grant access, alter password, etc
+
+5. Data Administration Commands
+=> start audit, stop audit
+
+6. Transfer Control Commands
+=> commit, rollback, savepoint, etc
+
+*********************************************************************************************
+
+But as a Java Developer point of view, All the SQL commands are categorized into two types:
+1. Select Queries 
+=> DQL Commands
+Example: Select * from movies;
+If i execute this query, i will get a group of records. This group of records can be represented using ResultSet.
+
+2. Non-Select Queries
+=> DML Commands
+Example: insert,update,delete
+insert into movies values(1,'rebel','prabhas','anushka'); //Output: 1 row inserted
+delete from movies where mno=1; //Output: 1 row deleted
+If i execute non-select queries, i will get a number as output which represents number of rows affected like inserted,updated,deleted,etc.
+
+*********************************************************************************************
+
+                  Basic SQL Commands
+
+1. To create a table
+=> create table movies(mno number,mname varchar2(10),hero varchar2(10),heroine varchar2(10));
+
+2. To delete/drop a table
+=> drop table movies;
+
+3. To insert rows into table
+=> insert into movies values(1,'Bahubali','Prabhas','Tamanna');
+=> insert into movies values(2,'Rebel','Prabhas','Anuska');
+
+4. To update data into table
+=> update movies set heroine='Priyanka' where mname='Bahubali';
+
+5. To delete a row
+=> delete from movies where mno=1;
+
+6. To select data from movies
+=> select * from movies;
+
+
+********************* To execute SqlQuery in database , how many methods are available in JDBC ***********************
+1. executeQuery()
+2. executeUpdate()
+3. execute()
+
+1. executeQuery()
+=> If we know the type of query at the beginning, and it is always SELECET QUERY then we should go for executeQuery().
+  public ResultSet executequery(String SQLquery) throws SQLException;
+- Return type of executeQuery() method is ResultSet.
+  ResultSet rs = statement.executequery('select * from users');
+
+2. executeUpdate()
+=> If we know the type of query at the beginning, and it is NON-SELECT QUERY then we should go for executeUpdate().
+  public int executeUpdate(String SQLquery) throws SQLException;
+- Return type of executeQuery() method is int.
+Example: int n = statement.executeUpdate('delete from employees where eSalary>10000');
+         System.out.println("The number of rows deleted are"+ n);
+This int value n represents number of rows affected.
+
+3. execute()
+=> If we don't know the type of query at the beginning and it is available dynamically at runtime( may be from properties file or from command prompt ) then we should go for execute().
+  public boolean execute(String SqlQuery) throws SQLException;
+  This return type boolean is either true or false.
+-If it returns true , then the parameter of execute() method is Select query.
+-If it returns false , then the parameter of execute() method is Non-Select query.
+  boolean b = statement.execute(dynamically provided SqlQuery);
+  if(b == true){ //Select query
+    ResultSet rs = statement.getResultSet(); 
+  }
+  else{ //Non-Select query
+    int rowCount = statement.getUpdateCount();
+  }
+
+Notes: Methods calling on statement object
+  st.executeQuery();
+  st.executeUpdate();
+  st.execute();
+  st.getResultSet();
+  st.getUpdatecount();
+
+
+
+
+
+
+
+
+
+
+
+
+
