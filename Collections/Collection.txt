@@ -1,0 +1,42 @@
+An array is a indexed collection of fixed number of homogeneous data elements.
+The main advantage of arrays is we can represent multiple values by using single variable so that readability of the code will be improved.
+-Limitations of Arrays:
+i. Arrays are fixed in size. i.e. once we created an array , there is no chance of increasing or decreasing the size based on our requirement. Due to this , to use arrays concept , compulsory we should know size in advance which is not possible always .
+ii. Array can hold only homogeneous data type elements.
+  Example: Student[] s = new Student[1000];
+           s[0] = new Student(); //valid 
+           s[1] = new Customer(); //invalid
+           CE: incompatible types
+               found: Customer
+               required: Student
+We can solve this problem by using object-type arrays.
+    Example: Object[] s = new Object[1000];
+           s[0] = new Student(); //valid 
+           s[1] = new Customer(); //valid
+iii. Arrays concept is not implemented based on some standard data structure and hence ready-made method support is not available.
+     For every requirement , we have to write the code explicitly which increases complexity of programming.
+
+
+To overcome above problems of Arrays , we should go for Collection's concept.
+i. Collections are growable in nature. i.e. based on our requirement , we can increase or decrease the size.
+ii. Collections can hold both homogeneous and heterogeneous objects.
+iii. Every Collection class is implemented based on some standard data structure. Hence, for every requirement , readymade method support is available. 
+      Being a programmer, we are responsible to use those methods and we are not responsible to implement those methods.
+
+** Difference between Array and Collection **
+-----------Array-------------
+i. Fixed in size
+ii. With respect to memory, Array's are not recommended to use.
+iii. With respect to performence , Array's are recommended to use.
+iv. Array can only hold homogeneous data.
+v. For Array's , readymade method support is not there, because there is no underlying data structure.
+vi. Array's can hold both primitive and objects.
+-----------Collection---------
+i. Growable 
+ii. With respect to memory, Collection's are recommended to use.
+iii. With respect to performence , Collection's are not recommended to use.
+iv. Collections can both hold homogeneous and heterogeneous objects.
+v. For Array's , readymade method support is there, because every Collection Class is implemented based on some standard data structure.
+vi. Collection's can hold only objects.
+
+
