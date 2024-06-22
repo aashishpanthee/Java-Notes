@@ -1,0 +1,86 @@
+********* 9 key Interfaces of Collection Framework ************
+1.Collection
+2.List
+3.Set
+4.SortedSet
+5.NaviagableSet
+6.Queue
+7.Map
+8.SortedMap
+9.NaviagableMap
+
+
+i. Collection(I)
+=> If we want to represent a group of individual objects as a single entity then we should go for Collection.
+=> Collection Interface defines the most common methods which are applicable for any Collection Object.
+=> In general, Collection Interface is considered as Root Interface of Collection Framework.
+=> There is no concrete class which implements Collection Interface directly.
+
+                  (( Difference between Collection and Collections ))
+-> Collection is an Interface. If we want to represent a group of individual Objects as a single entity then we should go for Collection.
+> Collections is an utility class present in java.util package to define several utility methods for Collection Objects. like sorting, searching, etc.
+
+ii. List(I)
+=> It is the child interface of Collection.
+=> If we want to represent a group of individual objects as a single entity where duplicates are allowed and insertion order must be preserved then we should go for List.
+=> Implementing classes of List(I) are ArrayList, LinkedList, Vector , Stack.
+
+iii. Set(I)
+=> It is the child interface of Collection.
+=> If we want to represent a group of individual objects as a single entity where duplicates are not allowed and insertion order is not required then we should go for Set.
+=> Implementing classes of Set(I) are HashSet, LinkedHashSet.
+
+iv. SortedSet(I)
+=> It is the child interface of Set.
+=> If we want to represent a group of individual objects as a single entity where duplicates are not allowed and all objects should be inserted according to some sorting order then we should go for SortedSet.
+
+v. NavigableSet(I)
+=> It is the child interface of SortedSet.
+=> It contains several methods for navigation purposes.
+=> Implementation class of NavigableSet is TreeSet.
+
+              (( Difference between List and Set ))
+List
+=> Duplicates are allowed.
+=> Insertion order preserved.
+
+Set
+=> Duplicates are not allowed.
+=> Insertion order not preserved.
+
+vi. Queue
+=> Queue is child interface of Collection.
+=> If we want to represent a group of individual objects prior to processing then we should go for Queue.
+=> Usually, queue follows First-In-Firs-Out order but based on our requirement , we can implement our own priority order also. Example: Before sending a mail, all mail id's we have to store in some data-structure. In which order we added mail id's , in the same order only mail should be delivered. For this requirement , queue is best choice.
+=> Implementation class of Queue is PriorityQueue and BlockingQueue.
+=> PriorityBlockingQueue and LinkedBlockingQueue falls unders BlockingQueue.
+
+Note: All the above interfaces (Collection,List,Set,SortedSet,NaviagableSet and Queue) meant for representing a group of individual objects
+      If we want to represent a group of objects as Key:Value pairs then we should go for Map.
+
+vii. Map
+=> Map is not child interface of Collection.
+=> If we want to represent a group of objects as key:value pairs then we should go for Map.
+=> Both Key and Value are objects only.
+=> Duplicate keys are not allowed but Values can be duplicated.
+=> Implementation class of Map are HashMap, WeakHashMap, IdentityHashMap, HashTable
+
+viii. SortedMap
+=> It is the child interface of Map.
+=> If we want to represent a group of key:value pairs according to some sorting order of keys then we should go for sorted map .
+=> In SortedMap, the sorting should be based on key but not based on value.
+=> Navigable Map is the child interface of SortedMap.
+
+ix. NaviagableMap
+=> It is the child interface of SortedMap.
+=> It defines several methods for navigation purposes.
+=> TreeMap is the implementation class for NaviagableMap.
+
+Note: The following are legacy characters present in Collection Framework:
+i. Enumeration(I)
+ii. Dictionary(AC)
+iii. Vector(C)
+iv. Stack(C)
+v. HashTable(C)
+vi. Properties(C)
+
