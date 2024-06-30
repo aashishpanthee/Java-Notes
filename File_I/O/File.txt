@@ -1,0 +1,102 @@
+File f = new File("abc.txt");
+=> This line won't create any physical file. First, it will check , is there any physical file named with abc.txt is available or not. If it is available then f simply refers that file. If it is not available, then we are just creating java file object to represent the name abc.txt . 
+Example:
+    File file = new File("abc.txt");
+    System.out.println(file.exists()); 
+    file.createNewFile();
+    System.out.println(file.exists()); 
+
+1st run: false , true
+2nd run: true , true
+=> Here, file is created at line no. 3
+
+
+=> We can use Java File Object to represent Directory also.
+    File file = new File("aashish");
+    System.out.println(file.exists());
+    file.mkdir();
+    System.out.println(file.exists());
+
+1st run: false, true
+2nd run: true, true
+=> Here, folder/directory is created at line no.3
+
+NOTE: IN UNIX, everything is treated as a file . Java File I/O concept is implemented based on Unix Operating System. Hence, Java File Object can be used to represent both files and directories.
+
+
+****** File Class Constructors ******
+i. File f = new File(String name);
+=> This creates a java file object to represent name of the file or directory in current working directory.
+
+ii. File f = new File(String sub_directory_name, String name);
+=> This creates a java file object to represent name of the file or directory present in specified sub-directory.
+
+iii. File f = new File(File sub_directory, String name);
+
+---------- Examples of Constructors --------------
+* Write code to create a file named with abc.txt in current working directory.
+=> File f  = new File("abc.txt");  //first constructor
+   f.createNewFile();
+
+* Write code to create a directory named with aashish123 in current working directory and create a file named with demo.txt in that directory.
+=>  File file = new File("aashish");
+    file.mkdir();
+    File file1 = new File("aashish", "demo.txt");  //second constructor
+    file1.createNewFile();
+  
+----- same program using third constructor -----
+
+    File file = new File("aashish");
+    file.mkdir();
+    File file1 = new File(file, "demo.txt");
+    file1.createNewFile();
+
+* Write a code to create a file named with abc.txt in E:xyz folder
+=> File f = new File("E:xyz", "abc.txt");  //third constructor
+  Assuming that E:xyz folder is already available in our system.
+
+
+
+  ************************ important methods present in File class *************************
+i. boolean exists();    // returns true if the specified file or directory available.
+ii. boolean createNewFile();  // if file already exists then this method returns false without creating any physical file. If the file is not already available , then this method creates a new file and returns true.
+iii. boolean mkdir();   // if directory already exists then this method returns false without creating any physical directory. If the directory is not already available , then this method creates a new directory and returns true.
+iv. boolean isFile();  // returns true if the specified file object pointing to physical file.
+v. boolean isDirectory(); // returns true if the specified directory pointing to physical directory.
+vi. String[] list();  // returns an array of String objects which contains all the files and directories present in the specified directory.
+vii. long length();  // returns the number of characters present in specified file.
+viii. boolean delete(); // to delete specified file or directory.
+
+** Write a program to display name of all files and directories present in Advance_Java directory.
+import java.io.File;
+import java.io.IOException;
+public class Program {
+  public static void main(String[] args) throws IOException {
+    File file = new File("Advance_Java");
+    System.out.println(file.isDirectory());
+    String[] list = file.list();
+    for (String s : list) {
+      System.out.println(s);
+    }
+  }
+}
+
+*** Now to display only files ***
+import java.io.File;
+import java.io.IOException;
+public class Program {
+  public static void main(String[] args) throws IOException {
+    File file = new File("Advance_Java");
+    System.out.println(file.isDirectory());
+    String[] list = file.list();
+    for (String s : list) {
+      File f = new File(file, s);
+      if (f.isFile()) {
+        System.out.println(s);
+      }
+    }
+  }
+}
+
+
+
