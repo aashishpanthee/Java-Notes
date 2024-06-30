@@ -1,0 +1,19 @@
+***************** Collection(I) ********************
+=> If we want to represent a group of individual objects as a single entity then we should go for Collection.
+=> Collection Interface defines the most common methods which are applicable for any Collection objects.
+
+i. boolean add(Object o);
+ii. boolean addAll(Collection c);
+iii. boolean remove(Object o);
+iv. boolean removeAll(Collection c);
+v. boolean retainAll(Collection c); // To remove all the objects except those in c
+vi. void clear();
+vii. boolean contains(Object o);
+viii. boolean containsAll(Collection c);
+ix. boolean isEmpty();
+x. int size();
+xi. Object[] toArray();
+xii.Iterator iterator();
+
+Note: There is no concrete class which implements Collection Interface directly.
+
