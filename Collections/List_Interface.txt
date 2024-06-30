@@ -1,0 +1,44 @@
+************************** List Interface ************************
+=> List is child interface of Collection(I).
+=> If we want to represent a group of individual objects as a single entity where duplicates are allowed and insertion order must be preserved then we should go for List.
+
+-> We can preserve insertion order via index and we can differentiate duplicate objects by using index. Hence, index will play very important role in List.
+
+List(I) defines the following specific methods:
+a. void add(int index, Object o);
+b. boolean addAll(int index, Collection c);
+c. Object get(int index);
+d. Object remove(int index);
+e. Object set(int index, Object new); // to replace the element present at specified index with provided Object and returns old Object.
+f. int indexOf(Object o);  // returns occurence of first appearance of o.
+g. ListIterator listIterator();
+
+=>                          Implementations class of List are:
+i. ArrayList
+ii. LinkedList
+iii. Vector
+iv. Stack
+
+
+a. ArrayList
+=> The underlying data-structure is Resizable Array or Growable Array.
+=> Duplicates are allowed.
+=> Insertion order is preserved.
+=> heterogeneous objects are allowed ( except TreeSet and TreeMap , everywhere heterogeneous objects are allowed).
+=> Null insertion is possible.
+
+  ** Constructor of ArrayList **
+
+i. ArrayList l = new ArrayList();
+=> This creates an empty ArrayList object with default initial capacity which is 10.
+=> Once, ArrayList reaches it's maximum capacity then a new ArrayList object will be created with : new capacity = (current capacity * 3/2) + 1
+
+ii. ArrayList l = new ArrayList(int initial_capacity);
+=> This creates an empty ArrayList object with specified initial capacity.
+
+iii. ArrayList l = new ArrayList(Collection c);
+=> This creates an equivalent ArrayList for the given Collection.
+
+
+
+
