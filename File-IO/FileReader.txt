@@ -1,0 +1,43 @@
+FileReader class
+=> We can use FileReader to read character data from the file.
+
+--Contructors--
+1. FileReader fr = new FileReader(String filename);
+2. FileReader fr = new FileReader(File f);
+
+--Methods--
+a. int read();
+=> It attempts to read next character from the file and returns it's unicode value.
+  If the next character not available then this method returns -1.
+  As this method returns unicode value (int value) , at the time of printing we have to perform type-casting.
+  Program:
+    FileReader fileReader = new FileReader(new File("File_I/O", "abc.txt"));
+    int i = fileReader.read();
+    while (i != -1) {
+      System.out.println((char) (i));
+      i = fileReader.read();
+    }
+    fileReader.close();
+
+b. int read(char[] ch);
+=> It attempts to read enough characters from the file into char array and returns no. of characters copied from file.
+  Program:
+    File file = new File("File_I/O", "abc.txt");
+    FileReader fileReader = new FileReader(new File("File_I/O", "abc.txt"));
+    char[] arr = new char[(int) file.length()];
+    fileReader.read(arr);
+    for (char c : arr) {
+      System.out.println(c);
+    }
+
+c. void close();
+=> To close the reader.
+
+NOTE: By using FileReader , we can read data character by character which is not convenient to the programmer.
+
+- USAGE OF FileReader and FileWriter is not recommended because:
+i. While writing data by FileWriter, we have to insert line separator("\n") manually. It is difficulty to the programmer.
+ii. By using FileReader, we can read data character by character, which is not convenient to the programmer.
+----To overcome these problems, we should go for BufferedWriter and BufferedReader.
+
+
