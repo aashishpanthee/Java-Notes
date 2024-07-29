@@ -1,0 +1,135 @@
+                ** PrintWriter **
+=> It is the most enhanced Writer to write character data to the file.
+=> The main advantage of PrintWriter over FileWriter and BufferedWriter is we can write any type of primitive data directly to the file.
+
+               ** Contructors ***
+i. PrintWriter pw = new PrintWriter(String fname);
+ii. PrintWriter pw = new PrintWriter(File f);
+iii. PrintWriter pw = new PrintWriter(Writer w);
+
+Note: PrintWriter can communicate directly with the file and can communicate via some Writer object also.
+
+             ** Methods **
+i. write(int ch);
+ii. write(char[] ch);
+iii. write(String s);
+iv. flush();
+v. close();
+
+vi. print(char ch);
+vii. print(int i);
+viii. print(double d);
+ix. print(boolean b);
+x. print(String s);
+
+xi. println(char ch);
+xii. println(int i);
+xiii. println(double d);
+xiv. println(boolean b);
+xv. print(String s);
+
+  Program Example:
+    FileWriter fw = new FileWriter(new File("File-IO", "abc.txt"), true);
+    PrintWriter pw = new PrintWriter(fw);
+    pw.write(100);
+    pw.println(100);
+    pw.println(100.00);
+    pw.println(true);
+    pw.println("Hello aashish");
+    pw.print("Hello Sagar");
+    pw.print("Hello Sumit");
+    pw.flush();
+    pw.close();
+
+    Output:
+    d100
+    100.0
+    true
+    Hello aashish
+    d100
+    100.0
+    true
+    Hello aashish
+    Hello SagarHello Sumit
+
+*  What is the difference between write(100) and print(100) ?
+=> In the case of write(100), the corresponding character 'd' will be added to the file
+    but in the case of print(100), the int value 100 will be added to the file directly.
+
+Note: The most enhanced Writer to write character data to the file is PrintWriter, whereas the most enhanced Reader to read character data from the file is BufferedReader.
+
+                    ** NOTE ** 
+In general, we can use Readers and Writers to handle character data (text data), whereas we can use Streams to handle Binary data (like images, pdf files, video files, audio files, etc).
+We can use OutputStream to write Binary data to the file , InputStream to read Binary data from the file.
+
+
+Examples:
+
+a. Write a program to mix data from two files into a third file. 
+=> 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class Program {
+  public static void main(String[] args) throws IOException {
+    PrintWriter writer = new PrintWriter(new FileWriter("File-IO/fileMerger.txt"));
+    BufferedReader br = new BufferedReader(new FileReader("File-IO/BufferedWriter.txt"));
+    String line = br.readLine();
+    while (line != null) {
+      writer.println(line);
+      line = br.readLine();
+    }
+    br = new BufferedReader(new FileReader("File-IO/BufferedReader.txt"));
+    line = br.readLine();
+    while (line != null) {
+      writer.println(line);
+      line = br.readLine();
+    }
+    writer.flush();
+    br.close();
+    writer.close();
+  }
+}
+
+
+b. Write a program to perform file merge operation where merging should be done line by line alternatively.
+=> 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class Program {
+  public static void main(String[] args) throws IOException {
+    PrintWriter writer = new PrintWriter("File-IO/fileMerger.txt");
+    BufferedReader br1 = new BufferedReader(new FileReader("File-IO/BufferedReader.txt"));
+    BufferedReader br2 = new BufferedReader(new FileReader("File-IO/BufferedWriter.txt"));
+    String line1 = br1.readLine();
+    String line2 = br2.readLine();
+    while ((line1 != null) || (line2 != null)) {
+      if (line1 != null) {
+        writer.println(line1);
+        line1 = br1.readLine();
+      }
+      if (line2 != null) {
+        writer.println(line2);
+        line2 = br2.readLine();
+      }
+    }
+    writer.flush();
+    br1.close();
+    br2.close();
+    writer.close();
+  }
+}
+
+c. 
+
+
+
+
+
+
