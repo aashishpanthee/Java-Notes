@@ -1,0 +1,56 @@
+We can use BufferedWriter to write character data to the file.
+
+* Constructors *
+i. BufferedWriter bw = new BufferedWriter(Writer w); 
+Note: BufferedWriter can't communicate directly with the file. It can communicate via some Writer object.
+=> We are taking some Writer object instead of some file directly because BufferedWriter cannot interact with the file directly. It needs some Writer object like of FileWriter object.
+
+ii. BufferedWriter bw = new BufferedWriter(Writer w , int bufferSize);
+
+
+Some Examples of BufferedWriter Contructors:
+a. BufferedWriter bw = new BufferedWriter("abc.txt"); //mistake
+b. BufferedWriter bw = new BufferedWriter(new File("abc.txt")); //mistake
+c. BufferedWriter bw = new BufferedWriter(new FileWriter("abc.txt")); //right
+d. BufferedWriter bw = new BufferedWriter(new BufferedWriter(new FileWriter("abc.txt"))); //right  i.e. This is two-level-buffering.
+
+
+* Methods *
+i. write(int ch);
+ii. write(char[] a);
+iii. write(String[] s);
+iv. flush();
+v. close();
+vi. newLine(); => To insert a line separator.
+
+Example: 
+    FileWriter writer = new FileWriter(new File("File-IO", "abc.txt"), true);
+    BufferedWriter bf = new BufferedWriter(writer);
+    bf.newLine();
+    bf.write("eighth text from Program.java");
+    bf.newLine();
+    bf.write("ninth text from Program.java");
+    bf.newLine();
+    char[] ch = { 'a', 'b', 'c' };
+    bf.write(ch);
+    bf.newLine();
+    bf.flush();
+    bf.close();
+
+Output:
+first text from Program.java
+second text from Program.java
+first text from Program.java
+second text from Program.java
+sixth text from Program.java
+seventh text from Program.java
+eighth text from Program.java
+ninth text from Program.java
+eighth text from Program.java
+ninth text from Program.java
+abc
+
+
+NOTE::  Whenever we are closing BufferedWriter, automatically internal FileWriter will be closed and we are not required to close explicitly.
+
+
