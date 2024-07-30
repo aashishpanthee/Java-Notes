@@ -126,7 +126,75 @@ public class Program {
   }
 }
 
-c. 
+c. Write a program to perfrom file Extraction operation. (looking at one file line by line and checking another file and if content matches, skip , and if not matches , write in another file)
+=>
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class Program {
+  public static void main(String[] args) throws IOException {
+    PrintWriter pw = new PrintWriter("File-IO/fileMerger.txt");
+    BufferedReader br1 = new BufferedReader(new FileReader("File-IO/abc.txt"));
+    String line = br1.readLine();
+    while (line != null) {
+      boolean isTargetAvailableInNextFile = false;
+      BufferedReader br2 = new BufferedReader(new FileReader("File-IO/def.txt"));
+      String target = br2.readLine();
+      while (target != null) {
+        if (line.equals(target)) {
+          isTargetAvailableInNextFile = true;
+          break;
+        }
+        target = br2.readLine();
+      }
+      if (isTargetAvailableInNextFile == false) {
+        pw.println(line);
+      }
+      line = br1.readLine();
+    }
+    pw.flush();
+    br1.close();
+  }
+}
+
+
+d. Write a java program to remove duplicates from the given input file.
+=> 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class Program {
+  public static void main(String[] args) throws IOException {
+    PrintWriter pw = new PrintWriter("File-IO/def.txt");
+    BufferedReader br1 = new BufferedReader(new FileReader("File-IO/abc.txt"));
+    String line = br1.readLine();
+    while (line != null) {
+      boolean isTargetAvailableInNextFile = false;
+      BufferedReader br2 = new BufferedReader(new FileReader("File-IO/def.txt"));
+      String target = br2.readLine();
+      while (target != null) {
+        if (line.equals(target)) {
+          isTargetAvailableInNextFile = true;
+          break;
+        }
+        target = br2.readLine();
+      }
+      if (isTargetAvailableInNextFile == false) {
+        pw.println(line);
+        pw.flush();
+      }
+      line = br1.readLine();
+      br2.close();
+    }
+    br1.close();
+    pw.close();
+  }
+}
+
 
 
 
